@@ -8,6 +8,7 @@ const DEFAULT_MESSAGE =
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
 const siteHeader = document.querySelector(".site-header");
+const heroTitle = document.querySelector(".hero-copy h1");
 const navLinks = document.querySelectorAll('.site-nav a[href^="#"]');
 const whatsappButtons = document.querySelectorAll(".whatsapp-trigger");
 const revealElements = document.querySelectorAll(
@@ -59,6 +60,10 @@ function smoothScrollTo(targetId) {
     top,
     behavior: "smooth"
   });
+}
+
+if (heroTitle) {
+  heroTitle.textContent = "Você aproveita o paraíso. A Praiô cuida do resto.";
 }
 
 if (navToggle) {
