@@ -145,7 +145,7 @@ img {
 }
 
 .brand-logo {
-  width: 130px;
+  width: 140px;
   height: auto;
   display: block;
   filter: drop-shadow(0 10px 24px rgba(5, 39, 50, 0.16));
@@ -280,7 +280,7 @@ img {
 
 .hero-copy {
   color: white;
-  max-width: 660px;
+  max-width: 690px;
 }
 
 .hero-copy-centered {
@@ -298,19 +298,21 @@ img {
 }
 
 .hero-copy h1 {
-  font-size: clamp(2.18rem, 3.8vw, 3.48rem);
-  max-width: 585px;
-  line-height: 1.06;
+  font-size: clamp(2.2rem, 3.82vw, 3.5rem);
+  max-width: 640px;
+  line-height: 1.05;
   text-shadow: 0 12px 28px rgba(5, 39, 50, 0.18);
+  text-wrap: balance;
 }
 
 .hero-text {
   margin: 1rem 0 0;
-  max-width: 570px;
+  max-width: 640px;
   color: rgba(255, 255, 255, 0.96);
   font-size: 1.05rem;
   line-height: 1.72;
   text-shadow: 0 10px 24px rgba(5, 39, 50, 0.16);
+  text-wrap: pretty;
 }
 
 .hero-actions {
@@ -721,7 +723,7 @@ img {
   }
 
   .hero-copy {
-    max-width: 600px;
+    max-width: 630px;
   }
 
   .hero-logo {
@@ -729,12 +731,12 @@ img {
   }
 
   .hero-copy h1 {
-    max-width: 520px;
+    max-width: 560px;
     font-size: clamp(2rem, 5vw, 2.95rem);
   }
 
   .hero-text {
-    max-width: 480px;
+    max-width: 540px;
     font-size: 1.02rem;
   }
 
@@ -785,13 +787,13 @@ img {
   }
 
   .hero-copy h1 {
-    max-width: 274px;
+    max-width: 292px;
     font-size: 1.74rem;
     line-height: 1.06;
   }
 
   .hero-text {
-    max-width: 318px;
+    max-width: 326px;
     margin-top: 0.85rem;
     font-size: 0.98rem;
     line-height: 1.68;
@@ -851,7 +853,7 @@ img {
   }
 
   .brand-logo {
-    width: 106px;
+    width: 112px;
   }
 
   .section-heading h2,
@@ -860,7 +862,7 @@ img {
   }
 
   .hero-copy h1 {
-    max-width: 248px;
+    max-width: 258px;
     font-size: 1.58rem;
   }
 
@@ -873,7 +875,7 @@ img {
   }
 
   .hero-text {
-    max-width: 282px;
+    max-width: 290px;
     font-size: 0.95rem;
   }
 
