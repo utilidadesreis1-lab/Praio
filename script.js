@@ -7,6 +7,7 @@ const DEFAULT_MESSAGE =
 
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
+const siteHeader = document.querySelector(".site-header");
 const navLinks = document.querySelectorAll('.site-nav a[href^="#"]');
 const whatsappButtons = document.querySelectorAll(".whatsapp-trigger");
 const revealElements = document.querySelectorAll(
@@ -36,6 +37,17 @@ function toggleMobileMenu() {
   navToggle.setAttribute("aria-expanded", String(isOpen));
 }
 
+function syncHeaderState() {
+  if (!siteHeader) return;
+
+  if (window.scrollY > 18 || siteNav?.classList.contains("is-open")) {
+    siteHeader.classList.add("is-scrolled");
+    return;
+  }
+
+  siteHeader.classList.remove("is-scrolled");
+}
+
 function smoothScrollTo(targetId) {
   const target = document.querySelector(targetId);
   if (!target) return;
@@ -50,7 +62,10 @@ function smoothScrollTo(targetId) {
 }
 
 if (navToggle) {
-  navToggle.addEventListener("click", toggleMobileMenu);
+  navToggle.addEventListener("click", () => {
+    toggleMobileMenu();
+    syncHeaderState();
+  });
 }
 
 navLinks.forEach((link) => {
@@ -61,6 +76,7 @@ navLinks.forEach((link) => {
 
     smoothScrollTo(targetId);
     closeMobileMenu();
+    syncHeaderState();
   });
 });
 
@@ -106,6 +122,9 @@ const revealObserver = new IntersectionObserver(
 
 revealElements.forEach((element) => revealObserver.observe(element));
 
+syncHeaderState();
+window.addEventListener("scroll", syncHeaderState, { passive: true });
+
 document.addEventListener("click", (event) => {
   if (!siteNav || !navToggle) return;
   if (!siteNav.classList.contains("is-open")) return;
@@ -115,5 +134,6 @@ document.addEventListener("click", (event) => {
 
   if (!clickedInsideMenu && !clickedToggle) {
     closeMobileMenu();
+    syncHeaderState();
   }
 });
