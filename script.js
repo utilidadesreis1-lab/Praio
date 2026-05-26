@@ -3,16 +3,25 @@
 const WHATSAPP_NUMBER = "5582000000000";
 
 const DEFAULT_MESSAGE =
-  "Olá! Vim pelo site da Praiou Receptivo 🌴 Gostaria de informações sobre os passeios.";
+  "Olá! Vim pelo site da Praiô Receptivo 🌴 Gostaria de informações sobre transfers e experiências.";
 
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
 const siteHeader = document.querySelector(".site-header");
-const heroTitle = document.querySelector(".hero-copy h1");
 const navLinks = document.querySelectorAll('.site-nav a[href^="#"]');
 const whatsappButtons = document.querySelectorAll(".whatsapp-trigger");
 const revealElements = document.querySelectorAll(
-  ".section-heading, .info-card, .tour-card, .reason-card, .review-card, .extra-pill, .final-cta-box, .intro-copy"
+  [
+    ".section-heading",
+    ".intro-copy",
+    ".profile-card",
+    ".schedule-box",
+    ".tour-card",
+    ".transfer-card",
+    ".experience-card",
+    ".review-card",
+    ".final-cta-box"
+  ].join(", ")
 );
 
 function buildWhatsAppLink(message) {
@@ -60,10 +69,6 @@ function smoothScrollTo(targetId) {
     top,
     behavior: "smooth"
   });
-}
-
-if (heroTitle) {
-  heroTitle.textContent = "Você aproveita o paraíso. A Praiô cuida do resto.";
 }
 
 if (navToggle) {
