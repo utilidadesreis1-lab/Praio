@@ -1135,6 +1135,43 @@ img {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 7.5h11.5v8H3z'/%3E%3Cpath d='M14.5 10h3.1l2.4 2.6v2.9h-5.5z'/%3E%3Ccircle cx='7' cy='17.5' r='1.8'/%3E%3Ccircle cx='17.5' cy='17.5' r='1.8'/%3E%3C/svg%3E");
   }
 
+  .hero-actions .btn-primary {
+    font-size: 0;
+    color: transparent;
+  }
+
+  .hero-actions .btn-primary::after {
+    content: "Agendar";
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: white;
+  }
+
+  .hero-mobile-link {
+    font-size: 0;
+    color: transparent;
+  }
+
+  .hero-mobile-link::after {
+    font-size: 0.66rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: white;
+  }
+
+  .hero-mobile-link:nth-child(1)::after {
+    content: "Passeios";
+  }
+
+  .hero-mobile-link:nth-child(2)::after {
+    content: "Experiências";
+  }
+
+  .hero-mobile-link:nth-child(3)::after {
+    content: "Transfers";
+  }
+
   .btn,
   .header-cta,
   .btn-card {
@@ -1245,6 +1282,93 @@ img {
     width: 0.86rem;
     height: 0.86rem;
     flex-basis: 0.86rem;
+  }
+
+  .hero-copy-centered {
+    transform: translateY(-1.25rem);
+  }
+
+  .hero-logo {
+    width: min(100%, 286px);
+    margin-bottom: 0.92rem;
+  }
+
+  .hero-copy h1 {
+    max-width: 294px;
+    font-size: 1.8rem;
+    line-height: 1.07;
+  }
+
+  .hero-text {
+    max-width: 280px;
+    margin-top: 0.8rem;
+    line-height: 1.52;
+  }
+
+  .hero-actions {
+    margin-top: 1.12rem;
+    gap: 0.62rem;
+  }
+
+  .hero-actions .btn-primary {
+    width: min(100%, 224px);
+    min-height: 56px;
+    padding: 0.9rem 1.45rem;
+    font-size: 0;
+    color: transparent;
+    box-shadow:
+      0 16px 28px rgba(255, 122, 43, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.32);
+  }
+
+  .hero-actions .btn-primary::after {
+    content: "Agendar";
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: white;
+  }
+
+  .hero-mobile-links {
+    width: min(100%, 294px);
+    gap: 0.38rem;
+    margin-top: 0.02rem;
+  }
+
+  .hero-mobile-link {
+    min-height: 40px;
+    padding: 0.5rem 0.32rem;
+    font-size: 0;
+    color: transparent;
+    gap: 0.26rem;
+    box-shadow:
+      0 9px 16px rgba(255, 126, 62, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  }
+
+  .hero-mobile-link::before {
+    width: 0.84rem;
+    height: 0.84rem;
+    flex-basis: 0.84rem;
+  }
+
+  .hero-mobile-link::after {
+    font-size: 0.66rem;
+    font-weight: 800;
+    color: white;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-mobile-link:nth-child(1)::after {
+    content: "Passeios";
+  }
+
+  .hero-mobile-link:nth-child(2)::after {
+    content: "Experiências";
+  }
+
+  .hero-mobile-link:nth-child(3)::after {
+    content: "Transfers";
   }
 
   .hero-badges {
