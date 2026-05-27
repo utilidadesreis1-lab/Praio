@@ -1760,6 +1760,7 @@ img {
   }
 
   .hero-backdrop {
+    inset: -2px;
     background:
       linear-gradient(
         180deg,
@@ -1770,7 +1771,8 @@ img {
       radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.18), transparent 25%),
       linear-gradient(90deg, rgba(4, 39, 50, 0.04) 0%, rgba(4, 39, 50, 0.01) 44%, rgba(4, 39, 50, 0.08) 100%),
       url("./assets/hero-mobile-praiou.jpeg");
-    background-size: calc(var(--hero-mobile-bg-zoom) * 1%) auto;
+    background-repeat: no-repeat;
+    background-size: auto max(calc(var(--hero-mobile-bg-zoom) * 1%), 100%);
     background-position: var(--hero-mobile-bg-position-x) var(--hero-mobile-bg-position-y);
   }
 
@@ -1937,7 +1939,7 @@ img {
 
 @media (max-width: 380px) {
   .hero-backdrop {
-    background-size: calc(var(--hero-mobile-bg-zoom) * 1%) auto;
+    background-size: auto max(calc(var(--hero-mobile-bg-zoom) * 1%), 100%);
     background-position: var(--hero-mobile-bg-position-x) var(--hero-mobile-bg-position-y);
   }
 
