@@ -1777,7 +1777,8 @@ img {
   }
 
   .hero-logo {
-    width: min(100%, clamp(260px, 72vw, var(--hero-mobile-logo-size)));
+    width: min(var(--hero-mobile-logo-size), calc(100vw - 1.2rem));
+    max-width: none;
     margin-bottom: var(--hero-mobile-logo-gap);
     transform: translate(var(--hero-mobile-logo-offset-x), var(--hero-mobile-logo-offset-y));
     filter: drop-shadow(0 10px 26px rgba(5, 39, 50, 0.2));
@@ -1939,7 +1940,7 @@ img {
   }
 
   .hero-logo {
-    width: min(100%, clamp(248px, 70vw, 308px));
+    width: min(var(--hero-mobile-logo-size), calc(100vw - 1rem));
   }
 
   .hero-copy h1 {
@@ -1972,13 +1973,13 @@ img {
   }
 
   .hero-logo {
-    width: min(100%, clamp(258px, 71vw, 330px));
+    width: min(var(--hero-mobile-logo-size), calc(100vw - 1.1rem));
   }
 }
 
 @media (min-width: 431px) and (max-width: 640px) {
   .hero-logo {
-    width: min(100%, clamp(286px, 66vw, 340px));
+    width: min(var(--hero-mobile-logo-size), calc(100vw - 2.4rem));
   }
 
   .hero-copy h1 {

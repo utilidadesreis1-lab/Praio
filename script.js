@@ -54,24 +54,24 @@ const HERO_ADJUST_CONTROLS = [
       {
         label: "Tamanho",
         variable: "--hero-mobile-logo-size",
-        min: 220,
-        max: 360,
+        min: 180,
+        max: 560,
         step: 1,
         unit: "px"
       },
       {
         label: "Posição vertical",
         variable: "--hero-mobile-logo-offset-y",
-        min: -80,
-        max: 80,
+        min: -200,
+        max: 200,
         step: 1,
         unit: "px"
       },
       {
         label: "Posição horizontal",
         variable: "--hero-mobile-logo-offset-x",
-        min: -80,
-        max: 80,
+        min: -150,
+        max: 150,
         step: 1,
         unit: "px"
       },
