@@ -1,9 +1,364 @@
-// Troque aqui o número do WhatsApp da empresa no formato internacional.
+// Troque aqui o numero do WhatsApp da empresa no formato internacional.
 // Exemplo: 5582999999999
 const WHATSAPP_NUMBER = "5582000000000";
 
 const DEFAULT_MESSAGE =
   "Olá! Vim pelo site da Praiô Receptivo 🌴 Gostaria de informações sobre transfers e experiências.";
+
+const HERO_ADJUST_QUERY = "ajusteHero";
+const HERO_ADJUST_STORAGE_KEY = "praiou-hero-mobile-adjustments";
+
+const HERO_MOBILE_DEFAULTS = {
+  "--hero-mobile-block-offset-y": "-20px",
+  "--hero-mobile-logo-size": "286px",
+  "--hero-mobile-logo-offset-y": "0px",
+  "--hero-mobile-logo-offset-x": "0px",
+  "--hero-mobile-logo-gap": "14px",
+  "--hero-mobile-title-size": "29px",
+  "--hero-mobile-title-width": "294px",
+  "--hero-mobile-title-offset-y": "0px",
+  "--hero-mobile-title-line-height": "1.07",
+  "--hero-mobile-title-subtitle-gap": "12px",
+  "--hero-mobile-subtitle-size": "14px",
+  "--hero-mobile-subtitle-width": "280px",
+  "--hero-mobile-subtitle-offset-y": "0px",
+  "--hero-mobile-subtitle-line-height": "1.52",
+  "--hero-mobile-subtitle-cta-gap": "18px",
+  "--hero-mobile-cta-width": "224px",
+  "--hero-mobile-cta-height": "56px",
+  "--hero-mobile-cta-font-size": "16px",
+  "--hero-mobile-cta-offset-y": "0px",
+  "--hero-mobile-cta-links-gap": "4px",
+  "--hero-mobile-cta-radius": "999px",
+  "--hero-mobile-cta-shadow-alpha": "0.32",
+  "--hero-mobile-link-group-width": "294px",
+  "--hero-mobile-link-height": "40px",
+  "--hero-mobile-link-font-size": "11px",
+  "--hero-mobile-link-icon-size": "14px",
+  "--hero-mobile-link-gap": "6px",
+  "--hero-mobile-link-group-offset-y": "0px",
+  "--hero-mobile-link-radius": "999px",
+  "--hero-mobile-link-shadow-alpha": "0.22",
+  "--hero-mobile-bg-position-x": "52%",
+  "--hero-mobile-bg-position-y": "14%",
+  "--hero-mobile-bg-zoom": "116",
+  "--hero-mobile-overlay-top": "0.06",
+  "--hero-mobile-overlay-mid": "0.1",
+  "--hero-mobile-overlay-bottom": "0.19"
+};
+
+const HERO_ADJUST_CONTROLS = [
+  {
+    group: "Logo",
+    controls: [
+      {
+        label: "Tamanho",
+        variable: "--hero-mobile-logo-size",
+        min: 220,
+        max: 360,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Posição vertical",
+        variable: "--hero-mobile-logo-offset-y",
+        min: -80,
+        max: 80,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Posição horizontal",
+        variable: "--hero-mobile-logo-offset-x",
+        min: -80,
+        max: 80,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Distância para o título",
+        variable: "--hero-mobile-logo-gap",
+        min: 0,
+        max: 48,
+        step: 1,
+        unit: "px"
+      }
+    ]
+  },
+  {
+    group: "Título",
+    controls: [
+      {
+        label: "Tamanho",
+        variable: "--hero-mobile-title-size",
+        min: 22,
+        max: 42,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Largura máxima",
+        variable: "--hero-mobile-title-width",
+        min: 220,
+        max: 360,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Posição vertical",
+        variable: "--hero-mobile-title-offset-y",
+        min: -60,
+        max: 60,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Entrelinhas",
+        variable: "--hero-mobile-title-line-height",
+        min: 0.9,
+        max: 1.3,
+        step: 0.01,
+        unit: ""
+      },
+      {
+        label: "Distância para o subtítulo",
+        variable: "--hero-mobile-title-subtitle-gap",
+        min: 0,
+        max: 40,
+        step: 1,
+        unit: "px"
+      }
+    ]
+  },
+  {
+    group: "Subtítulo",
+    controls: [
+      {
+        label: "Tamanho",
+        variable: "--hero-mobile-subtitle-size",
+        min: 11,
+        max: 22,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Largura máxima",
+        variable: "--hero-mobile-subtitle-width",
+        min: 220,
+        max: 360,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Posição vertical",
+        variable: "--hero-mobile-subtitle-offset-y",
+        min: -60,
+        max: 60,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Entrelinhas",
+        variable: "--hero-mobile-subtitle-line-height",
+        min: 1,
+        max: 2,
+        step: 0.01,
+        unit: ""
+      },
+      {
+        label: "Distância para o Agendar",
+        variable: "--hero-mobile-subtitle-cta-gap",
+        min: 0,
+        max: 56,
+        step: 1,
+        unit: "px"
+      }
+    ]
+  },
+  {
+    group: "Botão Agendar",
+    controls: [
+      {
+        label: "Largura",
+        variable: "--hero-mobile-cta-width",
+        min: 160,
+        max: 320,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Altura",
+        variable: "--hero-mobile-cta-height",
+        min: 40,
+        max: 80,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Tamanho da fonte",
+        variable: "--hero-mobile-cta-font-size",
+        min: 12,
+        max: 24,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Posição vertical",
+        variable: "--hero-mobile-cta-offset-y",
+        min: -60,
+        max: 60,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Distância para botões inferiores",
+        variable: "--hero-mobile-cta-links-gap",
+        min: 0,
+        max: 36,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Arredondamento",
+        variable: "--hero-mobile-cta-radius",
+        min: 16,
+        max: 999,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Intensidade da sombra",
+        variable: "--hero-mobile-cta-shadow-alpha",
+        min: 0.05,
+        max: 0.6,
+        step: 0.01,
+        unit: ""
+      }
+    ]
+  },
+  {
+    group: "Botões inferiores",
+    controls: [
+      {
+        label: "Largura do grupo",
+        variable: "--hero-mobile-link-group-width",
+        min: 220,
+        max: 360,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Altura dos botões",
+        variable: "--hero-mobile-link-height",
+        min: 32,
+        max: 64,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Tamanho da fonte",
+        variable: "--hero-mobile-link-font-size",
+        min: 9,
+        max: 18,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Tamanho dos ícones",
+        variable: "--hero-mobile-link-icon-size",
+        min: 10,
+        max: 24,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Distância entre os botões",
+        variable: "--hero-mobile-link-gap",
+        min: 0,
+        max: 20,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Posição vertical do grupo",
+        variable: "--hero-mobile-link-group-offset-y",
+        min: -60,
+        max: 60,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Arredondamento",
+        variable: "--hero-mobile-link-radius",
+        min: 16,
+        max: 999,
+        step: 1,
+        unit: "px"
+      },
+      {
+        label: "Intensidade da sombra",
+        variable: "--hero-mobile-link-shadow-alpha",
+        min: 0.05,
+        max: 0.5,
+        step: 0.01,
+        unit: ""
+      }
+    ]
+  },
+  {
+    group: "Fundo",
+    controls: [
+      {
+        label: "Posição horizontal",
+        variable: "--hero-mobile-bg-position-x",
+        min: 0,
+        max: 100,
+        step: 1,
+        unit: "%"
+      },
+      {
+        label: "Posição vertical",
+        variable: "--hero-mobile-bg-position-y",
+        min: 0,
+        max: 100,
+        step: 1,
+        unit: "%"
+      },
+      {
+        label: "Zoom",
+        variable: "--hero-mobile-bg-zoom",
+        min: 100,
+        max: 180,
+        step: 1,
+        unit: ""
+      },
+      {
+        label: "Overlay topo",
+        variable: "--hero-mobile-overlay-top",
+        min: 0,
+        max: 0.3,
+        step: 0.01,
+        unit: ""
+      },
+      {
+        label: "Overlay meio",
+        variable: "--hero-mobile-overlay-mid",
+        min: 0,
+        max: 0.4,
+        step: 0.01,
+        unit: ""
+      },
+      {
+        label: "Overlay base",
+        variable: "--hero-mobile-overlay-bottom",
+        min: 0,
+        max: 0.45,
+        step: 0.01,
+        unit: ""
+      }
+    ]
+  }
+];
 
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
@@ -71,6 +426,230 @@ function smoothScrollTo(targetId) {
   });
 }
 
+function getHeroAdjustMode() {
+  return new URLSearchParams(window.location.search).get(HERO_ADJUST_QUERY) === "1";
+}
+
+function readStoredHeroAdjustments() {
+  try {
+    const raw = window.localStorage.getItem(HERO_ADJUST_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch (error) {
+    return {};
+  }
+}
+
+function persistHeroAdjustments(values) {
+  try {
+    window.localStorage.setItem(HERO_ADJUST_STORAGE_KEY, JSON.stringify(values));
+  } catch (error) {
+    // Ignore storage issues in private mode or restricted browsers.
+  }
+}
+
+function applyHeroAdjustmentVariables(values) {
+  Object.entries(values).forEach(([variable, value]) => {
+    document.documentElement.style.setProperty(variable, value);
+  });
+}
+
+function getCurrentHeroAdjustmentValues() {
+  const styles = getComputedStyle(document.documentElement);
+  const values = {};
+
+  Object.keys(HERO_MOBILE_DEFAULTS).forEach((variable) => {
+    values[variable] =
+      document.documentElement.style.getPropertyValue(variable).trim() ||
+      styles.getPropertyValue(variable).trim() ||
+      HERO_MOBILE_DEFAULTS[variable];
+  });
+
+  return values;
+}
+
+function formatHeroAdjustValue(value, unit) {
+  if (!unit) return String(value);
+  return `${value}${unit}`;
+}
+
+function parseHeroAdjustValue(rawValue, unit) {
+  if (!unit) return rawValue;
+  return rawValue.replace(unit, "").trim();
+}
+
+function buildHeroAdjustCss(values) {
+  const lines = Object.keys(HERO_MOBILE_DEFAULTS).map(
+    (variable) => `  ${variable}: ${values[variable]};`
+  );
+
+  return `:root {\n${lines.join("\n")}\n}`;
+}
+
+async function copyTextToClipboard(text) {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text);
+    return true;
+  }
+
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "true");
+  textarea.style.position = "absolute";
+  textarea.style.left = "-9999px";
+  document.body.appendChild(textarea);
+  textarea.select();
+
+  const success = document.execCommand("copy");
+  textarea.remove();
+  return success;
+}
+
+function updateHeroAdjustPreview(panel, values) {
+  const output = panel.querySelector("[data-hero-adjust-output]");
+  if (!output) return;
+  output.textContent = buildHeroAdjustCss(values);
+}
+
+function createHeroAdjustControl(control, values, onChange) {
+  const wrapper = document.createElement("label");
+  wrapper.className = "hero-adjust-control";
+  wrapper.setAttribute("data-variable", control.variable);
+
+  const labelRow = document.createElement("span");
+  labelRow.className = "hero-adjust-control-row";
+
+  const label = document.createElement("span");
+  label.className = "hero-adjust-control-label";
+  label.textContent = control.label;
+
+  const value = document.createElement("span");
+  value.className = "hero-adjust-control-value";
+
+  const input = document.createElement("input");
+  input.className = "hero-adjust-control-input";
+  input.type = "range";
+  input.min = String(control.min);
+  input.max = String(control.max);
+  input.step = String(control.step);
+  input.value = parseHeroAdjustValue(values[control.variable], control.unit);
+
+  const updateValueLabel = () => {
+    value.textContent = formatHeroAdjustValue(input.value, control.unit);
+  };
+
+  updateValueLabel();
+
+  input.addEventListener("input", () => {
+    updateValueLabel();
+    onChange(control.variable, formatHeroAdjustValue(input.value, control.unit));
+  });
+
+  labelRow.append(label, value);
+  wrapper.append(labelRow, input);
+  return wrapper;
+}
+
+function createHeroAdjustPanel() {
+  const body = document.body;
+  const currentValues = {
+    ...HERO_MOBILE_DEFAULTS,
+    ...readStoredHeroAdjustments()
+  };
+
+  applyHeroAdjustmentVariables(currentValues);
+  body.classList.add("hero-adjust-mode");
+
+  const panel = document.createElement("aside");
+  panel.className = "hero-adjust-panel";
+  panel.innerHTML = `
+    <div class="hero-adjust-panel__header">
+      <div>
+        <p class="hero-adjust-panel__eyebrow">Ferramenta temporária</p>
+        <h2>Ajuste Hero Mobile</h2>
+      </div>
+      <span class="hero-adjust-panel__hint">Ative com ?ajusteHero=1</span>
+    </div>
+    <div class="hero-adjust-panel__groups" data-hero-adjust-groups></div>
+    <div class="hero-adjust-panel__actions">
+      <button type="button" class="hero-adjust-panel__button" data-hero-adjust-reset>Resetar ajustes</button>
+      <button type="button" class="hero-adjust-panel__button hero-adjust-panel__button--primary" data-hero-adjust-copy>Copiar CSS final</button>
+    </div>
+    <pre class="hero-adjust-panel__output" data-hero-adjust-output></pre>
+  `;
+
+  const groupsContainer = panel.querySelector("[data-hero-adjust-groups]");
+  const values = { ...currentValues };
+
+  const onChange = (variable, value) => {
+    values[variable] = value;
+    document.documentElement.style.setProperty(variable, value);
+    persistHeroAdjustments(values);
+    updateHeroAdjustPreview(panel, values);
+  };
+
+  HERO_ADJUST_CONTROLS.forEach((group) => {
+    const section = document.createElement("section");
+    section.className = "hero-adjust-group";
+
+    const title = document.createElement("h3");
+    title.className = "hero-adjust-group__title";
+    title.textContent = group.group;
+    section.appendChild(title);
+
+    group.controls.forEach((control) => {
+      section.appendChild(createHeroAdjustControl(control, values, onChange));
+    });
+
+    groupsContainer.appendChild(section);
+  });
+
+  const resetButton = panel.querySelector("[data-hero-adjust-reset]");
+  const copyButton = panel.querySelector("[data-hero-adjust-copy]");
+
+  resetButton?.addEventListener("click", () => {
+    Object.entries(HERO_MOBILE_DEFAULTS).forEach(([variable, value]) => {
+      values[variable] = value;
+      document.documentElement.style.setProperty(variable, value);
+    });
+
+    panel.querySelectorAll(".hero-adjust-control").forEach((controlElement) => {
+      const variable = controlElement.getAttribute("data-variable");
+      const meta = HERO_ADJUST_CONTROLS.flatMap((group) => group.controls).find(
+        (item) => item.variable === variable
+      );
+      const input = controlElement.querySelector(".hero-adjust-control-input");
+      const valueElement = controlElement.querySelector(".hero-adjust-control-value");
+
+      if (!meta || !input || !valueElement) return;
+      input.value = parseHeroAdjustValue(HERO_MOBILE_DEFAULTS[meta.variable], meta.unit);
+      valueElement.textContent = HERO_MOBILE_DEFAULTS[meta.variable];
+    });
+
+    persistHeroAdjustments(values);
+    updateHeroAdjustPreview(panel, values);
+  });
+
+  copyButton?.addEventListener("click", async () => {
+    const css = buildHeroAdjustCss(values);
+    const originalText = copyButton.textContent;
+
+    try {
+      await copyTextToClipboard(css);
+      copyButton.textContent = "CSS copiado";
+    } catch (error) {
+      copyButton.textContent = "Falha ao copiar";
+    }
+
+    updateHeroAdjustPreview(panel, values);
+    window.setTimeout(() => {
+      copyButton.textContent = originalText;
+    }, 1800);
+  });
+
+  updateHeroAdjustPreview(panel, values);
+  body.appendChild(panel);
+}
+
 if (navToggle) {
   navToggle.addEventListener("click", () => {
     toggleMobileMenu();
@@ -110,8 +689,6 @@ document.querySelectorAll('a[href^="#"]:not(.site-nav a)').forEach((link) => {
   });
 });
 
-// Futuramente, quando adicionar imagens reais, você pode criar classes com
-// background-image no CSS ou inserir tags <img> nas seções desejadas.
 revealElements.forEach((element) => {
   element.classList.add("reveal");
 });
@@ -147,3 +724,7 @@ document.addEventListener("click", (event) => {
     syncHeaderState();
   }
 });
+
+if (getHeroAdjustMode()) {
+  createHeroAdjustPanel();
+}
