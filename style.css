@@ -1747,11 +1747,13 @@ img {
 @media (max-width: 640px) {
   .hero {
     min-height: 100svh;
-    padding: 1.25rem 0 1.7rem;
+    min-height: 100dvh;
+    padding: clamp(1rem, 3.4vw, 1.25rem) 0 clamp(1.35rem, 4.6vw, 1.7rem);
   }
 
   .hero-grid {
     min-height: calc(100svh - 2.45rem);
+    min-height: calc(100dvh - 2.45rem);
     gap: 1.3rem;
   }
 
@@ -1766,7 +1768,7 @@ img {
       radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.18), transparent 25%),
       linear-gradient(90deg, rgba(4, 39, 50, 0.04) 0%, rgba(4, 39, 50, 0.01) 44%, rgba(4, 39, 50, 0.08) 100%),
       url("./assets/hero-mobile-praiou.jpeg");
-    background-size: calc(var(--hero-mobile-bg-zoom) * 1%) auto;
+    background-size: clamp(108%, calc(var(--hero-mobile-bg-zoom) * 1%), 126%) auto;
     background-position: var(--hero-mobile-bg-position-x) var(--hero-mobile-bg-position-y);
   }
 
@@ -1775,24 +1777,24 @@ img {
   }
 
   .hero-logo {
-    width: min(100%, var(--hero-mobile-logo-size));
+    width: min(100%, clamp(260px, 72vw, var(--hero-mobile-logo-size)));
     margin-bottom: var(--hero-mobile-logo-gap);
     transform: translate(var(--hero-mobile-logo-offset-x), var(--hero-mobile-logo-offset-y));
     filter: drop-shadow(0 10px 26px rgba(5, 39, 50, 0.2));
   }
 
   .hero-copy h1 {
-    max-width: var(--hero-mobile-title-width);
-    font-size: var(--hero-mobile-title-size);
+    max-width: min(calc(100vw - 2.3rem), clamp(248px, 77vw, var(--hero-mobile-title-width)));
+    font-size: clamp(21px, 5.8vw, var(--hero-mobile-title-size));
     line-height: var(--hero-mobile-title-line-height);
     transform: translateY(var(--hero-mobile-title-offset-y));
     text-shadow: 0 6px 18px rgba(5, 39, 50, 0.24);
   }
 
   .hero-text {
-    max-width: var(--hero-mobile-subtitle-width);
+    max-width: min(calc(100vw - 2rem), clamp(258px, 82vw, var(--hero-mobile-subtitle-width)));
     margin-top: var(--hero-mobile-title-subtitle-gap);
-    font-size: var(--hero-mobile-subtitle-size);
+    font-size: clamp(13px, 3.6vw, var(--hero-mobile-subtitle-size));
     line-height: var(--hero-mobile-subtitle-line-height);
     transform: translateY(var(--hero-mobile-subtitle-offset-y));
     text-shadow: 0 4px 12px rgba(5, 39, 50, 0.18);
@@ -1823,9 +1825,9 @@ img {
   }
 
   .hero-actions .btn-primary {
-    width: min(100%, var(--hero-mobile-cta-width));
-    min-height: var(--hero-mobile-cta-height);
-    padding: 0.98rem 1.65rem;
+    width: min(calc(100vw - 2rem), clamp(150px, 44vw, var(--hero-mobile-cta-width)));
+    min-height: clamp(40px, 10vw, 46px);
+    padding: clamp(0.72rem, 2.5vw, 0.92rem) clamp(1.2rem, 4vw, 1.55rem);
     font-size: 0;
     color: transparent;
     background: linear-gradient(180deg, #ff985d 0%, #ff7f33 100%);
@@ -1843,17 +1845,17 @@ img {
 
   .hero-actions .btn-primary::after {
     content: "Agendar";
-    font-size: var(--hero-mobile-cta-font-size);
+    font-size: clamp(15px, 4vw, var(--hero-mobile-cta-font-size));
     font-weight: 800;
     letter-spacing: -0.01em;
     color: white;
   }
 
   .hero-mobile-links {
-    width: min(100%, var(--hero-mobile-link-group-width));
+    width: min(calc(100vw - 1rem), clamp(296px, 90vw, var(--hero-mobile-link-group-width)));
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--hero-mobile-link-gap);
+    gap: clamp(4px, 1.6vw, var(--hero-mobile-link-gap));
     margin-top: var(--hero-mobile-cta-links-gap);
     justify-content: center;
     justify-items: stretch;
@@ -1862,8 +1864,8 @@ img {
 
   .hero-mobile-link {
     width: 100%;
-    min-height: var(--hero-mobile-link-height);
-    padding: 0.5rem 0.32rem;
+    min-height: clamp(40px, 10vw, var(--hero-mobile-link-height));
+    padding: clamp(0.44rem, 1.8vw, 0.5rem) clamp(0.18rem, 1.3vw, 0.32rem);
     font-size: 0;
     color: transparent;
     display: inline-flex;
@@ -1890,16 +1892,16 @@ img {
 
   .hero-mobile-link::before {
     content: "";
-    width: var(--hero-mobile-link-icon-size);
-    height: var(--hero-mobile-link-icon-size);
-    flex: 0 0 var(--hero-mobile-link-icon-size);
+    width: clamp(12px, 3.6vw, var(--hero-mobile-link-icon-size));
+    height: clamp(12px, 3.6vw, var(--hero-mobile-link-icon-size));
+    flex: 0 0 clamp(12px, 3.6vw, var(--hero-mobile-link-icon-size));
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
   }
 
   .hero-mobile-link::after {
-    font-size: var(--hero-mobile-link-font-size);
+    font-size: clamp(10px, 2.8vw, var(--hero-mobile-link-font-size));
     font-weight: 800;
     letter-spacing: -0.01em;
     color: white;
@@ -1930,39 +1932,97 @@ img {
   }
 }
 
+@media (max-width: 380px) {
+  .hero-backdrop {
+    background-size: clamp(110%, calc(var(--hero-mobile-bg-zoom) * 1%), 123%) auto;
+    background-position: 2% 2%;
+  }
+
+  .hero-logo {
+    width: min(100%, clamp(248px, 70vw, 308px));
+  }
+
+  .hero-copy h1 {
+    max-width: min(calc(100vw - 2.2rem), 264px);
+    font-size: clamp(20px, 5.5vw, 23px);
+  }
+
+  .hero-text {
+    max-width: min(calc(100vw - 1.8rem), 286px);
+    font-size: clamp(12.5px, 3.45vw, 13.5px);
+  }
+
+  .hero-actions .btn-primary {
+    width: min(calc(100vw - 2.6rem), 156px);
+  }
+
+  .hero-mobile-links {
+    width: min(calc(100vw - 0.8rem), 316px);
+    gap: 4px;
+  }
+
+  .hero-mobile-link::after {
+    font-size: 9.5px;
+  }
+}
+
+@media (min-width: 381px) and (max-width: 430px) {
+  .hero-backdrop {
+    background-position: 0% 1%;
+  }
+
+  .hero-logo {
+    width: min(100%, clamp(258px, 71vw, 330px));
+  }
+}
+
+@media (min-width: 431px) and (max-width: 640px) {
+  .hero-logo {
+    width: min(100%, clamp(286px, 66vw, 340px));
+  }
+
+  .hero-copy h1 {
+    max-width: min(calc(100vw - 2.5rem), 288px);
+  }
+
+  .hero-text {
+    max-width: min(calc(100vw - 2rem), 300px);
+  }
+
+  .hero-mobile-links {
+    width: min(calc(100vw - 1.2rem), 338px);
+  }
+}
+
 @media (max-width: 420px) {
   .hero-copy-centered {
     transform: translateY(calc(var(--hero-mobile-block-offset-y) - 6px));
   }
 
   .hero-backdrop {
-    background-position: var(--hero-mobile-bg-position-x) calc(var(--hero-mobile-bg-position-y) + 2%);
-  }
-
-  .hero-logo {
-    width: min(100%, calc(var(--hero-mobile-logo-size) + 10px));
+    background-position: 2% 2%;
   }
 
   .hero-copy h1 {
-    max-width: 286px;
-    font-size: calc(var(--hero-mobile-title-size) - 1px);
+    max-width: min(calc(100vw - 2.2rem), 270px);
+    font-size: clamp(20px, 5.4vw, 23px);
   }
 
   .hero-text {
-    max-width: 274px;
-    font-size: calc(var(--hero-mobile-subtitle-size) - 1px);
+    max-width: min(calc(100vw - 1.8rem), 288px);
+    font-size: clamp(12.5px, 3.5vw, 13.8px);
   }
 
   .hero-actions .btn-primary {
-    width: min(100%, calc(var(--hero-mobile-cta-width) + 6px));
-    min-height: calc(var(--hero-mobile-cta-height) + 2px);
+    width: min(calc(100vw - 2.4rem), 158px);
+    min-height: clamp(40px, 9.8vw, 44px);
   }
 
   .hero-mobile-links {
-    width: min(100%, calc(var(--hero-mobile-link-group-width) - 12px));
+    width: min(calc(100vw - 0.8rem), 320px);
   }
 
   .hero-mobile-link {
-    min-height: calc(var(--hero-mobile-link-height) - 2px);
+    min-height: 40px;
   }
 }
