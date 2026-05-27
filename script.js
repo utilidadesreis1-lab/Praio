@@ -9,42 +9,39 @@ const HERO_ADJUST_QUERY = "ajusteHero";
 const HERO_ADJUST_STORAGE_KEY = "praiou-hero-mobile-adjustments";
 
 const HERO_MOBILE_DEFAULTS = {
-  "--hero-mobile-block-offset-y": "-20px",
-  "--hero-mobile-logo-size": "286px",
-  "--hero-mobile-logo-offset-y": "0px",
-  "--hero-mobile-logo-offset-x": "0px",
-  "--hero-mobile-logo-gap": "14px",
+  "--hero-mobile-logo-size": "268px",
+  "--hero-mobile-logo-x": "0px",
+  "--hero-mobile-logo-y": "34px",
   "--hero-mobile-title-size": "29px",
   "--hero-mobile-title-width": "294px",
-  "--hero-mobile-title-offset-y": "0px",
+  "--hero-mobile-title-x": "0px",
+  "--hero-mobile-title-y": "290px",
   "--hero-mobile-title-line-height": "1.07",
-  "--hero-mobile-title-subtitle-gap": "12px",
   "--hero-mobile-subtitle-size": "14px",
   "--hero-mobile-subtitle-width": "280px",
-  "--hero-mobile-subtitle-offset-y": "0px",
+  "--hero-mobile-subtitle-x": "0px",
+  "--hero-mobile-subtitle-y": "392px",
   "--hero-mobile-subtitle-line-height": "1.52",
-  "--hero-mobile-subtitle-cta-gap": "18px",
   "--hero-mobile-cta-width": "224px",
   "--hero-mobile-cta-height": "56px",
   "--hero-mobile-cta-font-size": "16px",
-  "--hero-mobile-cta-offset-y": "0px",
-  "--hero-mobile-cta-links-gap": "4px",
+  "--hero-mobile-cta-x": "0px",
+  "--hero-mobile-cta-y": "494px",
   "--hero-mobile-cta-radius": "999px",
   "--hero-mobile-cta-shadow-alpha": "0.32",
-  "--hero-mobile-link-group-width": "294px",
-  "--hero-mobile-link-height": "40px",
-  "--hero-mobile-link-font-size": "11px",
-  "--hero-mobile-link-icon-size": "14px",
-  "--hero-mobile-link-gap": "6px",
-  "--hero-mobile-link-group-offset-y": "0px",
-  "--hero-mobile-link-radius": "999px",
-  "--hero-mobile-link-shadow-alpha": "0.22",
+  "--hero-mobile-actions-width": "294px",
+  "--hero-mobile-actions-height": "40px",
+  "--hero-mobile-actions-font-size": "11px",
+  "--hero-mobile-actions-icon-size": "14px",
+  "--hero-mobile-actions-gap": "6px",
+  "--hero-mobile-actions-x": "0px",
+  "--hero-mobile-actions-y": "566px",
+  "--hero-mobile-actions-radius": "999px",
+  "--hero-mobile-actions-shadow-alpha": "0.22",
   "--hero-mobile-bg-position-x": "52%",
   "--hero-mobile-bg-position-y": "14%",
-  "--hero-mobile-bg-zoom": "116",
-  "--hero-mobile-overlay-top": "0.06",
-  "--hero-mobile-overlay-mid": "0.1",
-  "--hero-mobile-overlay-bottom": "0.19"
+  "--hero-mobile-bg-size": "116%",
+  "--hero-mobile-overlay-opacity": "0.16"
 };
 
 const HERO_ADJUST_CONTROLS = [
@@ -360,6 +357,72 @@ const HERO_ADJUST_CONTROLS = [
   }
 ];
 
+const HERO_ADJUST_CONTROLS_CONFIG = [
+  {
+    group: "Logo",
+    controls: [
+      { label: "Tamanho", variable: "--hero-mobile-logo-size", min: 220, max: 360, step: 1, unit: "px" },
+      { label: "Posicao X", variable: "--hero-mobile-logo-x", min: -120, max: 120, step: 1, unit: "px" },
+      { label: "Posicao Y", variable: "--hero-mobile-logo-y", min: 0, max: 260, step: 1, unit: "px" }
+    ]
+  },
+  {
+    group: "Titulo",
+    controls: [
+      { label: "Tamanho", variable: "--hero-mobile-title-size", min: 22, max: 42, step: 1, unit: "px" },
+      { label: "Largura maxima", variable: "--hero-mobile-title-width", min: 220, max: 360, step: 1, unit: "px" },
+      { label: "Posicao X", variable: "--hero-mobile-title-x", min: -120, max: 120, step: 1, unit: "px" },
+      { label: "Posicao Y", variable: "--hero-mobile-title-y", min: 120, max: 420, step: 1, unit: "px" },
+      { label: "Entrelinhas", variable: "--hero-mobile-title-line-height", min: 0.9, max: 1.3, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Subtitulo",
+    controls: [
+      { label: "Tamanho", variable: "--hero-mobile-subtitle-size", min: 11, max: 22, step: 1, unit: "px" },
+      { label: "Largura maxima", variable: "--hero-mobile-subtitle-width", min: 220, max: 360, step: 1, unit: "px" },
+      { label: "Posicao X", variable: "--hero-mobile-subtitle-x", min: -120, max: 120, step: 1, unit: "px" },
+      { label: "Posicao Y", variable: "--hero-mobile-subtitle-y", min: 180, max: 520, step: 1, unit: "px" },
+      { label: "Entrelinhas", variable: "--hero-mobile-subtitle-line-height", min: 1, max: 2, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Botao Agendar",
+    controls: [
+      { label: "Largura", variable: "--hero-mobile-cta-width", min: 160, max: 320, step: 1, unit: "px" },
+      { label: "Altura", variable: "--hero-mobile-cta-height", min: 40, max: 80, step: 1, unit: "px" },
+      { label: "Fonte", variable: "--hero-mobile-cta-font-size", min: 12, max: 24, step: 1, unit: "px" },
+      { label: "Posicao X", variable: "--hero-mobile-cta-x", min: -120, max: 120, step: 1, unit: "px" },
+      { label: "Posicao Y", variable: "--hero-mobile-cta-y", min: 260, max: 640, step: 1, unit: "px" },
+      { label: "Arredondamento", variable: "--hero-mobile-cta-radius", min: 16, max: 999, step: 1, unit: "px" },
+      { label: "Sombra", variable: "--hero-mobile-cta-shadow-alpha", min: 0.05, max: 0.6, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Botoes inferiores",
+    controls: [
+      { label: "Largura do grupo", variable: "--hero-mobile-actions-width", min: 220, max: 360, step: 1, unit: "px" },
+      { label: "Altura", variable: "--hero-mobile-actions-height", min: 32, max: 64, step: 1, unit: "px" },
+      { label: "Fonte", variable: "--hero-mobile-actions-font-size", min: 9, max: 18, step: 1, unit: "px" },
+      { label: "Icones", variable: "--hero-mobile-actions-icon-size", min: 10, max: 24, step: 1, unit: "px" },
+      { label: "Gap", variable: "--hero-mobile-actions-gap", min: 0, max: 20, step: 1, unit: "px" },
+      { label: "Posicao X", variable: "--hero-mobile-actions-x", min: -120, max: 120, step: 1, unit: "px" },
+      { label: "Posicao Y", variable: "--hero-mobile-actions-y", min: 320, max: 760, step: 1, unit: "px" },
+      { label: "Arredondamento", variable: "--hero-mobile-actions-radius", min: 16, max: 999, step: 1, unit: "px" },
+      { label: "Sombra", variable: "--hero-mobile-actions-shadow-alpha", min: 0.05, max: 0.5, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Fundo",
+    controls: [
+      { label: "Posicao X", variable: "--hero-mobile-bg-position-x", min: 0, max: 100, step: 1, unit: "%" },
+      { label: "Posicao Y", variable: "--hero-mobile-bg-position-y", min: 0, max: 100, step: 1, unit: "%" },
+      { label: "Zoom", variable: "--hero-mobile-bg-size", min: 100, max: 170, step: 1, unit: "%" },
+      { label: "Overlay", variable: "--hero-mobile-overlay-opacity", min: 0, max: 0.35, step: 0.01, unit: "" }
+    ]
+  }
+];
+
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
 const siteHeader = document.querySelector(".site-header");
@@ -653,7 +716,7 @@ function createHeroAdjustPanel() {
     updateHeroAdjustPreview(panel, values);
   };
 
-  HERO_ADJUST_CONTROLS.forEach((group) => {
+  HERO_ADJUST_CONTROLS_CONFIG.forEach((group) => {
     const section = document.createElement("section");
     section.className = "hero-adjust-group";
 
@@ -680,7 +743,7 @@ function createHeroAdjustPanel() {
 
     panel.querySelectorAll(".hero-adjust-control").forEach((controlElement) => {
       const variable = controlElement.getAttribute("data-variable");
-      const meta = HERO_ADJUST_CONTROLS.flatMap((group) => group.controls).find(
+      const meta = HERO_ADJUST_CONTROLS_CONFIG.flatMap((group) => group.controls).find(
         (item) => item.variable === variable
       );
       const input = controlElement.querySelector(".hero-adjust-control-input");
@@ -765,7 +828,7 @@ function createHeroAdjustTool() {
     updateHeroAdjustPreview(panel, values);
   };
 
-  HERO_ADJUST_CONTROLS.forEach((group, index) => {
+  HERO_ADJUST_CONTROLS_CONFIG.forEach((group, index) => {
     const section = document.createElement("details");
     section.className = "hero-adjust-group";
     section.open = index === 0;
@@ -794,7 +857,7 @@ function createHeroAdjustTool() {
 
     panel.querySelectorAll(".hero-adjust-control").forEach((controlElement) => {
       const variable = controlElement.getAttribute("data-variable");
-      const meta = HERO_ADJUST_CONTROLS.flatMap((group) => group.controls).find(
+      const meta = HERO_ADJUST_CONTROLS_CONFIG.flatMap((group) => group.controls).find(
         (item) => item.variable === variable
       );
       const input = controlElement.querySelector(".hero-adjust-control-input");
