@@ -551,12 +551,16 @@ function createHeroAdjustControl(control, values, onChange) {
 
 function clampHeroAdjustPanelPosition(panel, position) {
   const panelRect = panel.getBoundingClientRect();
-  const maxX = Math.max(12, window.innerWidth - panelRect.width - 12);
-  const maxY = Math.max(12, window.innerHeight - panelRect.height - 12);
+  const visibleMarginX = 56;
+  const visibleMarginY = 56;
+  const minX = visibleMarginX - panelRect.width;
+  const maxX = window.innerWidth - visibleMarginX;
+  const minY = 8;
+  const maxY = window.innerHeight - visibleMarginY;
 
   return {
-    x: Math.min(Math.max(position.x, 12), maxX),
-    y: Math.min(Math.max(position.y, 12), maxY)
+    x: Math.min(Math.max(position.x, minX), maxX),
+    y: Math.min(Math.max(position.y, minY), Math.max(minY, maxY))
   };
 }
 
@@ -571,9 +575,21 @@ function setHeroAdjustPanelPosition(panel, position) {
 function enableHeroAdjustPanelDrag(panel, handle) {
   let dragState = null;
 
-  const stopDragging = () => {
+  const stopDragging = (event) => {
+    if (event?.pointerId != null) {
+      handle.releasePointerCapture?.(event.pointerId);
+    }
     dragState = null;
     panel.classList.remove("is-dragging");
+  };
+
+  const updateDragging = (event) => {
+    if (!dragState) return;
+
+    setHeroAdjustPanelPosition(panel, {
+      x: event.clientX - dragState.offsetX,
+      y: event.clientY - dragState.offsetY
+    });
   };
 
   handle.addEventListener("pointerdown", (event) => {
@@ -596,17 +612,9 @@ function enableHeroAdjustPanelDrag(panel, handle) {
     event.preventDefault();
   });
 
-  handle.addEventListener("pointermove", (event) => {
-    if (!dragState) return;
-
-    setHeroAdjustPanelPosition(panel, {
-      x: event.clientX - dragState.offsetX,
-      y: event.clientY - dragState.offsetY
-    });
-  });
-
-  handle.addEventListener("pointerup", stopDragging);
-  handle.addEventListener("pointercancel", stopDragging);
+  window.addEventListener("pointermove", updateDragging);
+  window.addEventListener("pointerup", stopDragging);
+  window.addEventListener("pointercancel", stopDragging);
 
   window.addEventListener("resize", () => {
     if (panel.hidden) return;
