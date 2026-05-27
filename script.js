@@ -549,6 +549,72 @@ function createHeroAdjustControl(control, values, onChange) {
   return wrapper;
 }
 
+function clampHeroAdjustPanelPosition(panel, position) {
+  const panelRect = panel.getBoundingClientRect();
+  const maxX = Math.max(12, window.innerWidth - panelRect.width - 12);
+  const maxY = Math.max(12, window.innerHeight - panelRect.height - 12);
+
+  return {
+    x: Math.min(Math.max(position.x, 12), maxX),
+    y: Math.min(Math.max(position.y, 12), maxY)
+  };
+}
+
+function setHeroAdjustPanelPosition(panel, position) {
+  const nextPosition = clampHeroAdjustPanelPosition(panel, position);
+  panel.style.left = `${nextPosition.x}px`;
+  panel.style.top = `${nextPosition.y}px`;
+  panel.style.right = "auto";
+  panel.style.bottom = "auto";
+}
+
+function enableHeroAdjustPanelDrag(panel, handle) {
+  let dragState = null;
+
+  const stopDragging = () => {
+    dragState = null;
+    panel.classList.remove("is-dragging");
+  };
+
+  handle.addEventListener("pointerdown", (event) => {
+    if (
+      event.target.closest("button") ||
+      event.target.closest("input") ||
+      event.target.closest("summary")
+    ) {
+      return;
+    }
+
+    const rect = panel.getBoundingClientRect();
+    dragState = {
+      offsetX: event.clientX - rect.left,
+      offsetY: event.clientY - rect.top
+    };
+
+    panel.classList.add("is-dragging");
+    handle.setPointerCapture?.(event.pointerId);
+    event.preventDefault();
+  });
+
+  handle.addEventListener("pointermove", (event) => {
+    if (!dragState) return;
+
+    setHeroAdjustPanelPosition(panel, {
+      x: event.clientX - dragState.offsetX,
+      y: event.clientY - dragState.offsetY
+    });
+  });
+
+  handle.addEventListener("pointerup", stopDragging);
+  handle.addEventListener("pointercancel", stopDragging);
+
+  window.addEventListener("resize", () => {
+    if (panel.hidden) return;
+    const rect = panel.getBoundingClientRect();
+    setHeroAdjustPanelPosition(panel, { x: rect.left, y: rect.top });
+  });
+}
+
 function createHeroAdjustPanel() {
   const body = document.body;
   const currentValues = {
@@ -650,6 +716,151 @@ function createHeroAdjustPanel() {
   body.appendChild(panel);
 }
 
+function createHeroAdjustTool() {
+  const body = document.body;
+  const currentValues = {
+    ...HERO_MOBILE_DEFAULTS,
+    ...readStoredHeroAdjustments()
+  };
+
+  applyHeroAdjustmentVariables(currentValues);
+  body.classList.add("hero-adjust-mode");
+
+  const launcher = document.createElement("button");
+  launcher.type = "button";
+  launcher.className = "hero-adjust-launcher";
+  launcher.textContent = "Ajustar Hero";
+
+  const panel = document.createElement("aside");
+  panel.className = "hero-adjust-panel";
+  panel.hidden = true;
+  panel.innerHTML = `
+    <div class="hero-adjust-panel__header" data-hero-adjust-drag-handle>
+      <div class="hero-adjust-panel__heading">
+        <p class="hero-adjust-panel__eyebrow">Ferramenta temporaria</p>
+        <h2>Ajuste Hero Mobile</h2>
+        <span class="hero-adjust-panel__hint">Arraste pelo topo</span>
+      </div>
+      <button type="button" class="hero-adjust-panel__close" data-hero-adjust-close>Ocultar painel</button>
+    </div>
+    <div class="hero-adjust-panel__groups" data-hero-adjust-groups></div>
+    <div class="hero-adjust-panel__actions">
+      <button type="button" class="hero-adjust-panel__button" data-hero-adjust-reset>Resetar ajustes</button>
+      <button type="button" class="hero-adjust-panel__button hero-adjust-panel__button--primary" data-hero-adjust-copy>Copiar CSS final</button>
+    </div>
+    <pre class="hero-adjust-panel__output" data-hero-adjust-output></pre>
+  `;
+
+  const groupsContainer = panel.querySelector("[data-hero-adjust-groups]");
+  const closeButton = panel.querySelector("[data-hero-adjust-close]");
+  const resetButton = panel.querySelector("[data-hero-adjust-reset]");
+  const copyButton = panel.querySelector("[data-hero-adjust-copy]");
+  const dragHandle = panel.querySelector("[data-hero-adjust-drag-handle]");
+  const values = { ...currentValues };
+
+  const onChange = (variable, value) => {
+    values[variable] = value;
+    document.documentElement.style.setProperty(variable, value);
+    persistHeroAdjustments(values);
+    updateHeroAdjustPreview(panel, values);
+  };
+
+  HERO_ADJUST_CONTROLS.forEach((group, index) => {
+    const section = document.createElement("details");
+    section.className = "hero-adjust-group";
+    section.open = index === 0;
+
+    const title = document.createElement("summary");
+    title.className = "hero-adjust-group__title";
+    title.textContent = group.group;
+    section.appendChild(title);
+
+    const content = document.createElement("div");
+    content.className = "hero-adjust-group__content";
+
+    group.controls.forEach((control) => {
+      content.appendChild(createHeroAdjustControl(control, values, onChange));
+    });
+
+    section.appendChild(content);
+    groupsContainer.appendChild(section);
+  });
+
+  resetButton?.addEventListener("click", () => {
+    Object.entries(HERO_MOBILE_DEFAULTS).forEach(([variable, value]) => {
+      values[variable] = value;
+      document.documentElement.style.setProperty(variable, value);
+    });
+
+    panel.querySelectorAll(".hero-adjust-control").forEach((controlElement) => {
+      const variable = controlElement.getAttribute("data-variable");
+      const meta = HERO_ADJUST_CONTROLS.flatMap((group) => group.controls).find(
+        (item) => item.variable === variable
+      );
+      const input = controlElement.querySelector(".hero-adjust-control-input");
+      const valueElement = controlElement.querySelector(".hero-adjust-control-value");
+
+      if (!meta || !input || !valueElement) return;
+      input.value = parseHeroAdjustValue(HERO_MOBILE_DEFAULTS[meta.variable], meta.unit);
+      valueElement.textContent = HERO_MOBILE_DEFAULTS[meta.variable];
+    });
+
+    persistHeroAdjustments(values);
+    updateHeroAdjustPreview(panel, values);
+  });
+
+  copyButton?.addEventListener("click", async () => {
+    const css = buildHeroAdjustCss(values);
+    const originalText = copyButton.textContent;
+
+    try {
+      await copyTextToClipboard(css);
+      copyButton.textContent = "CSS copiado";
+    } catch (error) {
+      copyButton.textContent = "Falha ao copiar";
+    }
+
+    updateHeroAdjustPreview(panel, values);
+    window.setTimeout(() => {
+      copyButton.textContent = originalText;
+    }, 1800);
+  });
+
+  const togglePanel = (isOpen) => {
+    panel.hidden = !isOpen;
+    launcher.hidden = isOpen;
+
+    if (isOpen) {
+      const rect = panel.getBoundingClientRect();
+      if (rect.width && rect.height) {
+        setHeroAdjustPanelPosition(panel, { x: rect.left, y: rect.top });
+      }
+    }
+  };
+
+  launcher.addEventListener("click", () => {
+    togglePanel(true);
+  });
+
+  closeButton?.addEventListener("click", () => {
+    togglePanel(false);
+  });
+
+  updateHeroAdjustPreview(panel, values);
+  body.append(launcher, panel);
+
+  requestAnimationFrame(() => {
+    setHeroAdjustPanelPosition(panel, {
+      x: window.innerWidth - 344,
+      y: window.innerHeight - 620
+    });
+  });
+
+  if (dragHandle) {
+    enableHeroAdjustPanelDrag(panel, dragHandle);
+  }
+}
+
 if (navToggle) {
   navToggle.addEventListener("click", () => {
     toggleMobileMenu();
@@ -726,5 +937,5 @@ document.addEventListener("click", (event) => {
 });
 
 if (getHeroAdjustMode()) {
-  createHeroAdjustPanel();
+  createHeroAdjustTool();
 }
