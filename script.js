@@ -311,16 +311,16 @@ const HERO_ADJUST_CONTROLS = [
       {
         label: "Posição horizontal",
         variable: "--hero-mobile-bg-position-x",
-        min: 0,
-        max: 100,
+        min: -50,
+        max: 150,
         step: 1,
         unit: "%"
       },
       {
         label: "Posição vertical",
         variable: "--hero-mobile-bg-position-y",
-        min: 0,
-        max: 100,
+        min: -50,
+        max: 150,
         step: 1,
         unit: "%"
       },
