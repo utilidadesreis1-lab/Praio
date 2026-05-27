@@ -267,12 +267,12 @@ img {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(5, 39, 50, 0.08) 0%, rgba(7, 54, 68, 0.14) 42%, rgba(8, 48, 60, 0.26) 100%),
-    radial-gradient(circle at 78% 14%, rgba(255, 255, 255, 0.24), transparent 26%),
-    linear-gradient(90deg, rgba(4, 39, 50, 0.12) 0%, rgba(4, 39, 50, 0.02) 38%, rgba(4, 39, 50, 0.1) 100%),
-    url("./assets/fundo-praiou.jpg");
+    linear-gradient(180deg, rgba(5, 39, 50, 0.08) 0%, rgba(7, 54, 68, 0.14) 42%, rgba(8, 48, 60, 0.24) 100%),
+    radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.24), transparent 24%),
+    linear-gradient(90deg, rgba(4, 39, 50, 0.1) 0%, rgba(4, 39, 50, 0.03) 38%, rgba(4, 39, 50, 0.1) 100%),
+    url("./assets/hero-mobile-praiou.jpeg");
   background-size: cover;
-  background-position: center 57%;
+  background-position: center center;
   pointer-events: none;
 }
 
@@ -945,16 +945,16 @@ img {
 
   .hero-backdrop {
     background:
-      linear-gradient(180deg, rgba(5, 39, 50, 0.12) 0%, rgba(7, 54, 68, 0.18) 44%, rgba(8, 48, 60, 0.3) 100%),
-      radial-gradient(circle at 74% 12%, rgba(255, 255, 255, 0.22), transparent 22%),
-      linear-gradient(90deg, rgba(4, 39, 50, 0.08) 0%, rgba(4, 39, 50, 0.01) 42%, rgba(4, 39, 50, 0.12) 100%),
-      url("./assets/fundo-praiou.jpg");
+      linear-gradient(180deg, rgba(5, 39, 50, 0.1) 0%, rgba(7, 54, 68, 0.13) 38%, rgba(8, 48, 60, 0.22) 100%),
+      radial-gradient(circle at 50% 8%, rgba(255, 255, 255, 0.18), transparent 24%),
+      linear-gradient(90deg, rgba(4, 39, 50, 0.06) 0%, rgba(4, 39, 50, 0.02) 44%, rgba(4, 39, 50, 0.1) 100%),
+      url("./assets/hero-mobile-praiou.jpeg");
     background-size: cover;
-    background-position: 74% center;
+    background-position: center top;
   }
 
   .hero-logo {
-    width: min(100%, 312px);
+    width: min(100%, 304px);
     margin-bottom: 1.2rem;
   }
 
@@ -1005,6 +1005,9 @@ img {
     width: 100%;
     min-height: 50px;
     font-size: 0.91rem;
+    background: rgba(16, 102, 120, 0.34);
+    border-color: rgba(255, 255, 255, 0.28);
+    box-shadow: 0 14px 28px rgba(5, 39, 50, 0.15);
   }
 
   .btn,
@@ -1079,11 +1082,11 @@ img {
   }
 
   .hero-backdrop {
-    background-position: 77% center;
+    background-position: 52% top;
   }
 
   .hero-logo {
-    width: min(100%, 278px);
+    width: min(100%, 288px);
   }
 
   .hero-text {
