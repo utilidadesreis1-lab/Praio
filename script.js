@@ -426,30 +426,37 @@ function smoothScrollTo(targetId) {
   });
 }
 
-function initializeToursCarousel() {
-  const carousel = document.querySelector('[data-carousel="tours"]');
-  if (!carousel) return;
+function initializeSnapCarousel({
+  rootSelector,
+  trackSelector,
+  itemSelector,
+  prevSelector,
+  nextSelector,
+  dotSelector
+}) {
+  const root = document.querySelector(rootSelector);
+  if (!root) return;
 
-  const track = carousel.querySelector("[data-carousel-track]");
-  const prevButton = carousel.querySelector("[data-carousel-prev]");
-  const nextButton = carousel.querySelector("[data-carousel-next]");
-  const dots = Array.from(carousel.querySelectorAll(".tours-dot"));
-  const cards = Array.from(track?.querySelectorAll(".carousel-tour-card") || []);
+  const track = root.querySelector(trackSelector);
+  const prevButton = root.querySelector(prevSelector);
+  const nextButton = root.querySelector(nextSelector);
+  const dots = Array.from(root.querySelectorAll(dotSelector));
+  const items = Array.from(track?.querySelectorAll(itemSelector) || []);
 
-  if (!track || !cards.length) return;
+  if (!track || !items.length) return;
 
   const getStepSize = () => {
-    if (cards.length < 2) return cards[0]?.getBoundingClientRect().width || 0;
+    if (items.length < 2) return items[0]?.getBoundingClientRect().width || 0;
 
-    const firstRect = cards[0].getBoundingClientRect();
-    const secondRect = cards[1].getBoundingClientRect();
+    const firstRect = items[0].getBoundingClientRect();
+    const secondRect = items[1].getBoundingClientRect();
     return Math.abs(secondRect.left - firstRect.left) || firstRect.width;
   };
 
   const getActiveIndex = () => {
     const step = getStepSize();
     if (!step) return 0;
-    return Math.max(0, Math.min(cards.length - 1, Math.round(track.scrollLeft / step)));
+    return Math.max(0, Math.min(items.length - 1, Math.round(track.scrollLeft / step)));
   };
 
   const updateState = () => {
@@ -465,8 +472,8 @@ function initializeToursCarousel() {
     if (nextButton) nextButton.disabled = track.scrollLeft >= maxScroll;
   };
 
-  const scrollToCard = (index) => {
-    cards[index]?.scrollIntoView({
+  const scrollToItem = (index) => {
+    items[index]?.scrollIntoView({
       behavior: "smooth",
       inline: "start",
       block: "nearest"
@@ -474,16 +481,16 @@ function initializeToursCarousel() {
   };
 
   prevButton?.addEventListener("click", () => {
-    scrollToCard(Math.max(0, getActiveIndex() - 1));
+    scrollToItem(Math.max(0, getActiveIndex() - 1));
   });
 
   nextButton?.addEventListener("click", () => {
-    scrollToCard(Math.min(cards.length - 1, getActiveIndex() + 1));
+    scrollToItem(Math.min(items.length - 1, getActiveIndex() + 1));
   });
 
   dots.forEach((dot, index) => {
     dot.addEventListener("click", () => {
-      scrollToCard(index);
+      scrollToItem(index);
     });
   });
 
@@ -496,6 +503,28 @@ function initializeToursCarousel() {
   track.addEventListener("scroll", scheduleUpdate, { passive: true });
   window.addEventListener("resize", scheduleUpdate);
   updateState();
+}
+
+function initializeToursCarousel() {
+  initializeSnapCarousel({
+    rootSelector: '[data-carousel="tours"]',
+    trackSelector: "[data-carousel-track]",
+    itemSelector: ".carousel-tour-card",
+    prevSelector: "[data-carousel-prev]",
+    nextSelector: "[data-carousel-next]",
+    dotSelector: ".tours-dot"
+  });
+}
+
+function initializeMaragogiGallery() {
+  initializeSnapCarousel({
+    rootSelector: '[data-gallery="maragogi"]',
+    trackSelector: "[data-gallery-track]",
+    itemSelector: ".tour-gallery-slide",
+    prevSelector: "[data-gallery-prev]",
+    nextSelector: "[data-gallery-next]",
+    dotSelector: ".tour-gallery-dot"
+  });
 }
 
 function getHeroAdjustMode() {
@@ -1021,3 +1050,4 @@ if (getHeroAdjustMode()) {
 }
 
 initializeToursCarousel();
+initializeMaragogiGallery();
