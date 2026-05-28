@@ -1,16 +1,21 @@
 :root {
-  --bg: #f7f4ec;
-  --surface: rgba(255, 255, 255, 0.78);
+  --bg: #00b7a8;
+  --surface: rgba(255, 255, 255, 0.82);
   --surface-strong: #ffffff;
-  --text: #17333f;
+  --text: #083344;
   --muted: #55707b;
-  --primary: #1ca9b3;
-  --primary-dark: #0f7f8a;
-  --accent: #f08a72;
+  --primary: #00b7a8;
+  --primary-dark: #008f84;
+  --accent: #ff8a5b;
   --gold: #d7b56d;
   --sand: #e8dcc5;
   --line: rgba(23, 51, 63, 0.1);
   --shadow: 0 20px 60px rgba(18, 61, 74, 0.12);
+  --color-turquoise-bg: #00b7a8;
+  --color-turquoise-dark: #008f84;
+  --color-card-bg: #ffffff;
+  --color-text-dark: #083344;
+  --color-coral: #ff8a5b;
   --radius-lg: 28px;
   --radius-md: 20px;
   --radius-sm: 14px;
@@ -32,9 +37,9 @@ body {
   color: var(--text);
   line-height: 1.5;
   background:
-    radial-gradient(circle at top left, rgba(28, 169, 179, 0.12), transparent 30%),
-    radial-gradient(circle at top right, rgba(240, 138, 114, 0.12), transparent 28%),
-    linear-gradient(180deg, #f7fafb 0%, var(--bg) 40%, #fcfaf5 100%);
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.16), transparent 28%),
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.12), transparent 26%),
+    linear-gradient(180deg, #06cabc 0%, var(--color-turquoise-bg) 38%, #05aea1 100%);
 }
 
 a {
@@ -67,6 +72,25 @@ img {
 .section {
   padding: 5.5rem 0;
   position: relative;
+}
+
+.intro,
+.transfers-section,
+.reviews,
+.catalog-hero {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
+    linear-gradient(180deg, rgba(0, 183, 168, 0.08), rgba(0, 143, 132, 0.12));
+}
+
+.schedule-section,
+.tours-home-cta,
+.experiences-section,
+.catalog-section,
+.site-footer {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+    linear-gradient(180deg, rgba(0, 183, 168, 0.12), rgba(0, 143, 132, 0.16));
 }
 
 .section-heading {
@@ -1244,8 +1268,8 @@ img {
 .catalog-page {
   min-height: 100%;
   background:
-    radial-gradient(circle at top, rgba(28, 169, 179, 0.1), transparent 28%),
-    linear-gradient(180deg, #f7fbfd 0%, #eef8fb 100%);
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.15), transparent 28%),
+    linear-gradient(180deg, #07c8ba 0%, var(--color-turquoise-bg) 40%, #06a89d 100%);
 }
 
 .catalog-main {
@@ -1285,8 +1309,8 @@ img {
   padding: clamp(1.5rem, 3vw, 2.3rem);
   border-radius: 32px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 252, 253, 0.92)),
-    linear-gradient(135deg, rgba(28, 169, 179, 0.08), rgba(240, 138, 114, 0.08));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(244, 252, 251, 0.92)),
+    linear-gradient(135deg, rgba(0, 183, 168, 0.12), rgba(255, 138, 91, 0.1));
   box-shadow: 0 30px 70px rgba(18, 61, 74, 0.09);
 }
 
@@ -1314,7 +1338,7 @@ img {
 .catalog-card {
   overflow: hidden;
   border-radius: 28px;
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.88);
   box-shadow: 0 22px 56px rgba(18, 61, 74, 0.09);
 }
@@ -1533,7 +1557,7 @@ img {
 
 .footer-content p {
   margin: 0.35rem 0 0;
-  color: var(--muted);
+  color: rgba(8, 51, 68, 0.82);
 }
 
 .footer-link {
