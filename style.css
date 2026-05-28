@@ -93,6 +93,48 @@ img {
     linear-gradient(180deg, rgba(0, 183, 168, 0.12), rgba(0, 143, 132, 0.16));
 }
 
+.intro > .container > .section-heading h2,
+.schedule-section > .container > .section-heading h2,
+.tours-home-cta > .container > .section-heading h2,
+.transfers-section > .container > .section-heading h2,
+.experiences-section > .container > .section-heading h2,
+.reviews > .container > .section-heading h2 {
+  color: #ffffff;
+}
+
+.intro > .container > .section-heading .eyebrow,
+.schedule-section > .container > .section-heading .eyebrow,
+.tours-home-cta > .container > .section-heading .eyebrow,
+.transfers-section > .container > .section-heading .eyebrow,
+.experiences-section > .container > .section-heading .eyebrow,
+.reviews > .container > .section-heading .eyebrow {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.intro .section-support,
+.schedule-section > .container > .section-heading .section-support,
+.tours-home-cta > .container > .section-heading .section-support,
+.transfers-section > .container > .section-heading .section-support,
+.experiences-section > .container > .section-heading .section-support,
+.reviews > .container > .section-heading .section-support,
+.intro-copy {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.profile-meta p,
+.tour-card p,
+.tour-tags span,
+.transfer-content p,
+.experience-card p,
+.review-card p,
+.catalog-card__details p,
+.catalog-card__summary h2,
+.catalog-card__eyebrow,
+.catalog-hero__copy p:not(.eyebrow),
+.catalog-hero__copy h1 {
+  color: inherit;
+}
+
 .section-heading {
   max-width: 700px;
   margin-bottom: 2rem;
@@ -1702,9 +1744,14 @@ img {
   border-top: 1px solid var(--line);
 }
 
+.footer-content strong,
+.footer-link {
+  color: #ffffff;
+}
+
 .footer-content p {
   margin: 0.35rem 0 0;
-  color: rgba(8, 51, 68, 0.82);
+  color: rgba(255, 255, 255, 0.82);
 }
 
 .footer-link {
