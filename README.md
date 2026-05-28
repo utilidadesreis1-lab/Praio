@@ -19,7 +19,7 @@ Landing page estática da Praiou Receptivo, criada para apresentar os serviços 
 Abra o arquivo `script.js` e altere a constante:
 
 ```js
-const WHATSAPP_NUMBER = "5582000000000";
+const WHATSAPP_NUMBER = "558281818191";
 ```
 
 Use o número no formato internacional, sem espaços, parênteses ou traços.

@@ -1,6 +1,6 @@
 // Troque aqui o numero do WhatsApp da empresa no formato internacional.
 // Exemplo: 5582999999999
-const WHATSAPP_NUMBER = "5582000000000";
+const WHATSAPP_NUMBER = "558281818191";
 
 const DEFAULT_MESSAGE =
   "Olá! Vim pelo site da Praiô Receptivo 🌴 Gostaria de informações sobre transfers e experiências.";
