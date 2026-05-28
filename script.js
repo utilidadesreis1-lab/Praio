@@ -3,7 +3,7 @@
 const WHATSAPP_NUMBER = "558281818191";
 
 const DEFAULT_MESSAGE =
-  "Olá! Vim pelo site da Praiô Receptivo 🌴 Gostaria de informações sobre transfers e experiências.";
+  "Olá! Vim pelo site da Praiô Receptivo 🌴 Gostaria de fazer um orçamento.";
 
 const HERO_ADJUST_QUERY = "ajusteHero";
 const HERO_ADJUST_STORAGE_KEY = "praiou-hero-mobile-adjustments";

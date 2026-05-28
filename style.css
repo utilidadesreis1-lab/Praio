@@ -1,21 +1,21 @@
 :root {
-  --bg: #00b7a8;
+  --bg: #fff7ea;
   --surface: rgba(255, 255, 255, 0.82);
   --surface-strong: #ffffff;
-  --text: #083344;
-  --muted: #55707b;
-  --primary: #00b7a8;
-  --primary-dark: #008f84;
-  --accent: #ff8a5b;
+  --text: #064e5a;
+  --muted: #33666d;
+  --primary: #19b7a8;
+  --primary-dark: #0d8f84;
+  --accent: #f47c3c;
   --gold: #d7b56d;
-  --sand: #e8dcc5;
+  --sand: #f6efe3;
   --line: rgba(23, 51, 63, 0.1);
   --shadow: 0 20px 60px rgba(18, 61, 74, 0.12);
-  --color-turquoise-bg: #00b7a8;
-  --color-turquoise-dark: #008f84;
+  --color-turquoise-bg: #19b7a8;
+  --color-turquoise-dark: #0d8f84;
   --color-card-bg: #ffffff;
-  --color-text-dark: #083344;
-  --color-coral: #ff8a5b;
+  --color-text-dark: #064e5a;
+  --color-coral: #f47c3c;
   --radius-lg: 28px;
   --radius-md: 20px;
   --radius-sm: 14px;
@@ -37,9 +37,9 @@ body {
   color: var(--text);
   line-height: 1.5;
   background:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.16), transparent 28%),
-    radial-gradient(circle at top right, rgba(255, 255, 255, 0.12), transparent 26%),
-    linear-gradient(180deg, #06cabc 0%, var(--color-turquoise-bg) 38%, #05aea1 100%);
+    radial-gradient(circle at top left, rgba(25, 183, 168, 0.12), transparent 26%),
+    radial-gradient(circle at top right, rgba(244, 124, 60, 0.1), transparent 24%),
+    linear-gradient(180deg, #fffaf1 0%, var(--bg) 46%, #f6efe3 100%);
 }
 
 a {
@@ -79,8 +79,8 @@ img {
 .reviews,
 .catalog-hero {
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
-    linear-gradient(180deg, rgba(0, 183, 168, 0.08), rgba(0, 143, 132, 0.12));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.12)),
+    linear-gradient(180deg, rgba(25, 183, 168, 0.06), rgba(246, 239, 227, 0.42));
 }
 
 .schedule-section,
@@ -89,8 +89,8 @@ img {
 .catalog-section,
 .site-footer {
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
-    linear-gradient(180deg, rgba(0, 183, 168, 0.12), rgba(0, 143, 132, 0.16));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.12)),
+    linear-gradient(180deg, rgba(246, 239, 227, 0.7), rgba(255, 247, 234, 0.96));
 }
 
 .intro > .container > .section-heading h2,
@@ -99,7 +99,7 @@ img {
 .transfers-section > .container > .section-heading h2,
 .experiences-section > .container > .section-heading h2,
 .reviews > .container > .section-heading h2 {
-  color: #ffffff;
+  color: var(--text);
 }
 
 .intro > .container > .section-heading .eyebrow,
@@ -108,7 +108,7 @@ img {
 .transfers-section > .container > .section-heading .eyebrow,
 .experiences-section > .container > .section-heading .eyebrow,
 .reviews > .container > .section-heading .eyebrow {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--primary-dark);
 }
 
 .intro .section-support,
@@ -118,7 +118,7 @@ img {
 .experiences-section > .container > .section-heading .section-support,
 .reviews > .container > .section-heading .section-support,
 .intro-copy {
-  color: rgba(255, 255, 255, 0.88);
+  color: var(--muted);
 }
 
 .profile-meta p,
@@ -1277,8 +1277,8 @@ img {
   padding: clamp(1.4rem, 3vw, 2.2rem);
   border-radius: 32px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(249, 255, 255, 0.88)),
-    linear-gradient(135deg, rgba(28, 169, 179, 0.08), rgba(240, 138, 114, 0.08));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 250, 241, 0.92)),
+    linear-gradient(135deg, rgba(25, 183, 168, 0.08), rgba(244, 124, 60, 0.08));
   border: 1px solid rgba(255, 255, 255, 0.78);
   box-shadow: 0 28px 70px rgba(18, 61, 74, 0.1);
 }
@@ -1457,8 +1457,8 @@ img {
 .catalog-page {
   min-height: 100%;
   background:
-    radial-gradient(circle at top, rgba(255, 255, 255, 0.15), transparent 28%),
-    linear-gradient(180deg, #07c8ba 0%, var(--color-turquoise-bg) 40%, #06a89d 100%);
+    radial-gradient(circle at top, rgba(25, 183, 168, 0.1), transparent 28%),
+    linear-gradient(180deg, #fffaf1 0%, var(--bg) 46%, #f6efe3 100%);
 }
 
 .catalog-main {
@@ -1482,7 +1482,7 @@ img {
   min-height: 44px;
   padding: 0.68rem 1rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   color: var(--primary-dark);
   font-weight: 800;
   box-shadow: 0 16px 36px rgba(18, 61, 74, 0.08);
@@ -1498,8 +1498,8 @@ img {
   padding: clamp(1.5rem, 3vw, 2.3rem);
   border-radius: 32px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(244, 252, 251, 0.92)),
-    linear-gradient(135deg, rgba(0, 183, 168, 0.12), rgba(255, 138, 91, 0.1));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(255, 250, 241, 0.92)),
+    linear-gradient(135deg, rgba(25, 183, 168, 0.1), rgba(244, 124, 60, 0.08));
   box-shadow: 0 30px 70px rgba(18, 61, 74, 0.09);
 }
 
@@ -1746,12 +1746,12 @@ img {
 
 .footer-content strong,
 .footer-link {
-  color: #ffffff;
+  color: var(--text);
 }
 
 .footer-content p {
   margin: 0.35rem 0 0;
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--muted);
 }
 
 .footer-link {
@@ -1972,7 +1972,7 @@ img {
   }
 
   .hero-actions .btn-primary::before {
-    content: "📅 Agendar";
+    content: "📅 Orçamento";
     font-size: 1.04rem;
     font-weight: 800;
     letter-spacing: -0.01em;
@@ -2087,7 +2087,7 @@ img {
   }
 
   .hero-actions .btn-primary::after {
-    content: "Agendar";
+    content: "Orçamento";
     font-size: 1rem;
     font-weight: 800;
     letter-spacing: -0.01em;
@@ -2268,7 +2268,7 @@ img {
   }
 
   .hero-actions .btn-primary::after {
-    content: "Agendar";
+    content: "Orçamento";
     font-size: 1rem;
     font-weight: 800;
     letter-spacing: -0.01em;
@@ -2795,7 +2795,7 @@ img {
   }
 
   .hero-actions .btn-primary::after {
-    content: "Agendar";
+    content: "Orçamento";
     font-size: var(--hero-mobile-cta-font-size);
     font-weight: 800;
     letter-spacing: -0.01em;
