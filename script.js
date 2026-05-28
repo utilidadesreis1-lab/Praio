@@ -372,6 +372,8 @@ const revealElements = document.querySelectorAll(
     ".profile-card",
     ".schedule-box",
     ".tour-card",
+    ".catalog-hero__copy",
+    ".catalog-card",
     ".transfer-card",
     ".experience-card",
     ".review-card",
@@ -617,6 +619,42 @@ function initializeMaragogiLightbox() {
     } else if (event.key === "ArrowRight") {
       goTo(1);
     }
+  });
+}
+
+function initializeTourAccordion() {
+  const accordions = document.querySelectorAll("[data-tour-accordion]");
+  if (!accordions.length) return;
+
+  accordions.forEach((accordion) => {
+    const items = Array.from(accordion.querySelectorAll("[data-tour-item]"));
+
+    const setItemState = (item, isOpen) => {
+      const toggle = item.querySelector("[data-tour-toggle]");
+      const content = item.querySelector("[data-tour-content]");
+      if (!toggle || !content) return;
+
+      item.classList.toggle("is-open", isOpen);
+      toggle.setAttribute("aria-expanded", String(isOpen));
+      content.hidden = !isOpen;
+    };
+
+    items.forEach((item) => {
+      const toggle = item.querySelector("[data-tour-toggle]");
+      if (!toggle) return;
+
+      toggle.addEventListener("click", () => {
+        const shouldOpen = !item.classList.contains("is-open");
+
+        items.forEach((candidate) => {
+          if (candidate !== item) {
+            setItemState(candidate, false);
+          }
+        });
+
+        setItemState(item, shouldOpen);
+      });
+    });
   });
 }
 
@@ -1145,3 +1183,4 @@ if (getHeroAdjustMode()) {
 initializeToursCarousel();
 initializeMaragogiGallery();
 initializeMaragogiLightbox();
+initializeTourAccordion();
