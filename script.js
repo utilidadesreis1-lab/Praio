@@ -518,6 +518,17 @@ function initializeToursCarousel() {
   });
 }
 
+function initializeHomeToursCarousel() {
+  initializeSnapCarousel({
+    rootSelector: '[data-carousel="home-tours"]',
+    trackSelector: "[data-carousel-track]",
+    itemSelector: "[data-carousel-item]",
+    prevSelector: "[data-carousel-prev]",
+    nextSelector: "[data-carousel-next]",
+    dotSelector: ".tours-dot"
+  });
+}
+
 function initializeMaragogiGallery() {
   initializeSnapCarousel({
     rootSelector: '[data-gallery="maragogi"]',
@@ -639,6 +650,22 @@ function initializeTourAccordion() {
       content.hidden = !isOpen;
     };
 
+    const openItemFromHash = () => {
+      const hash = window.location.hash?.replace(/^#/, "");
+      if (!hash) return;
+
+      const target = items.find((item) => item.id === hash);
+      if (!target) return;
+
+      items.forEach((candidate) => {
+        setItemState(candidate, candidate === target);
+      });
+
+      window.setTimeout(() => {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 50);
+    };
+
     items.forEach((item) => {
       const toggle = item.querySelector("[data-tour-toggle]");
       if (!toggle) return;
@@ -655,6 +682,9 @@ function initializeTourAccordion() {
         setItemState(item, shouldOpen);
       });
     });
+
+    openItemFromHash();
+    window.addEventListener("hashchange", openItemFromHash);
   });
 }
 
@@ -1181,6 +1211,7 @@ if (getHeroAdjustMode()) {
 }
 
 initializeToursCarousel();
+initializeHomeToursCarousel();
 initializeMaragogiGallery();
 initializeMaragogiLightbox();
 initializeTourAccordion();

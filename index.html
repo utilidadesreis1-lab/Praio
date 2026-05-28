@@ -147,23 +147,113 @@
 
     <section class="section tours tours-home-cta" id="passeios">
       <div class="container">
-        <div class="tours-home-panel">
-          <div class="section-heading tours-heading">
-            <p class="eyebrow">Catálogo de passeios</p>
-            <h2>Conheça nosso catálogo de passeios</h2>
+        <div class="section-heading tours-heading">
+          <div>
+            <p class="eyebrow">Passeios em destaque</p>
+            <h2>Veja os principais destinos e escolha sua próxima experiência com a Praiô.</h2>
             <p class="section-support">
-              Veja os principais destinos em Alagoas e Pernambuco e escolha sua próxima experiência com a Praiô.
+              Explore os destinos mais desejados e toque em Saiba mais para abrir o catálogo completo.
             </p>
           </div>
+        </div>
 
-          <div class="tours-home-actions">
-            <div class="tours-home-tags" aria-label="Destaques do catálogo">
-              <span>Maragogi</span>
-              <span>Milagres</span>
-              <span>Gunga</span>
-              <span>Porto de Galinhas</span>
+        <div class="home-tours-carousel" data-carousel="home-tours">
+          <div class="home-tours-track" data-carousel-track tabindex="0" aria-label="Passeios em destaque da Praiô Receptivo">
+            <article class="home-tour-card" data-carousel-item>
+              <div class="home-tour-card__image" style="background-image: url('./assets/passeios/maragogi/maragogi-1.png');">
+                <div class="home-tour-card__overlay">
+                  <span class="home-tour-card__badge">Top 1</span>
+                  <div class="home-tour-card__content">
+                    <h3>Maragogi</h3>
+                    <p class="home-tour-card__headline">O Caribe Brasileiro 🌊</p>
+                    <p class="home-tour-card__meta">Piscinas naturais, lancha e maré ideal.</p>
+                    <a class="btn btn-card home-tour-card__button" href="./passeios.html#maragogi">Saiba mais</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="home-tour-card" data-carousel-item>
+              <div class="home-tour-card__image home-tour-card__image--milagres">
+                <div class="home-tour-card__overlay">
+                  <span class="home-tour-card__badge">Tranquilidade</span>
+                  <div class="home-tour-card__content">
+                    <h3>São Miguel dos Milagres</h3>
+                    <p class="home-tour-card__meta">Praias paradisíacas, jangada e águas calmas.</p>
+                    <a class="btn btn-card home-tour-card__button" href="./passeios.html#milagres">Saiba mais</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="home-tour-card" data-carousel-item>
+              <div class="home-tour-card__image home-tour-card__image--combo">
+                <div class="home-tour-card__overlay">
+                  <span class="home-tour-card__badge">Combo</span>
+                  <div class="home-tour-card__content">
+                    <h3>Gunga + Francês + Barra</h3>
+                    <p class="home-tour-card__meta">Três destinos incríveis em um roteiro completo.</p>
+                    <a class="btn btn-card home-tour-card__button" href="./passeios.html#gunga-frances-barra">Saiba mais</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="home-tour-card" data-carousel-item>
+              <div class="home-tour-card__image home-tour-card__image--nikolas">
+                <div class="home-tour-card__overlay">
+                  <span class="home-tour-card__badge">Família</span>
+                  <div class="home-tour-card__content">
+                    <h3>Capitão Nikolas</h3>
+                    <p class="home-tour-card__meta">Estrutura, conforto e diversão para toda a família.</p>
+                    <a class="btn btn-card home-tour-card__button" href="./passeios.html#capitao-nikolas">Saiba mais</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="home-tour-card" data-carousel-item>
+              <div class="home-tour-card__image home-tour-card__image--porto">
+                <div class="home-tour-card__overlay">
+                  <span class="home-tour-card__badge">Pernambuco</span>
+                  <div class="home-tour-card__content">
+                    <h3>Porto de Galinhas</h3>
+                    <p class="home-tour-card__meta">Piscinas naturais, vila charmosa e passeio de buggy.</p>
+                    <a class="btn btn-card home-tour-card__button" href="./passeios.html#porto-de-galinhas">Saiba mais</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="home-tour-card" data-carousel-item>
+              <div class="home-tour-card__image home-tour-card__image--carneiros">
+                <div class="home-tour-card__overlay">
+                  <span class="home-tour-card__badge">Paraíso</span>
+                  <div class="home-tour-card__content">
+                    <h3>Praia dos Carneiros</h3>
+                    <p class="home-tour-card__meta">Catamarã, banco de areia e paisagens surreais.</p>
+                    <a class="btn btn-card home-tour-card__button" href="./passeios.html#carneiros">Saiba mais</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="home-tours-controls" aria-label="Controles dos passeios em destaque">
+            <button class="tours-arrow tours-arrow-prev" type="button" data-carousel-prev aria-label="Passeio anterior">
+              <span aria-hidden="true">‹</span>
+            </button>
+            <div class="tours-dots" data-carousel-dots aria-label="Selecionar passeio em destaque">
+              <button class="tours-dot is-active" type="button" aria-label="Ir para Maragogi"></button>
+              <button class="tours-dot" type="button" aria-label="Ir para São Miguel dos Milagres"></button>
+              <button class="tours-dot" type="button" aria-label="Ir para Gunga, Francês e Barra"></button>
+              <button class="tours-dot" type="button" aria-label="Ir para Capitão Nikolas"></button>
+              <button class="tours-dot" type="button" aria-label="Ir para Porto de Galinhas"></button>
+              <button class="tours-dot" type="button" aria-label="Ir para Praia dos Carneiros"></button>
             </div>
-            <a class="btn btn-primary" href="./passeios.html">Abrir catálogo de passeios</a>
+            <button class="tours-arrow tours-arrow-next" type="button" data-carousel-next aria-label="Próximo passeio">
+              <span aria-hidden="true">›</span>
+            </button>
           </div>
         </div>
       </div>
