@@ -917,6 +917,24 @@ img {
   background: rgba(255, 255, 255, 0.12);
 }
 
+.tour-gallery-hint {
+  position: absolute;
+  right: 1rem;
+  bottom: 3.4rem;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(7, 28, 36, 0.34);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.72rem;
+  font-weight: 700;
+  backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+
 .tour-gallery-arrow {
   position: absolute;
   top: 1rem;
@@ -977,6 +995,99 @@ img {
 .tour-gallery-dot.is-active {
   width: 24px;
   background: white;
+}
+
+.tour-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(12px);
+}
+
+.tour-lightbox[hidden] {
+  display: none !important;
+}
+
+.tour-lightbox__dialog {
+  position: relative;
+  width: min(100%, 1080px);
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+}
+
+.tour-lightbox__image-wrap {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.tour-lightbox__image {
+  max-width: 100%;
+  max-height: min(82vh, 920px);
+  display: block;
+  border-radius: 22px;
+  box-shadow: 0 26px 80px rgba(0, 0, 0, 0.34);
+}
+
+.tour-lightbox__close,
+.tour-lightbox__arrow {
+  position: absolute;
+  z-index: 2;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  color: white;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+}
+
+.tour-lightbox__close {
+  top: 0;
+  right: 0;
+}
+
+.tour-lightbox__arrow {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tour-lightbox__arrow--prev {
+  left: 0;
+}
+
+.tour-lightbox__arrow--next {
+  right: 0;
+}
+
+.tour-lightbox__close span,
+.tour-lightbox__arrow span {
+  font-size: 1.45rem;
+  line-height: 1;
+}
+
+.tour-lightbox__counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
 }
 
 .tour-visual-milagres {
@@ -2527,5 +2638,46 @@ img {
     top: 0.8rem;
     width: 36px;
     height: 36px;
+  }
+
+  .tour-gallery-hint {
+    right: 0.8rem;
+    bottom: 3rem;
+    min-height: 28px;
+    padding: 0.28rem 0.55rem;
+    font-size: 0.66rem;
+  }
+
+  .tour-lightbox {
+    padding: 0.8rem;
+  }
+
+  .tour-lightbox__dialog {
+    width: 100%;
+    gap: 0.8rem;
+  }
+
+  .tour-lightbox__image {
+    max-height: 72vh;
+    border-radius: 18px;
+  }
+
+  .tour-lightbox__close,
+  .tour-lightbox__arrow {
+    width: 44px;
+    height: 44px;
+  }
+
+  .tour-lightbox__close {
+    top: -0.1rem;
+    right: -0.1rem;
+  }
+
+  .tour-lightbox__arrow--prev {
+    left: -0.1rem;
+  }
+
+  .tour-lightbox__arrow--next {
+    right: -0.1rem;
   }
 }
