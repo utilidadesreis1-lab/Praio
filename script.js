@@ -426,6 +426,78 @@ function smoothScrollTo(targetId) {
   });
 }
 
+function initializeToursCarousel() {
+  const carousel = document.querySelector('[data-carousel="tours"]');
+  if (!carousel) return;
+
+  const track = carousel.querySelector("[data-carousel-track]");
+  const prevButton = carousel.querySelector("[data-carousel-prev]");
+  const nextButton = carousel.querySelector("[data-carousel-next]");
+  const dots = Array.from(carousel.querySelectorAll(".tours-dot"));
+  const cards = Array.from(track?.querySelectorAll(".carousel-tour-card") || []);
+
+  if (!track || !cards.length) return;
+
+  const getStepSize = () => {
+    if (cards.length < 2) return cards[0]?.getBoundingClientRect().width || 0;
+
+    const firstRect = cards[0].getBoundingClientRect();
+    const secondRect = cards[1].getBoundingClientRect();
+    return Math.abs(secondRect.left - firstRect.left) || firstRect.width;
+  };
+
+  const getActiveIndex = () => {
+    const step = getStepSize();
+    if (!step) return 0;
+    return Math.max(0, Math.min(cards.length - 1, Math.round(track.scrollLeft / step)));
+  };
+
+  const updateState = () => {
+    const activeIndex = getActiveIndex();
+    const maxScroll = Math.max(0, track.scrollWidth - track.clientWidth - 2);
+
+    dots.forEach((dot, index) => {
+      dot.classList.toggle("is-active", index === activeIndex);
+      dot.setAttribute("aria-current", index === activeIndex ? "true" : "false");
+    });
+
+    if (prevButton) prevButton.disabled = track.scrollLeft <= 4;
+    if (nextButton) nextButton.disabled = track.scrollLeft >= maxScroll;
+  };
+
+  const scrollToCard = (index) => {
+    cards[index]?.scrollIntoView({
+      behavior: "smooth",
+      inline: "start",
+      block: "nearest"
+    });
+  };
+
+  prevButton?.addEventListener("click", () => {
+    scrollToCard(Math.max(0, getActiveIndex() - 1));
+  });
+
+  nextButton?.addEventListener("click", () => {
+    scrollToCard(Math.min(cards.length - 1, getActiveIndex() + 1));
+  });
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      scrollToCard(index);
+    });
+  });
+
+  let frame = null;
+  const scheduleUpdate = () => {
+    if (frame) window.cancelAnimationFrame(frame);
+    frame = window.requestAnimationFrame(updateState);
+  };
+
+  track.addEventListener("scroll", scheduleUpdate, { passive: true });
+  window.addEventListener("resize", scheduleUpdate);
+  updateState();
+}
+
 function getHeroAdjustMode() {
   return new URLSearchParams(window.location.search).get(HERO_ADJUST_QUERY) === "1";
 }
@@ -947,3 +1019,5 @@ document.addEventListener("click", (event) => {
 if (getHeroAdjustMode()) {
   createHeroAdjustTool();
 }
+
+initializeToursCarousel();

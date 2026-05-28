@@ -147,104 +147,195 @@
 
     <section class="section tours" id="passeios">
       <div class="container">
-        <div class="section-heading">
-          <p class="eyebrow">Conheça os passeios</p>
-          <h2>Roteiros pensados para viver o melhor de Alagoas e Pernambuco</h2>
-          <p class="section-support">
-            Selecionamos destinos que combinam paisagens paradisíacas, conforto e atendimento cuidadoso em cada etapa do passeio.
-          </p>
+        <div class="section-heading tours-heading">
+          <div>
+            <p class="eyebrow">Conheça os passeios</p>
+            <h2>Escolha seu próximo cenário paradisíaco</h2>
+            <p class="section-support">
+              Escolha seu destino e fale com a Praiô para montar sua experiência.
+            </p>
+          </div>
+
+          <div class="tours-controls" aria-label="Controles do carrossel de passeios">
+            <button class="tours-arrow tours-arrow-prev" type="button" data-carousel-prev aria-label="Passeio anterior">
+              <span aria-hidden="true">‹</span>
+            </button>
+            <button class="tours-arrow tours-arrow-next" type="button" data-carousel-next aria-label="Próximo passeio">
+              <span aria-hidden="true">›</span>
+            </button>
+          </div>
         </div>
 
-        <div class="card-grid card-grid-3">
-          <article class="tour-card">
-            <div class="tour-card-top">
-              <span class="tour-region">Alagoas</span>
-              <h3>Maragogi</h3>
-              <p>Piscinas naturais e águas cristalinas.</p>
-            </div>
-            <a
-              class="btn btn-card whatsapp-trigger"
-              href="#"
-              data-message="Olá! Vim pelo site da Praiô Receptivo 🌴 Quero informações sobre o passeio para Maragogi."
-            >
-              Consultar passeio
-            </a>
-          </article>
+        <div class="tours-carousel" data-carousel="tours">
+          <div class="tours-track" data-carousel-track tabindex="0" aria-label="Catálogo de passeios da Praiô Receptivo">
+            <article class="tour-card carousel-tour-card">
+              <div class="tour-visual tour-visual-maragogi">
+                <span class="tour-visual-pill">Alagoas</span>
+                <strong>Maragogi</strong>
+                <small>Troque depois por <code>assets/passeios/maragogi.jpg</code></small>
+              </div>
 
-          <article class="tour-card">
-            <div class="tour-card-top">
-              <span class="tour-region">Alagoas</span>
-              <h3>São Miguel dos Milagres</h3>
-              <p>Praias paradisíacas e passeio de jangada.</p>
-            </div>
-            <a
-              class="btn btn-card whatsapp-trigger"
-              href="#"
-              data-message="Olá! Vim pelo site da Praiô Receptivo 🌴 Quero informações sobre o passeio para São Miguel dos Milagres."
-            >
-              Consultar passeio
-            </a>
-          </article>
+              <div class="tour-card-body">
+                <div class="tour-card-top">
+                  <h3>Maragogi: o Caribe Brasileiro 🌊</h3>
+                  <div class="tour-tags" aria-label="Características do passeio Maragogi">
+                    <span>Piscinas naturais</span>
+                    <span>Lancha</span>
+                    <span>Maré ideal</span>
+                  </div>
+                  <p>
+                    Maragogi é o destino mais procurado do Nordeste, famoso por suas águas cristalinas e piscinas naturais paradisíacas.
+                  </p>
+                  <p>
+                    A Praiô organiza sua experiência no melhor horário da maré, com conforto, segurança e a opção do inesquecível passeio de lancha até as piscinas naturais.
+                  </p>
+                </div>
 
-          <article class="tour-card">
-            <div class="tour-card-top">
-              <span class="tour-region">Alagoas</span>
-              <h3>Gunga + Francês + Barra de São Miguel</h3>
-              <p>Combo mais procurado de Alagoas.</p>
-            </div>
-            <a
-              class="btn btn-card whatsapp-trigger"
-              href="#"
-              data-message="Olá! Vim pelo site da Praiô Receptivo 🌴 Quero informações sobre o passeio para Gunga + Francês + Barra de São Miguel."
-            >
-              Consultar passeio
-            </a>
-          </article>
+                <a class="btn btn-card btn-tour whatsapp-trigger" href="#" data-message="Olá! Vim pelo site da Praiô Receptivo 🌴 Quero informações sobre o passeio para Maragogi.">
+                  Consultar Maragogi
+                </a>
+              </div>
+            </article>
 
-          <article class="tour-card">
-            <div class="tour-card-top">
-              <span class="tour-region">Alagoas</span>
-              <h3>Capitão Nikolas</h3>
-              <p>Passeio perfeito para famílias.</p>
-            </div>
-            <a
-              class="btn btn-card whatsapp-trigger"
-              href="#"
-              data-message="Olá! Vim pelo site da Praiô Receptivo 🌴 Quero informações sobre o passeio para Capitão Nikolas."
-            >
-              Consultar passeio
-            </a>
-          </article>
+            <article class="tour-card carousel-tour-card">
+              <div class="tour-visual tour-visual-milagres">
+                <span class="tour-visual-pill">Alagoas</span>
+                <strong>São Miguel dos Milagres</strong>
+                <small>Troque depois por <code>assets/passeios/milagres.jpg</code></small>
+              </div>
 
-          <article class="tour-card">
-            <div class="tour-card-top">
-              <span class="tour-region">Pernambuco</span>
-              <h3>Porto de Galinhas</h3>
-              <p>Piscinas naturais e passeio de buggy.</p>
-            </div>
-            <a
-              class="btn btn-card whatsapp-trigger"
-              href="#"
-              data-message="Olá! Vim pelo site da Praiô Receptivo 🌴 Quero informações sobre o passeio para Porto de Galinhas."
-            >
-              Consultar passeio
-            </a>
-          </article>
+              <div class="tour-card-body">
+                <div class="tour-card-top">
+                  <h3>São Miguel dos Milagres</h3>
+                  <div class="tour-tags">
+                    <span>Praias paradisíacas</span>
+                    <span>Jangada</span>
+                    <span>Tranquilidade</span>
+                  </div>
+                  <p>
+                    Um dos destinos mais encantadores de Alagoas, ideal para quem busca águas calmas, beleza natural e uma experiência mais tranquila.
+                  </p>
+                </div>
 
-          <article class="tour-card">
-            <div class="tour-card-top">
-              <span class="tour-region">Pernambuco</span>
-              <h3>Praia dos Carneiros</h3>
-              <p>Catamarã, banco de areia e paisagens paradisíacas.</p>
-            </div>
-            <a
-              class="btn btn-card whatsapp-trigger"
-              href="#"
-              data-message="Olá! Vim pelo site da Praiô Receptivo 🌴 Quero informações sobre o passeio para Praia dos Carneiros."
-            >
-              Consultar passeio
-            </a>
-          </article>
+                <a class="btn btn-card btn-tour whatsapp-trigger" href="#" data-message="Olá! Vim pelo site da Praiô Receptivo 🌴 Quero informações sobre o passeio para São Miguel dos Milagres.">
+                  Consultar Milagres
+                </a>
+              </div>
+            </article>
+
+            <article class="tour-card carousel-tour-card">
+              <div class="tour-visual tour-visual-combo">
+                <span class="tour-visual-pill">Alagoas</span>
+                <strong>Combo litoral sul</strong>
+                <small>Troque depois por <code>assets/passeios/gunga-frances-barra.jpg</code></small>
+              </div>
+
+              <div class="tour-card-body">
+                <div class="tour-card-top">
+                  <h3>Gunga + Francês + Barra de São Miguel</h3>
+                  <div class="tour-tags">
+                    <span>Combo Alagoas</span>
+                    <span>Praias famosas</span>
+                    <span>Passeio completo</span>
+                  </div>
+                  <p>
+                    Um dos roteiros mais procurados de Alagoas, reunindo três destinos incríveis em uma experiência completa pelo litoral.
+                  </p>
+                </div>
+
+                <a class="btn btn-card btn-tour whatsapp-trigger" href="#" data-message="Olá! Vim pelo site da Praiô Receptivo 🌴 Quero informações sobre o passeio Gunga, Francês e Barra de São Miguel.">
+                  Consultar combo
+                </a>
+              </div>
+            </article>
+
+            <article class="tour-card carousel-tour-card">
+              <div class="tour-visual tour-visual-nikolas">
+                <span class="tour-visual-pill">Alagoas</span>
+                <strong>Capitão Nikolas</strong>
+                <small>Troque depois por <code>assets/passeios/capitao-nikolas.jpg</code></small>
+              </div>
+
+              <div class="tour-card-body">
+                <div class="tour-card-top">
+                  <h3>Capitão Nikolas</h3>
+                  <div class="tour-tags">
+                    <span>Família</span>
+                    <span>Estrutura</span>
+                    <span>Diversão</span>
+                  </div>
+                  <p>
+                    Uma opção perfeita para famílias, com estrutura, conforto e um dia leve para aproveitar o melhor do litoral.
+                  </p>
+                </div>
+
+                <a class="btn btn-card btn-tour whatsapp-trigger" href="#" data-message="Olá! Vim pelo site da Praiô Receptivo 🌴 Quero informações sobre o passeio Capitão Nikolas.">
+                  Consultar Capitão Nikolas
+                </a>
+              </div>
+            </article>
+
+            <article class="tour-card carousel-tour-card">
+              <div class="tour-visual tour-visual-porto">
+                <span class="tour-visual-pill">Pernambuco</span>
+                <strong>Porto de Galinhas</strong>
+                <small>Troque depois por <code>assets/passeios/porto-de-galinhas.jpg</code></small>
+              </div>
+
+              <div class="tour-card-body">
+                <div class="tour-card-top">
+                  <h3>Porto de Galinhas</h3>
+                  <div class="tour-tags">
+                    <span>Pernambuco</span>
+                    <span>Piscinas naturais</span>
+                    <span>Buggy</span>
+                  </div>
+                  <p>
+                    Um dos destinos mais famosos do Brasil, conhecido pelas piscinas naturais, vila charmosa e passeios inesquecíveis.
+                  </p>
+                </div>
+
+                <a class="btn btn-card btn-tour whatsapp-trigger" href="#" data-message="Olá! Vim pelo site da Praiô Receptivo 🌴 Quero informações sobre o passeio para Porto de Galinhas.">
+                  Consultar Porto de Galinhas
+                </a>
+              </div>
+            </article>
+
+            <article class="tour-card carousel-tour-card">
+              <div class="tour-visual tour-visual-carneiros">
+                <span class="tour-visual-pill">Pernambuco</span>
+                <strong>Praia dos Carneiros</strong>
+                <small>Troque depois por <code>assets/passeios/carneiros.jpg</code></small>
+              </div>
+
+              <div class="tour-card-body">
+                <div class="tour-card-top">
+                  <h3>Praia dos Carneiros</h3>
+                  <div class="tour-tags">
+                    <span>Catamarã</span>
+                    <span>Banco de areia</span>
+                    <span>Paraíso</span>
+                  </div>
+                  <p>
+                    Um cenário paradisíaco em Pernambuco, com águas tranquilas, passeio de catamarã e paisagens marcantes.
+                  </p>
+                </div>
+
+                <a class="btn btn-card btn-tour whatsapp-trigger" href="#" data-message="Olá! Vim pelo site da Praiô Receptivo 🌴 Quero informações sobre o passeio para Praia dos Carneiros.">
+                  Consultar Carneiros
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <div class="tours-dots" data-carousel-dots aria-label="Selecionar passeio">
+            <button class="tours-dot is-active" type="button" aria-label="Ir para Maragogi"></button>
+            <button class="tours-dot" type="button" aria-label="Ir para São Miguel dos Milagres"></button>
+            <button class="tours-dot" type="button" aria-label="Ir para Gunga, Francês e Barra de São Miguel"></button>
+            <button class="tours-dot" type="button" aria-label="Ir para Capitão Nikolas"></button>
+            <button class="tours-dot" type="button" aria-label="Ir para Porto de Galinhas"></button>
+            <button class="tours-dot" type="button" aria-label="Ir para Praia dos Carneiros"></button>
+          </div>
         </div>
       </div>
     </section>
