@@ -596,6 +596,20 @@ function animateLightboxImageTransition(image, updateFn) {
   }, 130);
 }
 
+function createLightboxDotsMarkup(total) {
+  return Array.from({ length: total }, (_, index) => {
+    return `<button class="tour-lightbox__dot" type="button" aria-label="Ir para foto ${index + 1}" data-lightbox-dot="${index}"></button>`;
+  }).join("");
+}
+
+function syncLightboxDots(dots, activeIndex) {
+  dots.forEach((dot, index) => {
+    const isActive = index === activeIndex;
+    dot.classList.toggle("is-active", isActive);
+    dot.setAttribute("aria-current", isActive ? "true" : "false");
+  });
+}
+
 function initializeHomeTourGallery() {
   const triggers = Array.from(document.querySelectorAll("[data-home-gallery-trigger]"));
   if (!triggers.length) return;
@@ -1496,6 +1510,207 @@ document.addEventListener("click", (event) => {
     syncHeaderState();
   }
 });
+
+function buildFullscreenGalleryDots(total) {
+  return Array.from({ length: total }, (_, index) => {
+    return `<button class="tour-lightbox__dot" type="button" aria-label="Ir para foto ${index + 1}" data-lightbox-dot="${index}"></button>`;
+  }).join("");
+}
+
+function updateFullscreenGalleryDots(overlay, activeIndex) {
+  overlay.querySelectorAll("[data-lightbox-dot]").forEach((dot, index) => {
+    const isActive = index === activeIndex;
+    dot.classList.toggle("is-active", isActive);
+    dot.setAttribute("aria-current", isActive ? "true" : "false");
+  });
+}
+
+function createFullscreenGalleryOverlay(label) {
+  const overlay = document.createElement("div");
+  overlay.className = "tour-lightbox";
+  overlay.hidden = true;
+  overlay.innerHTML = `
+    <div class="tour-lightbox__dialog" role="dialog" aria-modal="true" aria-label="${label}">
+      <button class="tour-lightbox__close" type="button" aria-label="Fechar galeria">
+        <span aria-hidden="true">×</span>
+      </button>
+      <div class="tour-lightbox__image-wrap">
+        <img class="tour-lightbox__image" src="" alt="" />
+      </div>
+      <div class="tour-lightbox__nav">
+        <button class="tour-lightbox__nav-arrow tour-lightbox__nav-arrow--prev" type="button" aria-label="Imagem anterior">
+          <span aria-hidden="true">‹</span>
+        </button>
+        <div class="tour-lightbox__dots" aria-live="polite"></div>
+        <button class="tour-lightbox__nav-arrow tour-lightbox__nav-arrow--next" type="button" aria-label="Próxima imagem">
+          <span aria-hidden="true">›</span>
+        </button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+  return overlay;
+}
+
+function wireFullscreenGallery(overlay, getState, setState) {
+  const image = overlay.querySelector(".tour-lightbox__image");
+  const closeButton = overlay.querySelector(".tour-lightbox__close");
+  const prevButton = overlay.querySelector(".tour-lightbox__nav-arrow--prev");
+  const nextButton = overlay.querySelector(".tour-lightbox__nav-arrow--next");
+  const dotsContainer = overlay.querySelector(".tour-lightbox__dots");
+
+  const render = () => {
+    const state = getState();
+    const current = state.images[state.activeIndex];
+    if (!current) return;
+
+    image.src = state.getSrc(current);
+    image.alt = state.getAlt(current, state.activeIndex);
+    updateFullscreenGalleryDots(overlay, state.activeIndex);
+  };
+
+  const goTo = (direction) => {
+    const state = getState();
+    if (!state.images.length) return;
+    setState({
+      ...state,
+      activeIndex: (state.activeIndex + direction + state.images.length) % state.images.length
+    });
+    animateLightboxImageTransition(image, render);
+  };
+
+  const close = () => {
+    overlay.hidden = true;
+    document.body.style.overflow = "";
+  };
+
+  const open = () => {
+    const state = getState();
+    dotsContainer.innerHTML = buildFullscreenGalleryDots(state.images.length);
+    dotsContainer.querySelectorAll("[data-lightbox-dot]").forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const currentState = getState();
+        setState({
+          ...currentState,
+          activeIndex: Number(dot.getAttribute("data-lightbox-dot")) || 0
+        });
+        animateLightboxImageTransition(image, render);
+      });
+    });
+    render();
+    overlay.hidden = false;
+    document.body.style.overflow = "hidden";
+  };
+
+  closeButton?.addEventListener("click", close);
+  prevButton?.addEventListener("click", () => goTo(-1));
+  nextButton?.addEventListener("click", () => goTo(1));
+  bindLightboxSwipe(overlay, goTo);
+
+  overlay.addEventListener("click", (event) => {
+    if (event.target === overlay) {
+      close();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (overlay.hidden) return;
+
+    if (event.key === "Escape") {
+      close();
+    } else if (event.key === "ArrowLeft") {
+      goTo(-1);
+    } else if (event.key === "ArrowRight") {
+      goTo(1);
+    }
+  });
+
+  return { open, close, render };
+}
+
+function initializeHomeTourGallery() {
+  const triggers = Array.from(document.querySelectorAll("[data-home-gallery-trigger]"));
+  if (!triggers.length) return;
+
+  const overlay = createFullscreenGalleryOverlay("Galeria do passeio em tela cheia");
+  let state = {
+    images: [],
+    title: "Passeio",
+    activeIndex: 0,
+    getSrc: (current) => current,
+    getAlt: (_current, index) => `${state.title} - foto ${index + 1}`
+  };
+
+  const gallery = wireFullscreenGallery(
+    overlay,
+    () => state,
+    (nextState) => {
+      state = nextState;
+    }
+  );
+
+  triggers.forEach((trigger) => {
+    const imageList = (trigger.getAttribute("data-gallery-images") || "")
+      .split("|")
+      .map((value) => value.trim())
+      .filter(Boolean);
+
+    if (!imageList.length) {
+      trigger.disabled = true;
+      return;
+    }
+
+    trigger.addEventListener("click", () => {
+      state = {
+        ...state,
+        images: imageList,
+        title: trigger.getAttribute("data-gallery-title") || "Passeio",
+        activeIndex: 0
+      };
+      gallery.open();
+    });
+  });
+}
+
+function initializeTourLightboxes() {
+  const galleries = document.querySelectorAll("[data-gallery]");
+  if (!galleries.length) return;
+
+  galleries.forEach((galleryElement) => {
+    const images = Array.from(galleryElement.querySelectorAll("[data-lightbox-image]"));
+    if (!images.length) return;
+
+    const title = galleryElement.getAttribute("data-gallery-title") || "Passeio";
+    const overlay = createFullscreenGalleryOverlay(`Galeria de ${title} em tela cheia`);
+    let state = {
+      images,
+      title,
+      activeIndex: 0,
+      getSrc: (current) => current.currentSrc || current.src,
+      getAlt: (current) => current.alt || `Imagem de ${title}`
+    };
+
+    const lightbox = wireFullscreenGallery(
+      overlay,
+      () => state,
+      (nextState) => {
+        state = nextState;
+      }
+    );
+
+    images.forEach((img, index) => {
+      img.style.cursor = "zoom-in";
+      img.addEventListener("click", () => {
+        state = {
+          ...state,
+          activeIndex: index
+        };
+        lightbox.open();
+      });
+    });
+  });
+}
 
 if (getHeroAdjustMode()) {
   createHeroAdjustTool();
