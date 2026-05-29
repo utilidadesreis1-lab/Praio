@@ -429,6 +429,7 @@ function smoothScrollTo(targetId) {
 }
 
 function initializeSnapCarousel({
+  rootElement,
   rootSelector,
   trackSelector,
   itemSelector,
@@ -436,7 +437,7 @@ function initializeSnapCarousel({
   nextSelector,
   dotSelector
 }) {
-  const root = document.querySelector(rootSelector);
+  const root = rootElement || document.querySelector(rootSelector);
   if (!root) return;
 
   const track = root.querySelector(trackSelector);
@@ -633,6 +634,117 @@ function initializeMaragogiLightbox() {
   });
 }
 
+function initializeTourGalleries() {
+  const galleries = document.querySelectorAll("[data-gallery]");
+  if (!galleries.length) return;
+
+  galleries.forEach((gallery) => {
+    initializeSnapCarousel({
+      rootElement: gallery,
+      trackSelector: "[data-gallery-track]",
+      itemSelector: ".tour-gallery-slide",
+      prevSelector: "[data-gallery-prev]",
+      nextSelector: "[data-gallery-next]",
+      dotSelector: ".tour-gallery-dot"
+    });
+  });
+}
+
+function initializeTourLightboxes() {
+  const galleries = document.querySelectorAll("[data-gallery]");
+  if (!galleries.length) return;
+
+  galleries.forEach((gallery) => {
+    const images = Array.from(gallery.querySelectorAll("[data-lightbox-image]"));
+    if (!images.length) return;
+
+    const title = gallery.getAttribute("data-gallery-title") || "Passeio";
+    const overlay = document.createElement("div");
+    overlay.className = "tour-lightbox";
+    overlay.hidden = true;
+    overlay.innerHTML = `
+      <div class="tour-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Galeria de ${title} em tela cheia">
+        <button class="tour-lightbox__close" type="button" aria-label="Fechar galeria">
+          <span aria-hidden="true">×</span>
+        </button>
+        <button class="tour-lightbox__arrow tour-lightbox__arrow--prev" type="button" aria-label="Imagem anterior">
+          <span aria-hidden="true">‹</span>
+        </button>
+        <div class="tour-lightbox__image-wrap">
+          <img class="tour-lightbox__image" src="" alt="" />
+        </div>
+        <button class="tour-lightbox__arrow tour-lightbox__arrow--next" type="button" aria-label="Próxima imagem">
+          <span aria-hidden="true">›</span>
+        </button>
+        <div class="tour-lightbox__counter" aria-live="polite"></div>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    const image = overlay.querySelector(".tour-lightbox__image");
+    const counter = overlay.querySelector(".tour-lightbox__counter");
+    const closeButton = overlay.querySelector(".tour-lightbox__close");
+    const prevButton = overlay.querySelector(".tour-lightbox__arrow--prev");
+    const nextButton = overlay.querySelector(".tour-lightbox__arrow--next");
+
+    let activeIndex = 0;
+
+    const render = () => {
+      const current = images[activeIndex];
+      if (!current) return;
+
+      image.src = current.currentSrc || current.src;
+      image.alt = current.alt || `Imagem de ${title}`;
+      counter.textContent = `${activeIndex + 1} / ${images.length}`;
+    };
+
+    const open = (index) => {
+      activeIndex = index;
+      render();
+      overlay.hidden = false;
+      document.body.style.overflow = "hidden";
+    };
+
+    const close = () => {
+      overlay.hidden = true;
+      document.body.style.overflow = "";
+    };
+
+    const goTo = (direction) => {
+      activeIndex = (activeIndex + direction + images.length) % images.length;
+      render();
+    };
+
+    images.forEach((img, index) => {
+      img.style.cursor = "zoom-in";
+      img.addEventListener("click", () => open(index));
+    });
+
+    closeButton?.addEventListener("click", close);
+    prevButton?.addEventListener("click", () => goTo(-1));
+    nextButton?.addEventListener("click", () => goTo(1));
+
+    overlay.addEventListener("click", (event) => {
+      if (event.target === overlay) {
+        close();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (overlay.hidden) return;
+
+      if (event.key === "Escape") {
+        close();
+      } else if (event.key === "ArrowLeft") {
+        goTo(-1);
+      } else if (event.key === "ArrowRight") {
+        goTo(1);
+      }
+    });
+  });
+}
+
 function initializeTourAccordion() {
   const accordions = document.querySelectorAll("[data-tour-accordion]");
   if (!accordions.length) return;
@@ -648,6 +760,12 @@ function initializeTourAccordion() {
       item.classList.toggle("is-open", isOpen);
       toggle.setAttribute("aria-expanded", String(isOpen));
       content.hidden = !isOpen;
+
+      if (isOpen) {
+        window.requestAnimationFrame(() => {
+          window.dispatchEvent(new Event("resize"));
+        });
+      }
     };
 
     const openItemFromHash = () => {
@@ -1212,6 +1330,6 @@ if (getHeroAdjustMode()) {
 
 initializeToursCarousel();
 initializeHomeToursCarousel();
-initializeMaragogiGallery();
-initializeMaragogiLightbox();
+initializeTourGalleries();
+initializeTourLightboxes();
 initializeTourAccordion();
