@@ -1334,7 +1334,7 @@ img {
 
 .home-tour-card__image {
   position: relative;
-  min-height: 425px;
+  min-height: 500px;
   border-radius: 30px;
   overflow: hidden;
   background-color: #109da0;
@@ -1348,7 +1348,7 @@ img {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(2, 22, 29, 0.08) 0%, rgba(2, 22, 29, 0.18) 42%, rgba(2, 22, 29, 0.82) 100%);
+    linear-gradient(180deg, rgba(2, 22, 29, 0.06) 0%, rgba(2, 22, 29, 0.1) 28%, rgba(2, 22, 29, 0.38) 56%, rgba(2, 22, 29, 0.9) 100%);
 }
 
 .home-tour-card__image--milagres {
@@ -1387,7 +1387,7 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1.15rem;
+  padding: 1.25rem;
   z-index: 1;
 }
 
@@ -1410,7 +1410,7 @@ img {
 
 .home-tour-card__content {
   display: grid;
-  gap: 0.6rem;
+  gap: 0.72rem;
   align-content: end;
 }
 
@@ -1432,15 +1432,43 @@ img {
 }
 
 .home-tour-card__meta {
-  font-size: 0.94rem;
-  line-height: 1.6;
+  font-size: 0.95rem;
+  line-height: 1.62;
+}
+
+.home-tour-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.72rem;
+  margin-top: 0.45rem;
 }
 
 .home-tour-card__button {
-  width: fit-content;
   min-width: 132px;
   min-height: 48px;
-  margin-top: 0.2rem;
+  margin-top: 0;
+}
+
+.home-tour-card__button--ghost {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 14px 28px rgba(2, 22, 29, 0.18);
+  backdrop-filter: blur(12px);
+}
+
+.home-tour-card__button--ghost:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.home-tour-card__button--photos {
+  background: linear-gradient(135deg, #f79a64, #f47c3c);
+  color: #fff;
+  box-shadow: 0 16px 32px rgba(244, 124, 60, 0.3);
+}
+
+.home-tour-card__button--photos:hover {
+  box-shadow: 0 20px 36px rgba(244, 124, 60, 0.35);
 }
 
 .home-tours-controls {
@@ -3190,7 +3218,7 @@ img {
   }
 
   .home-tour-card__image {
-    min-height: 390px;
+    min-height: 450px;
     border-radius: 26px;
   }
 
@@ -3204,6 +3232,16 @@ img {
 
   .home-tour-card__meta {
     max-width: 92%;
+  }
+
+  .home-tour-card__actions {
+    gap: 0.6rem;
+  }
+
+  .home-tour-card__button {
+    flex: 1 1 140px;
+    justify-content: center;
+    min-width: 0;
   }
 
   .home-tours-controls {

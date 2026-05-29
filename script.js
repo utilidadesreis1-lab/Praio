@@ -530,6 +530,111 @@ function initializeHomeToursCarousel() {
   });
 }
 
+function initializeHomeTourGallery() {
+  const triggers = Array.from(document.querySelectorAll("[data-home-gallery-trigger]"));
+  if (!triggers.length) return;
+
+  const overlay = document.createElement("div");
+  overlay.className = "tour-lightbox";
+  overlay.hidden = true;
+  overlay.innerHTML = `
+    <div class="tour-lightbox__dialog" role="dialog" aria-modal="true" aria-label="Galeria do passeio em tela cheia">
+      <button class="tour-lightbox__close" type="button" aria-label="Fechar galeria">
+        <span aria-hidden="true">×</span>
+      </button>
+      <button class="tour-lightbox__arrow tour-lightbox__arrow--prev" type="button" aria-label="Imagem anterior">
+        <span aria-hidden="true">‹</span>
+      </button>
+      <div class="tour-lightbox__image-wrap">
+        <img class="tour-lightbox__image" src="" alt="" />
+      </div>
+      <button class="tour-lightbox__arrow tour-lightbox__arrow--next" type="button" aria-label="Próxima imagem">
+        <span aria-hidden="true">›</span>
+      </button>
+      <div class="tour-lightbox__counter" aria-live="polite"></div>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+
+  const image = overlay.querySelector(".tour-lightbox__image");
+  const counter = overlay.querySelector(".tour-lightbox__counter");
+  const closeButton = overlay.querySelector(".tour-lightbox__close");
+  const prevButton = overlay.querySelector(".tour-lightbox__arrow--prev");
+  const nextButton = overlay.querySelector(".tour-lightbox__arrow--next");
+
+  let activeImages = [];
+  let activeTitle = "Passeio";
+  let activeIndex = 0;
+
+  const render = () => {
+    const current = activeImages[activeIndex];
+    if (!current) return;
+
+    image.src = current;
+    image.alt = `${activeTitle} - foto ${activeIndex + 1}`;
+    counter.textContent = `${activeIndex + 1} / ${activeImages.length}`;
+  };
+
+  const open = (images, title, startIndex = 0) => {
+    activeImages = images;
+    activeTitle = title;
+    activeIndex = startIndex;
+    render();
+    overlay.hidden = false;
+    document.body.style.overflow = "hidden";
+  };
+
+  const close = () => {
+    overlay.hidden = true;
+    document.body.style.overflow = "";
+  };
+
+  const goTo = (direction) => {
+    if (!activeImages.length) return;
+    activeIndex = (activeIndex + direction + activeImages.length) % activeImages.length;
+    render();
+  };
+
+  triggers.forEach((trigger) => {
+    const imageList = (trigger.getAttribute("data-gallery-images") || "")
+      .split("|")
+      .map((value) => value.trim())
+      .filter(Boolean);
+
+    if (!imageList.length) {
+      trigger.disabled = true;
+      return;
+    }
+
+    trigger.addEventListener("click", () => {
+      open(imageList, trigger.getAttribute("data-gallery-title") || "Passeio");
+    });
+  });
+
+  closeButton?.addEventListener("click", close);
+  prevButton?.addEventListener("click", () => goTo(-1));
+  nextButton?.addEventListener("click", () => goTo(1));
+
+  overlay.addEventListener("click", (event) => {
+    if (event.target === overlay) {
+      close();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (overlay.hidden) return;
+
+    if (event.key === "Escape") {
+      close();
+    } else if (event.key === "ArrowLeft") {
+      goTo(-1);
+    } else if (event.key === "ArrowRight") {
+      goTo(1);
+    }
+  });
+}
+
 function initializeMaragogiGallery() {
   initializeSnapCarousel({
     rootSelector: '[data-gallery="maragogi"]',
@@ -1330,6 +1435,7 @@ if (getHeroAdjustMode()) {
 
 initializeToursCarousel();
 initializeHomeToursCarousel();
+initializeHomeTourGallery();
 initializeTourGalleries();
 initializeTourLightboxes();
 initializeTourAccordion();
