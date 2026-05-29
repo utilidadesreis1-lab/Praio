@@ -530,6 +530,58 @@ function initializeHomeToursCarousel() {
   });
 }
 
+function bindLightboxSwipe(overlay, goTo) {
+  if (!overlay || typeof goTo !== "function") return;
+
+  let startX = 0;
+  let startY = 0;
+  let deltaX = 0;
+  let deltaY = 0;
+  let tracking = false;
+  const swipeThreshold = 48;
+
+  overlay.addEventListener(
+    "touchstart",
+    (event) => {
+      if (overlay.hidden || !event.touches.length) return;
+
+      const touch = event.touches[0];
+      startX = touch.clientX;
+      startY = touch.clientY;
+      deltaX = 0;
+      deltaY = 0;
+      tracking = true;
+    },
+    { passive: true }
+  );
+
+  overlay.addEventListener(
+    "touchmove",
+    (event) => {
+      if (!tracking || !event.touches.length) return;
+
+      const touch = event.touches[0];
+      deltaX = touch.clientX - startX;
+      deltaY = touch.clientY - startY;
+    },
+    { passive: true }
+  );
+
+  overlay.addEventListener(
+    "touchend",
+    () => {
+      if (!tracking) return;
+      tracking = false;
+
+      if (Math.abs(deltaX) < swipeThreshold) return;
+      if (Math.abs(deltaY) > Math.abs(deltaX) * 0.8) return;
+
+      goTo(deltaX < 0 ? 1 : -1);
+    },
+    { passive: true }
+  );
+}
+
 function initializeHomeTourGallery() {
   const triggers = Array.from(document.querySelectorAll("[data-home-gallery-trigger]"));
   if (!triggers.length) return;
@@ -615,6 +667,7 @@ function initializeHomeTourGallery() {
   closeButton?.addEventListener("click", close);
   prevButton?.addEventListener("click", () => goTo(-1));
   nextButton?.addEventListener("click", () => goTo(1));
+  bindLightboxSwipe(overlay, goTo);
 
   overlay.addEventListener("click", (event) => {
     if (event.target === overlay) {
@@ -829,6 +882,7 @@ function initializeTourLightboxes() {
     closeButton?.addEventListener("click", close);
     prevButton?.addEventListener("click", () => goTo(-1));
     nextButton?.addEventListener("click", () => goTo(1));
+    bindLightboxSwipe(overlay, goTo);
 
     overlay.addEventListener("click", (event) => {
       if (event.target === overlay) {

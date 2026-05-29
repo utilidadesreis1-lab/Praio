@@ -3131,6 +3131,10 @@ img {
     right: -0.1rem;
   }
 
+  .tour-lightbox__arrow {
+    display: none;
+  }
+
   .tour-lightbox__arrow--prev {
     left: -0.1rem;
   }
