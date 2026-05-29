@@ -1098,6 +1098,15 @@ img {
   display: block;
   border-radius: 22px;
   box-shadow: 0 26px 80px rgba(0, 0, 0, 0.34);
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  will-change: opacity, transform;
+}
+
+.tour-lightbox__image.is-transitioning {
+  opacity: 0.22;
+  transform: translate3d(0, 10px, 0) scale(0.985);
 }
 
 .tour-lightbox__close,
@@ -1116,6 +1125,7 @@ img {
   backdrop-filter: blur(10px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
   cursor: pointer;
+  transition: opacity 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
 }
 
 .tour-lightbox__close {
@@ -1126,6 +1136,7 @@ img {
 .tour-lightbox__arrow {
   top: 50%;
   transform: translateY(-50%);
+  opacity: 0.84;
 }
 
 .tour-lightbox__arrow--prev {
@@ -1140,6 +1151,11 @@ img {
 .tour-lightbox__arrow span {
   font-size: 1.45rem;
   line-height: 1;
+}
+
+.tour-lightbox__arrow:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .tour-lightbox__counter {
@@ -3120,8 +3136,7 @@ img {
     border-radius: 18px;
   }
 
-  .tour-lightbox__close,
-  .tour-lightbox__arrow {
+  .tour-lightbox__close {
     width: 44px;
     height: 44px;
   }
@@ -3132,15 +3147,24 @@ img {
   }
 
   .tour-lightbox__arrow {
-    display: none;
+    display: inline-flex;
+    width: 36px;
+    height: 36px;
+    opacity: 0.5;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
   }
 
   .tour-lightbox__arrow--prev {
-    left: -0.1rem;
+    left: 0.2rem;
   }
 
   .tour-lightbox__arrow--next {
-    right: -0.1rem;
+    right: 0.2rem;
+  }
+
+  .tour-lightbox__arrow span {
+    font-size: 1.1rem;
   }
 
   .catalog-back-link {

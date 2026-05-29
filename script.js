@@ -582,6 +582,20 @@ function bindLightboxSwipe(overlay, goTo) {
   );
 }
 
+function animateLightboxImageTransition(image, updateFn) {
+  if (!image || typeof updateFn !== "function") return;
+
+  image.classList.add("is-transitioning");
+
+  window.setTimeout(() => {
+    updateFn();
+
+    window.requestAnimationFrame(() => {
+      image.classList.remove("is-transitioning");
+    });
+  }, 130);
+}
+
 function initializeHomeTourGallery() {
   const triggers = Array.from(document.querySelectorAll("[data-home-gallery-trigger]"));
   if (!triggers.length) return;
@@ -645,7 +659,7 @@ function initializeHomeTourGallery() {
   const goTo = (direction) => {
     if (!activeImages.length) return;
     activeIndex = (activeIndex + direction + activeImages.length) % activeImages.length;
-    render();
+    animateLightboxImageTransition(image, render);
   };
 
   triggers.forEach((trigger) => {
@@ -761,7 +775,7 @@ function initializeMaragogiLightbox() {
 
   const goTo = (direction) => {
     activeIndex = (activeIndex + direction + images.length) % images.length;
-    render();
+    animateLightboxImageTransition(image, render);
   };
 
   images.forEach((img, index) => {
@@ -871,7 +885,7 @@ function initializeTourLightboxes() {
 
     const goTo = (direction) => {
       activeIndex = (activeIndex + direction + images.length) % images.length;
-      render();
+      animateLightboxImageTransition(image, render);
     };
 
     images.forEach((img, index) => {
