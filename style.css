@@ -1421,8 +1421,7 @@ img {
 }
 
 .maragogi-home-card {
-  aspect-ratio: 0.92 / 1;
-  min-height: 540px;
+  min-height: 500px;
   background: #083844;
   isolation: isolate;
 }
@@ -3536,19 +3535,13 @@ img {
     scroll-snap-align: center;
   }
 
-  .home-tour-card:first-child {
-    flex-basis: min(91vw, 392px);
-    min-width: min(91vw, 392px);
-  }
-
   .home-tour-card__image {
     min-height: 450px;
     border-radius: 26px;
   }
 
   .maragogi-home-card {
-    aspect-ratio: 0.86 / 1;
-    min-height: min(91vw, 460px);
+    min-height: 450px;
   }
 
   .home-tour-card__overlay {
