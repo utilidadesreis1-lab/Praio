@@ -1419,6 +1419,23 @@ img {
     linear-gradient(180deg, rgba(2, 22, 29, 0.06) 0%, rgba(2, 22, 29, 0.1) 28%, rgba(2, 22, 29, 0.38) 56%, rgba(2, 22, 29, 0.9) 100%);
 }
 
+.home-tour-card__image--artwork {
+  min-height: unset;
+  background: none;
+  border-radius: 30px;
+}
+
+.home-tour-card__image--artwork::before {
+  display: none;
+}
+
+.home-tour-card__artwork {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: inherit;
+}
+
 .home-tour-card__image--milagres {
   background-image:
     linear-gradient(145deg, rgba(31, 159, 154, 0.35), rgba(240, 190, 126, 0.18)),
@@ -1457,6 +1474,47 @@ img {
   justify-content: space-between;
   padding: 1.25rem;
   z-index: 1;
+}
+
+.home-tour-card__overlay--hotspots {
+  display: block;
+  padding: 0;
+}
+
+.home-tour-card__hotspot {
+  position: absolute;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.home-tour-card__hotspot--info {
+  left: 6.5%;
+  top: 87.1%;
+  width: 39%;
+  height: 8.6%;
+}
+
+.home-tour-card__hotspot--photos {
+  left: 46.4%;
+  top: 87.1%;
+  width: 41.8%;
+  height: 8.6%;
+}
+
+.home-tour-card__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .home-tour-card__badge {
