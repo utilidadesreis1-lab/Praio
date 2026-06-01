@@ -1545,8 +1545,10 @@ img {
   display: block;
   background-image: url("./assets/passeios/maragogi/maragogi-06.jpeg");
   background-repeat: no-repeat;
-  background-size: calc(var(--maragogi-bg-zoom) * 1%);
+  background-size: cover;
   background-position: var(--maragogi-bg-position-x) var(--maragogi-bg-position-y);
+  transform: scale(calc(var(--maragogi-bg-zoom) / 100%));
+  transform-origin: var(--maragogi-bg-position-x) var(--maragogi-bg-position-y);
   pointer-events: none;
 }
 
@@ -3810,5 +3812,144 @@ img {
 
   .home-tours-controls .tours-arrow {
     display: none;
+  }
+}
+
+/* Ajuste limpo da ferramenta do card Maragogi */
+.maragogi-adjust-panel--clean {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-height: min(72vh, 620px);
+  overflow: hidden;
+}
+
+.maragogi-adjust-panel--clean .hero-adjust-panel__header {
+  margin-bottom: 0;
+}
+
+.maragogi-adjust-panel--clean .hero-adjust-panel__groups {
+  display: grid;
+  gap: 0.62rem;
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none;
+  overflow-y: auto;
+  padding-right: 0.2rem;
+}
+
+.maragogi-adjust-panel--clean .hero-adjust-group {
+  padding: 0;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.055);
+}
+
+.maragogi-adjust-panel--clean .hero-adjust-group__title {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0.78rem 0.9rem;
+  border: 0;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.15;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.maragogi-adjust-panel--clean .maragogi-adjust-static-title::after {
+  content: none !important;
+}
+
+.maragogi-adjust-panel--clean .hero-adjust-group__content {
+  display: grid;
+  gap: 0.55rem;
+  padding: 0.72rem 0.9rem 0.9rem;
+}
+
+.maragogi-adjust-panel--clean .hero-adjust-panel__output,
+.maragogi-adjust-panel--clean [data-card-adjust-output],
+.maragogi-adjust-panel--clean textarea,
+.maragogi-adjust-panel--clean pre {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+.maragogi-adjust-picker-label {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.76rem;
+  font-weight: 700;
+}
+
+.maragogi-adjust-picker-select {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  padding: 0.65rem 0.8rem;
+  background: rgba(3, 20, 28, 0.84);
+  color: #fff;
+  font-weight: 800;
+  outline: none;
+}
+
+.maragogi-adjust-picker-hint {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.74rem;
+  line-height: 1.45;
+}
+
+.maragogi-adjust-selected-controls {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.maragogi-adjust-selected-group {
+  border-color: rgba(255, 138, 91, 0.28) !important;
+  background: rgba(255, 138, 91, 0.08) !important;
+}
+
+.maragogi-adjust-panel--clean .hero-adjust-panel__actions {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  flex: 0 0 auto;
+  margin-top: 0;
+  padding-top: 0.65rem;
+}
+
+@media (max-width: 700px) {
+  .maragogi-adjust-panel--clean {
+    width: min(292px, calc(100vw - 1rem));
+    max-height: min(58vh, 430px);
+    padding: 0.68rem;
+  }
+
+  .maragogi-adjust-panel--clean .hero-adjust-panel__groups {
+    max-height: none;
+  }
+
+  .maragogi-adjust-panel--clean .hero-adjust-group__title {
+    min-height: auto;
+    padding: 0.76rem 0.86rem;
+    font-size: 0.9rem;
+  }
+
+  .maragogi-adjust-panel--clean .hero-adjust-group__content {
+    padding: 0.62rem 0.86rem 0.82rem;
+    gap: 0.5rem;
+  }
+
+  .maragogi-adjust-panel--clean .hero-adjust-control-label,
+  .maragogi-adjust-panel--clean .hero-adjust-control-value {
+    font-size: 0.78rem;
   }
 }
