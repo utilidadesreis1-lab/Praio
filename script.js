@@ -384,26 +384,27 @@ const MARAGOGI_CARD_DEFAULTS = {
   "--maragogi-accent-width": "25%",
   "--maragogi-accent-height": "3.2%",
   "--maragogi-accent-scale": "1",
+  "--maragogi-icons-scale": "1",
   "--maragogi-wave-icon-x": "5.5%",
   "--maragogi-wave-icon-y": "81.4%",
-  "--maragogi-wave-icon-width": "7.2%",
-  "--maragogi-wave-icon-height": "5.4%",
+  "--maragogi-wave-icon-width": "9.4%",
+  "--maragogi-wave-icon-height": "7.2%",
   "--maragogi-wave-text-x": "14%",
   "--maragogi-wave-text-y": "80.7%",
   "--maragogi-wave-text-width": "16%",
   "--maragogi-wave-text-font-size": "14px",
   "--maragogi-boat-icon-x": "33.8%",
   "--maragogi-boat-icon-y": "81.35%",
-  "--maragogi-boat-icon-width": "7.3%",
-  "--maragogi-boat-icon-height": "5.5%",
+  "--maragogi-boat-icon-width": "9.6%",
+  "--maragogi-boat-icon-height": "7.3%",
   "--maragogi-boat-text-x": "42.5%",
   "--maragogi-boat-text-y": "80.7%",
   "--maragogi-boat-text-width": "16%",
   "--maragogi-boat-text-font-size": "14px",
   "--maragogi-palm-icon-x": "61.6%",
   "--maragogi-palm-icon-y": "81.3%",
-  "--maragogi-palm-icon-width": "7%",
-  "--maragogi-palm-icon-height": "5.4%",
+  "--maragogi-palm-icon-width": "9.1%",
+  "--maragogi-palm-icon-height": "7.1%",
   "--maragogi-palm-text-x": "70.2%",
   "--maragogi-palm-text-y": "80.7%",
   "--maragogi-palm-text-width": "17%",
@@ -483,12 +484,18 @@ const MARAGOGI_CARD_ADJUST_CONTROLS = [
     ]
   },
   {
+    group: "Escala geral dos icones",
+    controls: [
+      { label: "Escala geral", variable: "--maragogi-icons-scale", min: 0.5, max: 2.4, step: 0.01, unit: "" }
+    ]
+  },
+  {
     group: "Icone onda",
     controls: [
       { label: "X", variable: "--maragogi-wave-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
       { label: "Y", variable: "--maragogi-wave-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Largura", variable: "--maragogi-wave-icon-width", min: 2, max: 20, step: 0.1, unit: "%" },
-      { label: "Altura", variable: "--maragogi-wave-icon-height", min: 2, max: 20, step: 0.1, unit: "%" }
+      { label: "Largura", variable: "--maragogi-wave-icon-width", min: 4, max: 18, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--maragogi-wave-icon-height", min: 4, max: 18, step: 0.1, unit: "%" }
     ]
   },
   {
@@ -505,8 +512,8 @@ const MARAGOGI_CARD_ADJUST_CONTROLS = [
     controls: [
       { label: "X", variable: "--maragogi-boat-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
       { label: "Y", variable: "--maragogi-boat-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Largura", variable: "--maragogi-boat-icon-width", min: 2, max: 20, step: 0.1, unit: "%" },
-      { label: "Altura", variable: "--maragogi-boat-icon-height", min: 2, max: 20, step: 0.1, unit: "%" }
+      { label: "Largura", variable: "--maragogi-boat-icon-width", min: 4, max: 18, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--maragogi-boat-icon-height", min: 4, max: 18, step: 0.1, unit: "%" }
     ]
   },
   {
@@ -523,8 +530,8 @@ const MARAGOGI_CARD_ADJUST_CONTROLS = [
     controls: [
       { label: "X", variable: "--maragogi-palm-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
       { label: "Y", variable: "--maragogi-palm-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Largura", variable: "--maragogi-palm-icon-width", min: 2, max: 20, step: 0.1, unit: "%" },
-      { label: "Altura", variable: "--maragogi-palm-icon-height", min: 2, max: 20, step: 0.1, unit: "%" }
+      { label: "Largura", variable: "--maragogi-palm-icon-width", min: 4, max: 18, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--maragogi-palm-icon-height", min: 4, max: 18, step: 0.1, unit: "%" }
     ]
   },
   {
