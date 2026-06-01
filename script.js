@@ -1773,12 +1773,12 @@ function createMaragogiCardAdjustTool() {
       <button type="button" class="hero-adjust-panel__close" data-card-adjust-close>Ocultar painel</button>
     </div>
     <div class="hero-adjust-panel__groups" data-card-adjust-groups></div>
+    <pre class="hero-adjust-panel__output" data-card-adjust-output></pre>
     <div class="hero-adjust-panel__actions">
       <button type="button" class="hero-adjust-panel__button" data-card-adjust-reset>Resetar ajustes</button>
-      <button type="button" class="hero-adjust-panel__button" data-card-adjust-clear>Limpar ajustes salvos</button>
       <button type="button" class="hero-adjust-panel__button hero-adjust-panel__button--primary" data-card-adjust-copy>Copiar CSS final</button>
+      <button type="button" class="hero-adjust-panel__button hero-adjust-panel__button--quiet" data-card-adjust-clear>Limpar ajustes salvos</button>
     </div>
-    <pre class="hero-adjust-panel__output" data-card-adjust-output></pre>
   `;
 
   const groupsContainer = panel.querySelector("[data-card-adjust-groups]");
