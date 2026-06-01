@@ -409,10 +409,16 @@ const MARAGOGI_CARD_DEFAULTS = {
   "--maragogi-palm-text-y": "80.7%",
   "--maragogi-palm-text-width": "17%",
   "--maragogi-palm-text-font-size": "14px",
-  "--maragogi-separator-y": "81.2%",
-  "--maragogi-separator-height": "8.2%",
-  "--maragogi-separator-one-x": "30.1%",
-  "--maragogi-separator-two-x": "58%",
+  "--maragogi-separator-1-x": "30.1%",
+  "--maragogi-separator-1-y": "81.2%",
+  "--maragogi-separator-1-width": "1px",
+  "--maragogi-separator-1-height": "8.2%",
+  "--maragogi-separator-1-opacity": "0.35",
+  "--maragogi-separator-2-x": "58%",
+  "--maragogi-separator-2-y": "81.2%",
+  "--maragogi-separator-2-width": "1px",
+  "--maragogi-separator-2-height": "8.2%",
+  "--maragogi-separator-2-opacity": "0.35",
   "--maragogi-info-button-x": "4.5%",
   "--maragogi-info-button-y": "88.2%",
   "--maragogi-info-button-width": "42%",
@@ -541,6 +547,26 @@ const MARAGOGI_CARD_ADJUST_CONTROLS = [
       { label: "Y", variable: "--maragogi-palm-text-y", min: -10, max: 100, step: 0.1, unit: "%" },
       { label: "Largura", variable: "--maragogi-palm-text-width", min: 4, max: 35, step: 0.1, unit: "%" },
       { label: "Fonte", variable: "--maragogi-palm-text-font-size", min: 8, max: 28, step: 1, unit: "px" }
+    ]
+  },
+  {
+    group: "Separador 1",
+    controls: [
+      { label: "X", variable: "--maragogi-separator-1-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--maragogi-separator-1-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--maragogi-separator-1-width", min: 1, max: 6, step: 0.1, unit: "px" },
+      { label: "Altura", variable: "--maragogi-separator-1-height", min: 2, max: 20, step: 0.1, unit: "%" },
+      { label: "Opacidade", variable: "--maragogi-separator-1-opacity", min: 0, max: 1, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Separador 2",
+    controls: [
+      { label: "X", variable: "--maragogi-separator-2-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--maragogi-separator-2-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--maragogi-separator-2-width", min: 1, max: 6, step: 0.1, unit: "px" },
+      { label: "Altura", variable: "--maragogi-separator-2-height", min: 2, max: 20, step: 0.1, unit: "%" },
+      { label: "Opacidade", variable: "--maragogi-separator-2-opacity", min: 0, max: 1, step: 0.01, unit: "" }
     ]
   },
   {
