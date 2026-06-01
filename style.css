@@ -3080,9 +3080,12 @@ img {
 .hero-adjust-group__title {
   position: relative;
   display: block;
+  width: 100%;
   margin: 0;
   padding: 0.82rem 2.1rem 0.82rem 0.9rem;
   list-style: none;
+  border: 0;
+  text-align: left;
   font-size: 0.9rem;
   font-weight: 800;
   color: #ffffff;
@@ -3113,6 +3116,15 @@ img {
   display: grid;
   gap: 0.52rem;
   padding: 0 0.9rem 0.82rem;
+}
+
+.hero-adjust-group.is-open .hero-adjust-group__title::after,
+.hero-adjust-group__title[aria-expanded="true"]::after {
+  content: "−";
+}
+
+.hero-adjust-group__content[hidden] {
+  display: none !important;
 }
 
 .hero-adjust-panel__heading,
@@ -3202,6 +3214,22 @@ img {
   .maragogi-adjust-panel .hero-adjust-group__content {
     gap: 0.62rem;
     padding: 0 0.92rem 0.9rem;
+  }
+
+  .maragogi-adjust-panel .hero-adjust-group {
+    overflow: hidden;
+  }
+
+  .maragogi-adjust-panel .hero-adjust-group__title {
+    min-height: 48px;
+  }
+
+  .maragogi-adjust-panel .hero-adjust-control {
+    padding: 0.15rem 0;
+  }
+
+  .maragogi-adjust-panel .hero-adjust-control-row {
+    align-items: flex-start;
   }
 
   .maragogi-adjust-panel .hero-adjust-control-label,
