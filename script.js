@@ -1797,12 +1797,11 @@ function createMaragogiCardAdjustTool() {
     persistMaragogiCardAdjustments(values);
   };
 
-  MARAGOGI_CARD_ADJUST_CONTROLS.forEach((group, index) => {
-    const section = document.createElement("details");
+  MARAGOGI_CARD_ADJUST_CONTROLS.forEach((group) => {
+    const section = document.createElement("section");
     section.className = "hero-adjust-group";
-    section.open = true;
 
-    const title = document.createElement("summary");
+    const title = document.createElement("h3");
     title.className = "hero-adjust-group__title";
     title.textContent = group.group;
     section.appendChild(title);
