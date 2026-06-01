@@ -7,6 +7,8 @@ const DEFAULT_MESSAGE =
 
 const HERO_ADJUST_QUERY = "ajusteHero";
 const HERO_ADJUST_STORAGE_KEY = "praiou-hero-mobile-adjustments";
+const MARAGOGI_CARD_ADJUST_QUERY = "ajusteCardMaragogi";
+const MARAGOGI_CARD_ADJUST_STORAGE_KEY = "praiou-maragogi-card-adjustments";
 
 const HERO_MOBILE_DEFAULTS = {
   "--hero-mobile-block-offset-y": "-20px",
@@ -356,6 +358,228 @@ const HERO_ADJUST_CONTROLS = [
         step: 0.01,
         unit: ""
       }
+    ]
+  }
+];
+
+const MARAGOGI_CARD_DEFAULTS = {
+  "--maragogi-card-stage-width": "100%",
+  "--maragogi-card-stage-height": "100%",
+  "--maragogi-card-stage-offset-y": "0px",
+  "--maragogi-bg-position-x": "50%",
+  "--maragogi-bg-position-y": "42%",
+  "--maragogi-bg-zoom": "102%",
+  "--maragogi-badge-x": "3.5%",
+  "--maragogi-badge-y": "3.8%",
+  "--maragogi-badge-width": "54%",
+  "--maragogi-badge-height": "9%",
+  "--maragogi-badge-scale": "1",
+  "--maragogi-title-x": "5.2%",
+  "--maragogi-title-y": "62.8%",
+  "--maragogi-title-width": "67%",
+  "--maragogi-title-height": "14%",
+  "--maragogi-title-scale": "1",
+  "--maragogi-accent-x": "5.8%",
+  "--maragogi-accent-y": "76.8%",
+  "--maragogi-accent-width": "25%",
+  "--maragogi-accent-height": "3.2%",
+  "--maragogi-accent-scale": "1",
+  "--maragogi-wave-icon-x": "5.5%",
+  "--maragogi-wave-icon-y": "81.4%",
+  "--maragogi-wave-icon-width": "7.2%",
+  "--maragogi-wave-icon-height": "5.4%",
+  "--maragogi-wave-text-x": "14%",
+  "--maragogi-wave-text-y": "80.7%",
+  "--maragogi-wave-text-width": "16%",
+  "--maragogi-wave-text-font-size": "14px",
+  "--maragogi-boat-icon-x": "33.8%",
+  "--maragogi-boat-icon-y": "81.35%",
+  "--maragogi-boat-icon-width": "7.3%",
+  "--maragogi-boat-icon-height": "5.5%",
+  "--maragogi-boat-text-x": "42.5%",
+  "--maragogi-boat-text-y": "80.7%",
+  "--maragogi-boat-text-width": "16%",
+  "--maragogi-boat-text-font-size": "14px",
+  "--maragogi-palm-icon-x": "61.6%",
+  "--maragogi-palm-icon-y": "81.3%",
+  "--maragogi-palm-icon-width": "7%",
+  "--maragogi-palm-icon-height": "5.4%",
+  "--maragogi-palm-text-x": "70.2%",
+  "--maragogi-palm-text-y": "80.7%",
+  "--maragogi-palm-text-width": "17%",
+  "--maragogi-palm-text-font-size": "14px",
+  "--maragogi-separator-y": "81.2%",
+  "--maragogi-separator-height": "8.2%",
+  "--maragogi-separator-one-x": "30.1%",
+  "--maragogi-separator-two-x": "58%",
+  "--maragogi-info-button-x": "4.5%",
+  "--maragogi-info-button-y": "88.2%",
+  "--maragogi-info-button-width": "42%",
+  "--maragogi-info-button-height": "10.2%",
+  "--maragogi-info-hotspot-x": "4.5%",
+  "--maragogi-info-hotspot-y": "88.2%",
+  "--maragogi-info-hotspot-width": "42%",
+  "--maragogi-info-hotspot-height": "10.2%",
+  "--maragogi-photos-button-x": "46.5%",
+  "--maragogi-photos-button-y": "86.8%",
+  "--maragogi-photos-button-width": "49.5%",
+  "--maragogi-photos-button-height": "12.6%",
+  "--maragogi-photos-hotspot-x": "46.5%",
+  "--maragogi-photos-hotspot-y": "86.8%",
+  "--maragogi-photos-hotspot-width": "49.5%",
+  "--maragogi-photos-hotspot-height": "12.6%",
+  "--maragogi-overlay-mid-stop": "48%",
+  "--maragogi-overlay-bottom-start": "73%",
+  "--maragogi-overlay-top-opacity": "0.08",
+  "--maragogi-overlay-mid-opacity": "0.18",
+  "--maragogi-overlay-bottom-opacity": "0.95"
+};
+
+const MARAGOGI_CARD_ADJUST_CONTROLS = [
+  {
+    group: "Card completo",
+    controls: [
+      { label: "Largura", variable: "--maragogi-card-stage-width", min: 70, max: 115, step: 0.5, unit: "%" },
+      { label: "Altura", variable: "--maragogi-card-stage-height", min: 70, max: 115, step: 0.5, unit: "%" },
+      { label: "Posicao vertical", variable: "--maragogi-card-stage-offset-y", min: -120, max: 120, step: 1, unit: "px" }
+    ]
+  },
+  {
+    group: "Foto de fundo",
+    controls: [
+      { label: "Posicao X", variable: "--maragogi-bg-position-x", min: -20, max: 120, step: 1, unit: "%" },
+      { label: "Posicao Y", variable: "--maragogi-bg-position-y", min: -20, max: 120, step: 1, unit: "%" },
+      { label: "Zoom", variable: "--maragogi-bg-zoom", min: 80, max: 140, step: 1, unit: "%" }
+    ]
+  },
+  {
+    group: "Selo",
+    controls: [
+      { label: "X", variable: "--maragogi-badge-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--maragogi-badge-y", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--maragogi-badge-width", min: 10, max: 90, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--maragogi-badge-height", min: 3, max: 30, step: 0.1, unit: "%" },
+      { label: "Escala", variable: "--maragogi-badge-scale", min: 0.4, max: 2, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Titulo Maragogi",
+    controls: [
+      { label: "X", variable: "--maragogi-title-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--maragogi-title-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--maragogi-title-width", min: 10, max: 90, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--maragogi-title-height", min: 4, max: 35, step: 0.1, unit: "%" },
+      { label: "Escala", variable: "--maragogi-title-scale", min: 0.4, max: 2, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Traco azul",
+    controls: [
+      { label: "X", variable: "--maragogi-accent-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--maragogi-accent-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--maragogi-accent-width", min: 4, max: 60, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--maragogi-accent-height", min: 1, max: 12, step: 0.1, unit: "%" },
+      { label: "Escala", variable: "--maragogi-accent-scale", min: 0.4, max: 2, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Icone onda",
+    controls: [
+      { label: "X", variable: "--maragogi-wave-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--maragogi-wave-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--maragogi-wave-icon-width", min: 2, max: 20, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--maragogi-wave-icon-height", min: 2, max: 20, step: 0.1, unit: "%" }
+    ]
+  },
+  {
+    group: "Texto Piscinas naturais",
+    controls: [
+      { label: "X", variable: "--maragogi-wave-text-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--maragogi-wave-text-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--maragogi-wave-text-width", min: 4, max: 35, step: 0.1, unit: "%" },
+      { label: "Fonte", variable: "--maragogi-wave-text-font-size", min: 8, max: 28, step: 1, unit: "px" }
+    ]
+  },
+  {
+    group: "Icone barco",
+    controls: [
+      { label: "X", variable: "--maragogi-boat-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--maragogi-boat-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--maragogi-boat-icon-width", min: 2, max: 20, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--maragogi-boat-icon-height", min: 2, max: 20, step: 0.1, unit: "%" }
+    ]
+  },
+  {
+    group: "Texto Passeio de lancha",
+    controls: [
+      { label: "X", variable: "--maragogi-boat-text-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--maragogi-boat-text-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--maragogi-boat-text-width", min: 4, max: 35, step: 0.1, unit: "%" },
+      { label: "Fonte", variable: "--maragogi-boat-text-font-size", min: 8, max: 28, step: 1, unit: "px" }
+    ]
+  },
+  {
+    group: "Icone coqueiro",
+    controls: [
+      { label: "X", variable: "--maragogi-palm-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--maragogi-palm-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--maragogi-palm-icon-width", min: 2, max: 20, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--maragogi-palm-icon-height", min: 2, max: 20, step: 0.1, unit: "%" }
+    ]
+  },
+  {
+    group: "Texto Caribe Brasileiro",
+    controls: [
+      { label: "X", variable: "--maragogi-palm-text-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--maragogi-palm-text-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--maragogi-palm-text-width", min: 4, max: 35, step: 0.1, unit: "%" },
+      { label: "Fonte", variable: "--maragogi-palm-text-font-size", min: 8, max: 28, step: 1, unit: "px" }
+    ]
+  },
+  {
+    group: "Botao Saiba mais",
+    controls: [
+      { label: "X", variable: "--maragogi-info-button-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--maragogi-info-button-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--maragogi-info-button-width", min: 10, max: 80, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--maragogi-info-button-height", min: 4, max: 25, step: 0.1, unit: "%" }
+    ]
+  },
+  {
+    group: "Clique Saiba mais",
+    controls: [
+      { label: "X", variable: "--maragogi-info-hotspot-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--maragogi-info-hotspot-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--maragogi-info-hotspot-width", min: 10, max: 80, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--maragogi-info-hotspot-height", min: 4, max: 25, step: 0.1, unit: "%" }
+    ]
+  },
+  {
+    group: "Botao Ver fotos",
+    controls: [
+      { label: "X", variable: "--maragogi-photos-button-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--maragogi-photos-button-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--maragogi-photos-button-width", min: 10, max: 90, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--maragogi-photos-button-height", min: 4, max: 30, step: 0.1, unit: "%" }
+    ]
+  },
+  {
+    group: "Clique Ver fotos",
+    controls: [
+      { label: "X", variable: "--maragogi-photos-hotspot-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--maragogi-photos-hotspot-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--maragogi-photos-hotspot-width", min: 10, max: 90, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--maragogi-photos-hotspot-height", min: 4, max: 30, step: 0.1, unit: "%" }
+    ]
+  },
+  {
+    group: "Degrade",
+    controls: [
+      { label: "Meio", variable: "--maragogi-overlay-mid-stop", min: 10, max: 90, step: 1, unit: "%" },
+      { label: "Base", variable: "--maragogi-overlay-bottom-start", min: 20, max: 98, step: 1, unit: "%" },
+      { label: "Opacidade topo", variable: "--maragogi-overlay-top-opacity", min: 0, max: 0.6, step: 0.01, unit: "" },
+      { label: "Opacidade meio", variable: "--maragogi-overlay-mid-opacity", min: 0, max: 0.8, step: 0.01, unit: "" },
+      { label: "Opacidade base", variable: "--maragogi-overlay-bottom-opacity", min: 0.1, max: 1, step: 0.01, unit: "" }
     ]
   }
 ];
@@ -1436,6 +1660,218 @@ function createHeroAdjustTool() {
   }
 }
 
+function getMaragogiCardAdjustMode() {
+  return new URLSearchParams(window.location.search).get(MARAGOGI_CARD_ADJUST_QUERY) === "1";
+}
+
+function readStoredMaragogiCardAdjustments() {
+  try {
+    const raw = window.localStorage.getItem(MARAGOGI_CARD_ADJUST_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch (error) {
+    return {};
+  }
+}
+
+function persistMaragogiCardAdjustments(values) {
+  try {
+    window.localStorage.setItem(
+      MARAGOGI_CARD_ADJUST_STORAGE_KEY,
+      JSON.stringify(values)
+    );
+  } catch (error) {
+    // Ignore storage issues.
+  }
+}
+
+function clearStoredMaragogiCardAdjustments() {
+  try {
+    window.localStorage.removeItem(MARAGOGI_CARD_ADJUST_STORAGE_KEY);
+  } catch (error) {
+    // Ignore storage issues.
+  }
+}
+
+function applyMaragogiCardAdjustmentVariables(values) {
+  Object.entries(values).forEach(([variable, value]) => {
+    document.documentElement.style.setProperty(variable, value);
+  });
+}
+
+function buildMaragogiCardAdjustCss(values) {
+  const lines = Object.keys(MARAGOGI_CARD_DEFAULTS).map(
+    (variable) => `  ${variable}: ${values[variable]};`
+  );
+
+  return `:root {\n${lines.join("\n")}\n}`;
+}
+
+function updateMaragogiCardAdjustPreview(panel, values) {
+  const output = panel.querySelector("[data-card-adjust-output]");
+  if (!output) return;
+  output.textContent = buildMaragogiCardAdjustCss(values);
+}
+
+function createMaragogiCardAdjustTool() {
+  const body = document.body;
+  const currentValues = {
+    ...MARAGOGI_CARD_DEFAULTS,
+    ...readStoredMaragogiCardAdjustments()
+  };
+
+  applyMaragogiCardAdjustmentVariables(currentValues);
+  body.classList.add("maragogi-card-adjust-mode");
+
+  const launcher = document.createElement("button");
+  launcher.type = "button";
+  launcher.className = "hero-adjust-launcher";
+  launcher.textContent = "Ajustar Maragogi";
+  launcher.hidden = true;
+
+  const panel = document.createElement("aside");
+  panel.className = "hero-adjust-panel";
+  panel.innerHTML = `
+    <div class="hero-adjust-panel__header" data-hero-adjust-drag-handle>
+      <div class="hero-adjust-panel__heading">
+        <p class="hero-adjust-panel__eyebrow">Ferramenta temporaria</p>
+        <h2>Ajuste Card Maragogi</h2>
+        <span class="hero-adjust-panel__hint">Ative com ?ajusteCardMaragogi=1</span>
+      </div>
+      <button type="button" class="hero-adjust-panel__close" data-card-adjust-close>Ocultar painel</button>
+    </div>
+    <div class="hero-adjust-panel__groups" data-card-adjust-groups></div>
+    <div class="hero-adjust-panel__actions">
+      <button type="button" class="hero-adjust-panel__button" data-card-adjust-reset>Resetar ajustes</button>
+      <button type="button" class="hero-adjust-panel__button" data-card-adjust-clear>Limpar ajustes salvos</button>
+      <button type="button" class="hero-adjust-panel__button hero-adjust-panel__button--primary" data-card-adjust-copy>Copiar CSS final</button>
+    </div>
+    <pre class="hero-adjust-panel__output" data-card-adjust-output></pre>
+  `;
+
+  const groupsContainer = panel.querySelector("[data-card-adjust-groups]");
+  const closeButton = panel.querySelector("[data-card-adjust-close]");
+  const resetButton = panel.querySelector("[data-card-adjust-reset]");
+  const clearButton = panel.querySelector("[data-card-adjust-clear]");
+  const copyButton = panel.querySelector("[data-card-adjust-copy]");
+  const dragHandle = panel.querySelector("[data-hero-adjust-drag-handle]");
+  const values = { ...currentValues };
+  const controlsMeta = MARAGOGI_CARD_ADJUST_CONTROLS.flatMap(
+    (group) => group.controls
+  );
+
+  const onChange = (variable, value) => {
+    values[variable] = value;
+    document.documentElement.style.setProperty(variable, value);
+    persistMaragogiCardAdjustments(values);
+    updateMaragogiCardAdjustPreview(panel, values);
+  };
+
+  MARAGOGI_CARD_ADJUST_CONTROLS.forEach((group, index) => {
+    const section = document.createElement("details");
+    section.className = "hero-adjust-group";
+    section.open = index < 2;
+
+    const title = document.createElement("summary");
+    title.className = "hero-adjust-group__title";
+    title.textContent = group.group;
+    section.appendChild(title);
+
+    const content = document.createElement("div");
+    content.className = "hero-adjust-group__content";
+
+    group.controls.forEach((control) => {
+      content.appendChild(createHeroAdjustControl(control, values, onChange));
+    });
+
+    section.appendChild(content);
+    groupsContainer.appendChild(section);
+  });
+
+  const syncInputsFromValues = (sourceValues) => {
+    panel.querySelectorAll(".hero-adjust-control").forEach((controlElement) => {
+      const variable = controlElement.getAttribute("data-variable");
+      const meta = controlsMeta.find((item) => item.variable === variable);
+      const input = controlElement.querySelector(".hero-adjust-control-input");
+      const valueElement = controlElement.querySelector(".hero-adjust-control-value");
+
+      if (!meta || !input || !valueElement) return;
+      input.value = parseHeroAdjustValue(sourceValues[meta.variable], meta.unit);
+      valueElement.textContent = sourceValues[meta.variable];
+    });
+  };
+
+  resetButton?.addEventListener("click", () => {
+    Object.entries(MARAGOGI_CARD_DEFAULTS).forEach(([variable, value]) => {
+      values[variable] = value;
+      document.documentElement.style.setProperty(variable, value);
+    });
+
+    syncInputsFromValues(MARAGOGI_CARD_DEFAULTS);
+    persistMaragogiCardAdjustments(values);
+    updateMaragogiCardAdjustPreview(panel, values);
+  });
+
+  clearButton?.addEventListener("click", () => {
+    clearStoredMaragogiCardAdjustments();
+    const originalText = clearButton.textContent;
+    clearButton.textContent = "Salvos limpos";
+    window.setTimeout(() => {
+      clearButton.textContent = originalText;
+    }, 1600);
+  });
+
+  copyButton?.addEventListener("click", async () => {
+    const css = buildMaragogiCardAdjustCss(values);
+    const originalText = copyButton.textContent;
+
+    try {
+      await copyTextToClipboard(css);
+      copyButton.textContent = "CSS copiado";
+    } catch (error) {
+      copyButton.textContent = "Falha ao copiar";
+    }
+
+    updateMaragogiCardAdjustPreview(panel, values);
+    window.setTimeout(() => {
+      copyButton.textContent = originalText;
+    }, 1800);
+  });
+
+  const togglePanel = (isOpen) => {
+    panel.hidden = !isOpen;
+    launcher.hidden = isOpen;
+
+    if (isOpen) {
+      const rect = panel.getBoundingClientRect();
+      if (rect.width && rect.height) {
+        setHeroAdjustPanelPosition(panel, { x: rect.left, y: rect.top });
+      }
+    }
+  };
+
+  launcher.addEventListener("click", () => {
+    togglePanel(true);
+  });
+
+  closeButton?.addEventListener("click", () => {
+    togglePanel(false);
+  });
+
+  updateMaragogiCardAdjustPreview(panel, values);
+  body.append(launcher, panel);
+
+  requestAnimationFrame(() => {
+    setHeroAdjustPanelPosition(panel, {
+      x: window.innerWidth - 344,
+      y: Math.max(12, window.innerHeight - 620)
+    });
+  });
+
+  if (dragHandle) {
+    enableHeroAdjustPanelDrag(panel, dragHandle);
+  }
+}
+
 if (navToggle) {
   navToggle.addEventListener("click", () => {
     toggleMobileMenu();
@@ -1712,7 +2148,9 @@ function initializeTourLightboxes() {
   });
 }
 
-if (getHeroAdjustMode()) {
+if (getMaragogiCardAdjustMode()) {
+  createMaragogiCardAdjustTool();
+} else if (getHeroAdjustMode()) {
   createHeroAdjustTool();
 }
 
