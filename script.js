@@ -1800,7 +1800,7 @@ function createMaragogiCardAdjustTool() {
   MARAGOGI_CARD_ADJUST_CONTROLS.forEach((group, index) => {
     const section = document.createElement("details");
     section.className = "hero-adjust-group";
-    section.open = index < 2;
+    section.open = true;
 
     const title = document.createElement("summary");
     title.className = "hero-adjust-group__title";

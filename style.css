@@ -2965,6 +2965,16 @@ img {
   display: none !important;
 }
 
+.maragogi-adjust-panel .hero-adjust-group__title {
+  font-size: 0.95rem;
+  letter-spacing: -0.01em;
+}
+
+.maragogi-adjust-panel .hero-adjust-control-label,
+.maragogi-adjust-panel .hero-adjust-control-value {
+  font-size: 0.86rem;
+}
+
 .hero-adjust-launcher {
   position: fixed;
   right: 1rem;
@@ -3182,6 +3192,21 @@ img {
 
   .hero-adjust-panel__actions {
     gap: 0.46rem;
+  }
+
+  .maragogi-adjust-panel .hero-adjust-group__title {
+    padding: 0.88rem 2rem 0.88rem 0.92rem;
+    font-size: 0.98rem;
+  }
+
+  .maragogi-adjust-panel .hero-adjust-group__content {
+    gap: 0.62rem;
+    padding: 0 0.92rem 0.9rem;
+  }
+
+  .maragogi-adjust-panel .hero-adjust-control-label,
+  .maragogi-adjust-panel .hero-adjust-control-value {
+    font-size: 0.9rem;
   }
 }
 
