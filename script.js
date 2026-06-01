@@ -444,19 +444,19 @@ const MARAGOGI_CARD_DEFAULTS = {
 
 const MARAGOGI_CARD_ADJUST_CONTROLS = [
   {
-    group: "Card completo",
-    controls: [
-      { label: "Largura", variable: "--maragogi-card-stage-width", min: 70, max: 115, step: 0.5, unit: "%" },
-      { label: "Altura", variable: "--maragogi-card-stage-height", min: 70, max: 115, step: 0.5, unit: "%" },
-      { label: "Posicao vertical", variable: "--maragogi-card-stage-offset-y", min: -120, max: 120, step: 1, unit: "px" }
-    ]
-  },
-  {
     group: "Imagem de fundo",
     controls: [
       { label: "Posicao X", variable: "--maragogi-bg-position-x", min: -20, max: 120, step: 1, unit: "%" },
       { label: "Posicao Y", variable: "--maragogi-bg-position-y", min: -20, max: 120, step: 1, unit: "%" },
       { label: "Zoom", variable: "--maragogi-bg-zoom", min: 80, max: 140, step: 1, unit: "%" }
+    ]
+  },
+  {
+    group: "Card completo",
+    controls: [
+      { label: "Largura", variable: "--maragogi-card-stage-width", min: 70, max: 115, step: 0.5, unit: "%" },
+      { label: "Altura", variable: "--maragogi-card-stage-height", min: 70, max: 115, step: 0.5, unit: "%" },
+      { label: "Posicao vertical", variable: "--maragogi-card-stage-offset-y", min: -120, max: 120, step: 1, unit: "px" }
     ]
   },
   {
@@ -1762,7 +1762,7 @@ function createMaragogiCardAdjustTool() {
   launcher.hidden = true;
 
   const panel = document.createElement("aside");
-  panel.className = "hero-adjust-panel";
+  panel.className = "hero-adjust-panel maragogi-adjust-panel";
   panel.innerHTML = `
     <div class="hero-adjust-panel__header" data-hero-adjust-drag-handle>
       <div class="hero-adjust-panel__heading">
@@ -1795,7 +1795,6 @@ function createMaragogiCardAdjustTool() {
     values[variable] = value;
     document.documentElement.style.setProperty(variable, value);
     persistMaragogiCardAdjustments(values);
-    updateMaragogiCardAdjustPreview(panel, values);
   };
 
   MARAGOGI_CARD_ADJUST_CONTROLS.forEach((group, index) => {
@@ -1840,11 +1839,15 @@ function createMaragogiCardAdjustTool() {
 
     syncInputsFromValues(MARAGOGI_CARD_DEFAULTS);
     persistMaragogiCardAdjustments(values);
-    updateMaragogiCardAdjustPreview(panel, values);
   });
 
   clearButton?.addEventListener("click", () => {
     clearStoredMaragogiCardAdjustments();
+    Object.entries(MARAGOGI_CARD_DEFAULTS).forEach(([variable, value]) => {
+      values[variable] = value;
+      document.documentElement.style.setProperty(variable, value);
+    });
+    syncInputsFromValues(MARAGOGI_CARD_DEFAULTS);
     const originalText = clearButton.textContent;
     clearButton.textContent = "Salvos limpos";
     window.setTimeout(() => {
@@ -1863,7 +1866,6 @@ function createMaragogiCardAdjustTool() {
       copyButton.textContent = "Falha ao copiar";
     }
 
-    updateMaragogiCardAdjustPreview(panel, values);
     window.setTimeout(() => {
       copyButton.textContent = originalText;
     }, 1800);

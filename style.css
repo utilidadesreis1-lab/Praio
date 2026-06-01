@@ -2961,6 +2961,10 @@ img {
   word-break: break-word;
 }
 
+.maragogi-adjust-panel .hero-adjust-panel__output {
+  display: none !important;
+}
+
 .hero-adjust-launcher {
   position: fixed;
   right: 1rem;
