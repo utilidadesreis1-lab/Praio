@@ -452,7 +452,7 @@ const MARAGOGI_CARD_ADJUST_CONTROLS = [
     ]
   },
   {
-    group: "Foto de fundo",
+    group: "Imagem de fundo",
     controls: [
       { label: "Posicao X", variable: "--maragogi-bg-position-x", min: -20, max: 120, step: 1, unit: "%" },
       { label: "Posicao Y", variable: "--maragogi-bg-position-y", min: -20, max: 120, step: 1, unit: "%" },
@@ -1773,7 +1773,6 @@ function createMaragogiCardAdjustTool() {
       <button type="button" class="hero-adjust-panel__close" data-card-adjust-close>Ocultar painel</button>
     </div>
     <div class="hero-adjust-panel__groups" data-card-adjust-groups></div>
-    <pre class="hero-adjust-panel__output" data-card-adjust-output></pre>
     <div class="hero-adjust-panel__actions">
       <button type="button" class="hero-adjust-panel__button" data-card-adjust-reset>Resetar ajustes</button>
       <button type="button" class="hero-adjust-panel__button hero-adjust-panel__button--primary" data-card-adjust-copy>Copiar CSS final</button>
