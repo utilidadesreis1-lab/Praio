@@ -3861,6 +3861,10 @@ img {
   background: rgba(255, 255, 255, 0.045);
 }
 
+.maragogi-adjust-panel__group-title::after {
+  content: none !important;
+}
+
 .maragogi-adjust-panel--clean .hero-adjust-group__content {
   display: grid;
   gap: 0.55rem;

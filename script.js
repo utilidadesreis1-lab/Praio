@@ -617,6 +617,18 @@ const MARAGOGI_CARD_ADJUST_CONTROLS = [
   }
 ];
 
+const MARAGOGI_CARD_BG_VARIABLES = [
+  "--maragogi-bg-position-x",
+  "--maragogi-bg-position-y",
+  "--maragogi-bg-zoom"
+];
+
+const MARAGOGI_CARD_BG_CONTROLS = [
+  { label: "Posicao X", variable: "--maragogi-bg-position-x", min: -20, max: 120, step: 1, unit: "%" },
+  { label: "Posicao Y", variable: "--maragogi-bg-position-y", min: -20, max: 120, step: 1, unit: "%" },
+  { label: "Zoom", variable: "--maragogi-bg-zoom", min: 80, max: 140, step: 1, unit: "%" }
+];
+
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
 const siteHeader = document.querySelector(".site-header");
@@ -1700,7 +1712,17 @@ function getMaragogiCardAdjustMode() {
 function readStoredMaragogiCardAdjustments() {
   try {
     const raw = window.localStorage.getItem(MARAGOGI_CARD_ADJUST_STORAGE_KEY);
-    return raw ? JSON.parse(raw) : {};
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    const nextValues = {};
+
+    MARAGOGI_CARD_BG_VARIABLES.forEach((variable) => {
+      if (parsed?.[variable]) {
+        nextValues[variable] = parsed[variable];
+      }
+    });
+
+    return nextValues;
   } catch (error) {
     return {};
   }
@@ -1732,17 +1754,11 @@ function applyMaragogiCardAdjustmentVariables(values) {
 }
 
 function buildMaragogiCardAdjustCss(values) {
-  const lines = Object.keys(MARAGOGI_CARD_DEFAULTS).map(
+  const lines = MARAGOGI_CARD_BG_VARIABLES.map(
     (variable) => `  ${variable}: ${values[variable]};`
   );
 
   return `:root {\n${lines.join("\n")}\n}`;
-}
-
-function updateMaragogiCardAdjustPreview(panel, values) {
-  const output = panel.querySelector("[data-card-adjust-output]");
-  if (!output) return;
-  output.textContent = buildMaragogiCardAdjustCss(values);
 }
 
 function createMaragogiCardAdjustTool() {
@@ -2374,8 +2390,168 @@ function createMaragogiCardAdjustToolV2() {
     enableHeroAdjustPanelDrag(panel, dragHandle);
   }
 }
+
+function createMaragogiCardAdjustToolFresh() {
+  const body = document.body;
+  const values = {
+    "--maragogi-bg-position-x": MARAGOGI_CARD_DEFAULTS["--maragogi-bg-position-x"],
+    "--maragogi-bg-position-y": MARAGOGI_CARD_DEFAULTS["--maragogi-bg-position-y"],
+    "--maragogi-bg-zoom": MARAGOGI_CARD_DEFAULTS["--maragogi-bg-zoom"],
+    ...readStoredMaragogiCardAdjustments()
+  };
+
+  applyMaragogiCardAdjustmentVariables(values);
+  body.classList.add("maragogi-card-adjust-mode");
+
+  const launcher = document.createElement("button");
+  launcher.type = "button";
+  launcher.className = "hero-adjust-launcher";
+  launcher.textContent = "Ajustar Maragogi";
+  launcher.hidden = true;
+
+  const panel = document.createElement("aside");
+  panel.className = "hero-adjust-panel maragogi-adjust-panel maragogi-adjust-panel--clean";
+  panel.innerHTML = `
+    <div class="hero-adjust-panel__header" data-hero-adjust-drag-handle>
+      <div class="hero-adjust-panel__heading">
+        <p class="hero-adjust-panel__eyebrow">Ferramenta temporaria</p>
+        <h2>Ajuste Card Maragogi</h2>
+        <span class="hero-adjust-panel__hint">Ative com ?ajusteCardMaragogi=1</span>
+      </div>
+      <button type="button" class="hero-adjust-panel__close" data-card-adjust-close>Ocultar painel</button>
+    </div>
+    <div class="hero-adjust-panel__groups" data-card-adjust-groups></div>
+    <div class="hero-adjust-panel__actions">
+      <button type="button" class="hero-adjust-panel__button" data-card-adjust-reset>Resetar ajustes</button>
+      <button type="button" class="hero-adjust-panel__button hero-adjust-panel__button--primary" data-card-adjust-copy>Copiar CSS final</button>
+      <button type="button" class="hero-adjust-panel__button hero-adjust-panel__button--quiet" data-card-adjust-clear>Limpar ajustes salvos</button>
+    </div>
+  `;
+
+  const groupsContainer = panel.querySelector("[data-card-adjust-groups]");
+  const closeButton = panel.querySelector("[data-card-adjust-close]");
+  const resetButton = panel.querySelector("[data-card-adjust-reset]");
+  const clearButton = panel.querySelector("[data-card-adjust-clear]");
+  const copyButton = panel.querySelector("[data-card-adjust-copy]");
+  const dragHandle = panel.querySelector("[data-hero-adjust-drag-handle]");
+
+  const group = document.createElement("section");
+  group.className = "hero-adjust-group maragogi-adjust-panel__group";
+
+  const title = document.createElement("h3");
+  title.className = "hero-adjust-group__title maragogi-adjust-panel__group-title";
+  title.textContent = "Imagem de fundo";
+
+  const content = document.createElement("div");
+  content.className = "hero-adjust-group__content maragogi-adjust-panel__group-content";
+
+  const onChange = (variable, value) => {
+    values[variable] = value;
+    document.documentElement.style.setProperty(variable, value);
+    persistMaragogiCardAdjustments(values);
+  };
+
+  MARAGOGI_CARD_BG_CONTROLS.forEach((control) => {
+    content.appendChild(createHeroAdjustControl(control, values, onChange));
+  });
+
+  group.append(title, content);
+  groupsContainer.appendChild(group);
+
+  const syncInputsFromValues = (sourceValues) => {
+    panel.querySelectorAll(".hero-adjust-control").forEach((controlElement) => {
+      const variable = controlElement.getAttribute("data-variable");
+      const meta = MARAGOGI_CARD_BG_CONTROLS.find((item) => item.variable === variable);
+      const input = controlElement.querySelector(".hero-adjust-control-input");
+      const valueElement = controlElement.querySelector(".hero-adjust-control-value");
+
+      if (!meta || !input || !valueElement) return;
+      input.value = parseHeroAdjustValue(sourceValues[meta.variable], meta.unit);
+      valueElement.textContent = sourceValues[meta.variable];
+    });
+  };
+
+  const resetToDefaults = () => {
+    MARAGOGI_CARD_BG_VARIABLES.forEach((variable) => {
+      const value = MARAGOGI_CARD_DEFAULTS[variable];
+      values[variable] = value;
+      document.documentElement.style.setProperty(variable, value);
+    });
+
+    syncInputsFromValues(values);
+    persistMaragogiCardAdjustments(values);
+  };
+
+  resetButton?.addEventListener("click", () => {
+    resetToDefaults();
+  });
+
+  clearButton?.addEventListener("click", () => {
+    clearStoredMaragogiCardAdjustments();
+    resetToDefaults();
+    const originalText = clearButton.textContent;
+    clearButton.textContent = "Salvos limpos";
+    window.setTimeout(() => {
+      clearButton.textContent = originalText;
+    }, 1600);
+  });
+
+  copyButton?.addEventListener("click", async () => {
+    const css = buildMaragogiCardAdjustCss(values);
+    const originalText = copyButton.textContent;
+
+    try {
+      await copyTextToClipboard(css);
+      copyButton.textContent = "CSS copiado!";
+    } catch (error) {
+      copyButton.textContent = "Falha ao copiar";
+    }
+
+    window.setTimeout(() => {
+      copyButton.textContent = originalText;
+    }, 1800);
+  });
+
+  const togglePanel = (isOpen) => {
+    panel.hidden = !isOpen;
+    launcher.hidden = isOpen;
+
+    if (isOpen) {
+      const rect = panel.getBoundingClientRect();
+      if (rect.width && rect.height) {
+        setHeroAdjustPanelPosition(panel, { x: rect.left, y: rect.top });
+      }
+    }
+  };
+
+  launcher.addEventListener("click", () => {
+    togglePanel(true);
+  });
+
+  closeButton?.addEventListener("click", () => {
+    togglePanel(false);
+  });
+
+  body.append(launcher, panel);
+
+  requestAnimationFrame(() => {
+    const safeGap = 10;
+    const width = panel.getBoundingClientRect().width || 296;
+    const height = panel.getBoundingClientRect().height || 320;
+    const isMobile = window.matchMedia("(max-width: 700px)").matches;
+
+    setHeroAdjustPanelPosition(panel, {
+      x: isMobile ? Math.max(safeGap, window.innerWidth - width - safeGap) : window.innerWidth - width - 24,
+      y: isMobile ? safeGap : Math.max(12, window.innerHeight - height - 24)
+    });
+  });
+
+  if (dragHandle) {
+    enableHeroAdjustPanelDrag(panel, dragHandle);
+  }
+}
 if (getMaragogiCardAdjustMode()) {
-  createMaragogiCardAdjustTool();
+  createMaragogiCardAdjustToolFresh();
 } else if (getHeroAdjustMode()) {
   createHeroAdjustTool();
 }
