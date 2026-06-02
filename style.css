@@ -24,9 +24,9 @@
   --maragogi-card-stage-width: 100%;
   --maragogi-card-stage-height: 100%;
   --maragogi-card-stage-offset-y: 0px;
-  --maragogi-bg-position-x: 48%;
-  --maragogi-bg-position-y: 48%;
-  --maragogi-bg-zoom: 140%;
+  --maragogi-bg-position-x: 120%;
+  --maragogi-bg-position-y: 120%;
+  --maragogi-bg-zoom: 100%;
   --maragogi-badge-x: -6.7%;
   --maragogi-badge-y: 0.6%;
   --maragogi-badge-width: 63.2%;
@@ -81,10 +81,10 @@
   --maragogi-info-button-y: 85%;
   --maragogi-info-button-width: 48.3%;
   --maragogi-info-button-height: 15.7%;
-  --maragogi-info-hotspot-x: 18%;
-  --maragogi-info-hotspot-y: 75.1%;
-  --maragogi-info-hotspot-width: 39.2%;
-  --maragogi-info-hotspot-height: 9.5%;
+  --maragogi-info-hotspot-x: 3.9%;
+  --maragogi-info-hotspot-y: 87.1%;
+  --maragogi-info-hotspot-width: 38.9%;
+  --maragogi-info-hotspot-height: 8.7%;
   --maragogi-photos-button-x: 44.3%;
   --maragogi-photos-button-y: 77.6%;
   --maragogi-photos-button-width: 54.2%;

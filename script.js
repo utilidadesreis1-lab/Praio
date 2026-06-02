@@ -366,9 +366,9 @@ const MARAGOGI_CARD_DEFAULTS = {
   "--maragogi-card-stage-width": "100%",
   "--maragogi-card-stage-height": "100%",
   "--maragogi-card-stage-offset-y": "0px",
-  "--maragogi-bg-position-x": "48%",
-  "--maragogi-bg-position-y": "48%",
-  "--maragogi-bg-zoom": "140%",
+  "--maragogi-bg-position-x": "120%",
+  "--maragogi-bg-position-y": "120%",
+  "--maragogi-bg-zoom": "100%",
   "--maragogi-badge-x": "-6.7%",
   "--maragogi-badge-y": "0.6%",
   "--maragogi-badge-width": "63.2%",
@@ -423,10 +423,10 @@ const MARAGOGI_CARD_DEFAULTS = {
   "--maragogi-info-button-y": "85%",
   "--maragogi-info-button-width": "48.3%",
   "--maragogi-info-button-height": "15.7%",
-  "--maragogi-info-hotspot-x": "18%",
-  "--maragogi-info-hotspot-y": "75.1%",
-  "--maragogi-info-hotspot-width": "39.2%",
-  "--maragogi-info-hotspot-height": "9.5%",
+  "--maragogi-info-hotspot-x": "3.9%",
+  "--maragogi-info-hotspot-y": "87.1%",
+  "--maragogi-info-hotspot-width": "38.9%",
+  "--maragogi-info-hotspot-height": "8.7%",
   "--maragogi-photos-button-x": "44.3%",
   "--maragogi-photos-button-y": "77.6%",
   "--maragogi-photos-button-width": "54.2%",
@@ -2204,7 +2204,7 @@ function createMaragogiCardAdjustToolV2() {
   launcher.hidden = true;
 
   const panel = document.createElement("aside");
-  panel.className = "hero-adjust-panel maragogi-adjust-panel";
+  panel.className = "hero-adjust-panel maragogi-adjust-panel maragogi-adjust-panel--clean";
   panel.innerHTML = `
     <div class="hero-adjust-panel__header" data-hero-adjust-drag-handle>
       <div class="hero-adjust-panel__heading">
@@ -2214,7 +2214,7 @@ function createMaragogiCardAdjustToolV2() {
       </div>
       <button type="button" class="hero-adjust-panel__close" data-card-adjust-close>Ocultar painel</button>
     </div>
-    <div class="hero-adjust-panel__groups" data-card-adjust-groups></div>
+    <div class="hero-adjust-panel__groups maragogi-adjust-panel__groups" data-card-adjust-groups></div>
     <div class="hero-adjust-panel__actions">
       <button type="button" class="hero-adjust-panel__button" data-card-adjust-reset>Resetar ajustes</button>
       <button type="button" class="hero-adjust-panel__button hero-adjust-panel__button--primary" data-card-adjust-copy>Copiar CSS final</button>
@@ -2229,10 +2229,7 @@ function createMaragogiCardAdjustToolV2() {
   const copyButton = panel.querySelector("[data-card-adjust-copy]");
   const dragHandle = panel.querySelector("[data-hero-adjust-drag-handle]");
   const values = { ...currentValues };
-  const controlsMeta = MARAGOGI_CARD_ADJUST_CONTROLS.flatMap(
-    (group) => group.controls
-  );
-  const accordionGroups = [];
+  const controlsMeta = MARAGOGI_CARD_ADJUST_CONTROLS.flatMap((group) => group.controls);
 
   const onChange = (variable, value) => {
     values[variable] = value;
@@ -2240,48 +2237,83 @@ function createMaragogiCardAdjustToolV2() {
     persistMaragogiCardAdjustments(values);
   };
 
-  MARAGOGI_CARD_ADJUST_CONTROLS.forEach((group, index) => {
+  const createControlsBlock = (group, extraClass = "") => {
     const section = document.createElement("section");
-    section.className = "hero-adjust-group hero-adjust-group--accordion";
+    section.className = `hero-adjust-group maragogi-adjust-control-group is-open ${extraClass}`.trim();
 
-    const title = document.createElement("button");
-    title.type = "button";
-    title.className = "hero-adjust-group__title";
+    const title = document.createElement("div");
+    title.className = "hero-adjust-group__title maragogi-adjust-static-title";
     title.textContent = group.group;
-    title.setAttribute("aria-expanded", index === 0 ? "true" : "false");
 
     const content = document.createElement("div");
     content.className = "hero-adjust-group__content";
-    content.hidden = index !== 0;
 
     group.controls.forEach((control) => {
       content.appendChild(createHeroAdjustControl(control, values, onChange));
     });
 
-    title.addEventListener("click", () => {
-      const shouldOpen = content.hidden;
+    section.append(title, content);
+    return section;
+  };
 
-      accordionGroups.forEach((entry) => {
-        entry.section.classList.remove("is-open");
-        entry.title.setAttribute("aria-expanded", "false");
-        entry.content.hidden = true;
-      });
+  const backgroundGroup = MARAGOGI_CARD_ADJUST_CONTROLS[0];
+  if (backgroundGroup) {
+    groupsContainer.appendChild(createControlsBlock(backgroundGroup, "maragogi-adjust-background-group"));
+  }
 
-      if (shouldOpen) {
-        section.classList.add("is-open");
-        title.setAttribute("aria-expanded", "true");
-        content.hidden = false;
-      }
+  const otherGroups = MARAGOGI_CARD_ADJUST_CONTROLS.slice(1);
+  if (otherGroups.length) {
+    const chooserSection = document.createElement("section");
+    chooserSection.className = "hero-adjust-group maragogi-adjust-picker-group";
+
+    const title = document.createElement("div");
+    title.className = "hero-adjust-group__title maragogi-adjust-static-title";
+    title.textContent = "Outros ajustes";
+
+    const content = document.createElement("div");
+    content.className = "hero-adjust-group__content maragogi-adjust-picker-content";
+
+    const selectLabel = document.createElement("label");
+    selectLabel.className = "maragogi-adjust-picker-label";
+    selectLabel.textContent = "Escolha um grupo para ajustar";
+
+    const select = document.createElement("select");
+    select.className = "maragogi-adjust-picker-select";
+    select.setAttribute("aria-label", "Escolha um grupo do card Maragogi");
+    select.innerHTML = `<option value="">Selecione...</option>`;
+
+    otherGroups.forEach((group, index) => {
+      const option = document.createElement("option");
+      option.value = String(index);
+      option.textContent = group.group;
+      select.appendChild(option);
     });
 
-    if (index === 0) {
-      section.classList.add("is-open");
-    }
+    const selectedControls = document.createElement("div");
+    selectedControls.className = "maragogi-adjust-selected-controls";
 
-    accordionGroups.push({ section, title, content });
-    section.append(title, content);
-    groupsContainer.appendChild(section);
-  });
+    const renderSelectedGroup = () => {
+      selectedControls.innerHTML = "";
+      if (select.value === "") {
+        const hint = document.createElement("p");
+        hint.className = "maragogi-adjust-picker-hint";
+        hint.textContent = "Use esta lista somente quando precisar mexer em selo, titulo, icones, textos, separadores ou botoes.";
+        selectedControls.appendChild(hint);
+        return;
+      }
+
+      const group = otherGroups[Number(select.value)];
+      if (!group) return;
+      selectedControls.appendChild(createControlsBlock(group, "maragogi-adjust-selected-group"));
+    };
+
+    select.addEventListener("change", renderSelectedGroup);
+    renderSelectedGroup();
+
+    content.append(selectLabel, select, selectedControls);
+    chooserSection.append(title, content);
+    groupsContainer.appendChild(chooserSection);
+  }
 
   const syncInputsFromValues = (sourceValues) => {
     panel.querySelectorAll(".hero-adjust-control").forEach((controlElement) => {
@@ -2359,9 +2391,14 @@ function createMaragogiCardAdjustToolV2() {
   body.append(launcher, panel);
 
   requestAnimationFrame(() => {
+    const safeGap = 10;
+    const width = panel.getBoundingClientRect().width || 296;
+    const height = panel.getBoundingClientRect().height || 420;
+    const isMobile = window.matchMedia("(max-width: 700px)").matches;
+
     setHeroAdjustPanelPosition(panel, {
-      x: window.innerWidth - 344,
-      y: Math.max(12, window.innerHeight - 620)
+      x: isMobile ? Math.max(safeGap, window.innerWidth - width - safeGap) : window.innerWidth - width - 24,
+      y: isMobile ? safeGap : Math.max(12, window.innerHeight - height - 24)
     });
   });
 
@@ -2369,7 +2406,6 @@ function createMaragogiCardAdjustToolV2() {
     enableHeroAdjustPanelDrag(panel, dragHandle);
   }
 }
-
 if (getMaragogiCardAdjustMode()) {
   createMaragogiCardAdjustToolV2();
 } else if (getHeroAdjustMode()) {
