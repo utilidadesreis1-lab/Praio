@@ -1545,7 +1545,7 @@ img {
   display: block;
   background-image: url("./assets/passeios/maragogi/maragogi-06.jpeg");
   background-repeat: no-repeat;
-  background-size: calc(var(--maragogi-bg-zoom) * 1%);
+  background-size: var(--maragogi-bg-zoom) auto;
   background-position: var(--maragogi-bg-position-x) var(--maragogi-bg-position-y);
   pointer-events: none;
 }
