@@ -2504,7 +2504,6 @@ function createMaragogiCardAdjustToolFresh() {
   const setGroupState = (entry, isOpen) => {
     entry.section.classList.toggle("is-open", isOpen);
     entry.title.setAttribute("aria-expanded", String(isOpen));
-    entry.content.hidden = !isOpen;
   };
 
   const createSectionHeading = (label) => {
@@ -2516,16 +2515,16 @@ function createMaragogiCardAdjustToolFresh() {
 
   const createAccordionGroup = (group, isOpen) => {
     const section = document.createElement("section");
-    section.className = "hero-adjust-group maragogi-adjust-panel__group";
+    section.className = "hero-adjust-group maragogi-adjust-panel__group maragogi-tool-group";
 
     const title = document.createElement("button");
     title.type = "button";
-    title.className = "hero-adjust-group__title maragogi-adjust-panel__group-title";
+    title.className = "hero-adjust-group__title maragogi-adjust-panel__group-title maragogi-tool-group-header";
     title.textContent = group.group;
     title.setAttribute("aria-expanded", "false");
 
     const content = document.createElement("div");
-    content.className = "hero-adjust-group__content maragogi-adjust-panel__group-content";
+    content.className = "hero-adjust-group__content maragogi-adjust-panel__group-content maragogi-tool-group-body";
 
     const sections = group.sections || [{ controls: group.controls || [] }];
     sections.forEach((sectionConfig, index) => {
@@ -2541,7 +2540,7 @@ function createMaragogiCardAdjustToolFresh() {
     });
 
     title.addEventListener("click", () => {
-      const shouldOpen = content.hidden;
+      const shouldOpen = !section.classList.contains("is-open");
 
       accordionGroups.forEach((entry) => {
         setGroupState(entry, false);

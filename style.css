@@ -3883,6 +3883,14 @@ img {
   padding: 0.72rem 0.9rem 0.9rem;
 }
 
+.maragogi-tool-group .maragogi-tool-group-body {
+  display: none;
+}
+
+.maragogi-tool-group.is-open .maragogi-tool-group-body {
+  display: grid;
+}
+
 .maragogi-adjust-panel--clean .hero-adjust-group__content[hidden] {
   display: none !important;
 }
