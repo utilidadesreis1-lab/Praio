@@ -24,9 +24,9 @@
   --maragogi-card-stage-width: 100%;
   --maragogi-card-stage-height: 100%;
   --maragogi-card-stage-offset-y: 0px;
-  --maragogi-bg-position-x: 62%;
-  --maragogi-bg-position-y: 120%;
-  --maragogi-bg-zoom: 109%;
+  --maragogi-bg-position-x: 48%;
+  --maragogi-bg-position-y: 48%;
+  --maragogi-bg-zoom: 140%;
   --maragogi-badge-x: -6.7%;
   --maragogi-badge-y: 0.6%;
   --maragogi-badge-width: 63.2%;
@@ -81,10 +81,10 @@
   --maragogi-info-button-y: 85%;
   --maragogi-info-button-width: 48.3%;
   --maragogi-info-button-height: 15.7%;
-  --maragogi-info-hotspot-x: 3.9%;
-  --maragogi-info-hotspot-y: 87.1%;
-  --maragogi-info-hotspot-width: 38.9%;
-  --maragogi-info-hotspot-height: 8.7%;
+  --maragogi-info-hotspot-x: 18%;
+  --maragogi-info-hotspot-y: 75.1%;
+  --maragogi-info-hotspot-width: 39.2%;
+  --maragogi-info-hotspot-height: 9.5%;
   --maragogi-photos-button-x: 44.3%;
   --maragogi-photos-button-y: 77.6%;
   --maragogi-photos-button-width: 54.2%;
@@ -1545,10 +1545,8 @@ img {
   display: block;
   background-image: url("./assets/passeios/maragogi/maragogi-06.jpeg");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: calc(var(--maragogi-bg-zoom) * 1%);
   background-position: var(--maragogi-bg-position-x) var(--maragogi-bg-position-y);
-  transform: scale(calc(var(--maragogi-bg-zoom) / 100%));
-  transform-origin: var(--maragogi-bg-position-x) var(--maragogi-bg-position-y);
   pointer-events: none;
 }
 
@@ -3082,12 +3080,9 @@ img {
 .hero-adjust-group__title {
   position: relative;
   display: block;
-  width: 100%;
   margin: 0;
   padding: 0.82rem 2.1rem 0.82rem 0.9rem;
   list-style: none;
-  border: 0;
-  text-align: left;
   font-size: 0.9rem;
   font-weight: 800;
   color: #ffffff;
@@ -3118,15 +3113,6 @@ img {
   display: grid;
   gap: 0.52rem;
   padding: 0 0.9rem 0.82rem;
-}
-
-.hero-adjust-group.is-open .hero-adjust-group__title::after,
-.hero-adjust-group__title[aria-expanded="true"]::after {
-  content: "−";
-}
-
-.hero-adjust-group__content[hidden] {
-  display: none !important;
 }
 
 .hero-adjust-panel__heading,
@@ -3216,22 +3202,6 @@ img {
   .maragogi-adjust-panel .hero-adjust-group__content {
     gap: 0.62rem;
     padding: 0 0.92rem 0.9rem;
-  }
-
-  .maragogi-adjust-panel .hero-adjust-group {
-    overflow: hidden;
-  }
-
-  .maragogi-adjust-panel .hero-adjust-group__title {
-    min-height: 48px;
-  }
-
-  .maragogi-adjust-panel .hero-adjust-control {
-    padding: 0.15rem 0;
-  }
-
-  .maragogi-adjust-panel .hero-adjust-control-row {
-    align-items: flex-start;
   }
 
   .maragogi-adjust-panel .hero-adjust-control-label,
@@ -3815,140 +3785,81 @@ img {
   }
 }
 
-/* Ajuste limpo da ferramenta do card Maragogi */
-.maragogi-adjust-panel--clean {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  max-height: min(72vh, 620px);
-  overflow: hidden;
-}
-
-.maragogi-adjust-panel--clean .hero-adjust-panel__header {
-  margin-bottom: 0;
-}
-
-.maragogi-adjust-panel--clean .hero-adjust-panel__groups {
-  display: grid;
-  gap: 0.62rem;
-  flex: 1 1 auto;
-  min-height: 0;
-  max-height: none;
-  overflow-y: auto;
-  padding-right: 0.2rem;
-}
-
-.maragogi-adjust-panel--clean .hero-adjust-group {
-  padding: 0;
-  overflow: hidden;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  background: rgba(255, 255, 255, 0.055);
-}
-
-.maragogi-adjust-panel--clean .hero-adjust-group__title {
-  position: relative;
-  display: block;
-  width: 100%;
-  margin: 0;
-  padding: 0.78rem 0.9rem;
-  border: 0;
-  color: #fff;
-  font-size: 0.9rem;
-  font-weight: 800;
-  line-height: 1.15;
-  text-align: left;
-  cursor: pointer;
-  background: rgba(255, 255, 255, 0.045);
-}
-
-.maragogi-adjust-panel__group-title::after {
-  content: "+" !important;
-  position: absolute;
-  top: 50%;
-  right: 0.95rem;
-  color: rgba(255, 255, 255, 0.82);
-  font-size: 1rem;
-  font-weight: 800;
-  transform: translateY(-50%);
-}
-
-.maragogi-adjust-panel__group.is-open .maragogi-adjust-panel__group-title::after {
-  content: "−" !important;
-}
-
-.maragogi-adjust-panel--clean .hero-adjust-group__content {
-  display: grid;
-  gap: 0.55rem;
-  padding: 0.72rem 0.9rem 0.9rem;
-}
-
-.maragogi-tool-group .maragogi-tool-group-body {
-  display: none;
-}
-
-.maragogi-tool-group.is-open .maragogi-tool-group-body {
-  display: grid;
-}
-
-.maragogi-adjust-panel--clean .hero-adjust-group__content[hidden] {
+/* Ferramenta limpa do card Maragogi: troca o accordion instável por seletor + controles renderizados. */
+.maragogi-adjust-panel--clean .hero-adjust-panel__groups,
+.maragogi-adjust-panel--clean .hero-adjust-panel__output,
+.maragogi-adjust-panel--clean [data-card-adjust-output] {
   display: none !important;
 }
 
-.maragogi-adjust-panel__subheading {
-  margin: 0.1rem 0 0.2rem;
-  padding-top: 0.2rem;
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 0.7rem;
+.maragogi-clean-tool {
+  display: grid;
+  gap: 0.72rem;
+  min-height: 0;
+}
+
+.maragogi-clean-tool__label {
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
-.maragogi-adjust-panel--clean .hero-adjust-panel__output,
-.maragogi-adjust-panel--clean [data-card-adjust-output],
-.maragogi-adjust-panel--clean textarea,
-.maragogi-adjust-panel--clean pre {
-  display: none !important;
-  height: 0 !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  overflow: hidden !important;
+.maragogi-clean-tool__select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-weight: 800;
+  outline: none;
+}
+
+.maragogi-clean-tool__select option {
+  color: #0f2c35;
+}
+
+.maragogi-clean-tool__controls {
+  display: grid;
+  gap: 0.62rem;
+  max-height: min(38vh, 300px);
+  overflow-y: auto;
+  padding: 0.85rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.maragogi-clean-tool__group-title {
+  margin: 0 0 0.12rem;
+  color: #ffffff;
+  font-size: 0.96rem;
+  font-weight: 900;
+}
+
+.maragogi-adjust-panel--clean .hero-adjust-control + .hero-adjust-control {
+  margin-top: 0.28rem;
+}
+
+.maragogi-adjust-panel--clean .hero-adjust-control-label,
+.maragogi-adjust-panel--clean .hero-adjust-control-value {
+  font-size: 0.86rem;
 }
 
 .maragogi-adjust-panel--clean .hero-adjust-panel__actions {
-  position: sticky;
-  bottom: 0;
-  z-index: 2;
   flex: 0 0 auto;
-  margin-top: 0;
-  padding-top: 0.65rem;
 }
 
 @media (max-width: 700px) {
   .maragogi-adjust-panel--clean {
-    width: min(292px, calc(100vw - 1rem));
-    max-height: min(58vh, 430px);
-    padding: 0.68rem;
+    width: min(320px, calc(100vw - 1rem));
+    max-height: min(72vh, 620px);
   }
 
-  .maragogi-adjust-panel--clean .hero-adjust-panel__groups {
-    max-height: none;
-  }
-
-  .maragogi-adjust-panel--clean .hero-adjust-group__title {
-    min-height: auto;
-    padding: 0.76rem 0.86rem;
-    font-size: 0.9rem;
-  }
-
-  .maragogi-adjust-panel--clean .hero-adjust-group__content {
-    padding: 0.62rem 0.86rem 0.82rem;
-    gap: 0.5rem;
-  }
-
-  .maragogi-adjust-panel--clean .hero-adjust-control-label,
-  .maragogi-adjust-panel--clean .hero-adjust-control-value {
-    font-size: 0.78rem;
+  .maragogi-clean-tool__controls {
+    max-height: min(34vh, 260px);
   }
 }
