@@ -1762,7 +1762,7 @@ function createMaragogiCardAdjustTool() {
   launcher.hidden = true;
 
   const panel = document.createElement("aside");
-  panel.className = "hero-adjust-panel maragogi-adjust-panel";
+  panel.className = "hero-adjust-panel maragogi-adjust-panel maragogi-adjust-panel--clean";
   panel.innerHTML = `
     <div class="hero-adjust-panel__header" data-hero-adjust-drag-handle>
       <div class="hero-adjust-panel__heading">
@@ -1896,7 +1896,6 @@ function createMaragogiCardAdjustTool() {
     togglePanel(false);
   });
 
-  updateMaragogiCardAdjustPreview(panel, values);
   body.append(launcher, panel);
 
   requestAnimationFrame(() => {
@@ -2376,7 +2375,7 @@ function createMaragogiCardAdjustToolV2() {
   }
 }
 if (getMaragogiCardAdjustMode()) {
-  createMaragogiCardAdjustToolV2();
+  createMaragogiCardAdjustTool();
 } else if (getHeroAdjustMode()) {
   createHeroAdjustTool();
 }
