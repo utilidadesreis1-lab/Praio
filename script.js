@@ -1751,12 +1751,70 @@ function applyMaragogiCardAdjustmentVariables(values) {
   });
 }
 
+function readCurrentMaragogiCardValues() {
+  const styles = getComputedStyle(document.documentElement);
+  const values = {};
+
+  MARAGOGI_CARD_VARIABLES.forEach((variable) => {
+    values[variable] =
+      document.documentElement.style.getPropertyValue(variable).trim() ||
+      styles.getPropertyValue(variable).trim() ||
+      MARAGOGI_CARD_DEFAULTS[variable];
+  });
+
+  return values;
+}
+
 function buildMaragogiCardAdjustCss(values) {
   const lines = MARAGOGI_CARD_VARIABLES.map(
     (variable) => `  ${variable}: ${values[variable]};`
   );
 
   return `:root {\n${lines.join("\n")}\n}`;
+}
+
+function createMaragogiCardAdjustControl(control, values, onChange) {
+  const wrapper = document.createElement("label");
+  wrapper.className = "hero-adjust-control";
+  wrapper.setAttribute("data-variable", control.variable);
+
+  const labelRow = document.createElement("span");
+  labelRow.className = "hero-adjust-control-row";
+
+  const label = document.createElement("span");
+  label.className = "hero-adjust-control-label";
+  label.textContent = control.label;
+
+  const value = document.createElement("span");
+  value.className = "hero-adjust-control-value";
+
+  const input = document.createElement("input");
+  input.className = "hero-adjust-control-input";
+  input.type = "range";
+  input.min = String(control.min);
+  input.max = String(control.max);
+  input.step = String(control.step);
+  input.value = parseHeroAdjustValue(values[control.variable], control.unit);
+
+  const syncValueLabel = () => {
+    value.textContent = formatHeroAdjustValue(input.value, control.unit);
+  };
+
+  const applyValue = () => {
+    const nextValue = formatHeroAdjustValue(input.value, control.unit);
+    values[control.variable] = nextValue;
+    syncValueLabel();
+    onChange(control.variable, nextValue);
+  };
+
+  syncValueLabel();
+
+  input.addEventListener("input", applyValue);
+  input.addEventListener("change", applyValue);
+
+  labelRow.append(label, value);
+  wrapper.append(labelRow, input);
+  return wrapper;
 }
 
 function createMaragogiCardAdjustTool() {
@@ -2392,7 +2450,7 @@ function createMaragogiCardAdjustToolV2() {
 function createMaragogiCardAdjustToolFresh() {
   const body = document.body;
   const values = {
-    ...MARAGOGI_CARD_DEFAULTS,
+    ...readCurrentMaragogiCardValues(),
     ...readStoredMaragogiCardAdjustments()
   };
 
@@ -2478,7 +2536,7 @@ function createMaragogiCardAdjustToolFresh() {
       }
 
       (sectionConfig.controls || []).forEach((control) => {
-        content.appendChild(createHeroAdjustControl(control, values, onChange));
+        content.appendChild(createMaragogiCardAdjustControl(control, values, onChange));
       });
     });
 
