@@ -3861,10 +3861,6 @@ img {
   background: rgba(255, 255, 255, 0.045);
 }
 
-.maragogi-adjust-panel--clean .maragogi-adjust-static-title::after {
-  content: none !important;
-}
-
 .maragogi-adjust-panel--clean .hero-adjust-group__content {
   display: grid;
   gap: 0.55rem;
@@ -3880,41 +3876,6 @@ img {
   margin: 0 !important;
   padding: 0 !important;
   overflow: hidden !important;
-}
-
-.maragogi-adjust-picker-label {
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 0.76rem;
-  font-weight: 700;
-}
-
-.maragogi-adjust-picker-select {
-  width: 100%;
-  min-height: 42px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 12px;
-  padding: 0.65rem 0.8rem;
-  background: rgba(3, 20, 28, 0.84);
-  color: #fff;
-  font-weight: 800;
-  outline: none;
-}
-
-.maragogi-adjust-picker-hint {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.68);
-  font-size: 0.74rem;
-  line-height: 1.45;
-}
-
-.maragogi-adjust-selected-controls {
-  display: grid;
-  gap: 0.55rem;
-}
-
-.maragogi-adjust-selected-group {
-  border-color: rgba(255, 138, 91, 0.28) !important;
-  background: rgba(255, 138, 91, 0.08) !important;
 }
 
 .maragogi-adjust-panel--clean .hero-adjust-panel__actions {

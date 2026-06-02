@@ -2230,6 +2230,7 @@ function createMaragogiCardAdjustToolV2() {
   const dragHandle = panel.querySelector("[data-hero-adjust-drag-handle]");
   const values = { ...currentValues };
   const controlsMeta = MARAGOGI_CARD_ADJUST_CONTROLS.flatMap((group) => group.controls);
+  const accordionGroups = [];
 
   const onChange = (variable, value) => {
     values[variable] = value;
@@ -2237,83 +2238,51 @@ function createMaragogiCardAdjustToolV2() {
     persistMaragogiCardAdjustments(values);
   };
 
-  const createControlsBlock = (group, extraClass = "") => {
+  const createAccordionGroup = (group, isOpen = false) => {
     const section = document.createElement("section");
-    section.className = `hero-adjust-group maragogi-adjust-control-group is-open ${extraClass}`.trim();
+    section.className = "hero-adjust-group maragogi-adjust-control-group";
+    if (isOpen) {
+      section.classList.add("is-open");
+    }
 
-    const title = document.createElement("div");
-    title.className = "hero-adjust-group__title maragogi-adjust-static-title";
+    const title = document.createElement("button");
+    title.type = "button";
+    title.className = "hero-adjust-group__title";
     title.textContent = group.group;
+    title.setAttribute("aria-expanded", isOpen ? "true" : "false");
 
     const content = document.createElement("div");
     content.className = "hero-adjust-group__content";
+    content.hidden = !isOpen;
 
     group.controls.forEach((control) => {
       content.appendChild(createHeroAdjustControl(control, values, onChange));
     });
 
+    title.addEventListener("click", () => {
+      const shouldOpen = content.hidden;
+
+      accordionGroups.forEach((entry) => {
+        entry.section.classList.remove("is-open");
+        entry.title.setAttribute("aria-expanded", "false");
+        entry.content.hidden = true;
+      });
+
+      if (shouldOpen) {
+        section.classList.add("is-open");
+        title.setAttribute("aria-expanded", "true");
+        content.hidden = false;
+      }
+    });
+
     section.append(title, content);
+    accordionGroups.push({ section, title, content });
     return section;
   };
 
-  const backgroundGroup = MARAGOGI_CARD_ADJUST_CONTROLS[0];
-  if (backgroundGroup) {
-    groupsContainer.appendChild(createControlsBlock(backgroundGroup, "maragogi-adjust-background-group"));
-  }
-
-  const otherGroups = MARAGOGI_CARD_ADJUST_CONTROLS.slice(1);
-  if (otherGroups.length) {
-    const chooserSection = document.createElement("section");
-    chooserSection.className = "hero-adjust-group maragogi-adjust-picker-group";
-
-    const title = document.createElement("div");
-    title.className = "hero-adjust-group__title maragogi-adjust-static-title";
-    title.textContent = "Outros ajustes";
-
-    const content = document.createElement("div");
-    content.className = "hero-adjust-group__content maragogi-adjust-picker-content";
-
-    const selectLabel = document.createElement("label");
-    selectLabel.className = "maragogi-adjust-picker-label";
-    selectLabel.textContent = "Escolha um grupo para ajustar";
-
-    const select = document.createElement("select");
-    select.className = "maragogi-adjust-picker-select";
-    select.setAttribute("aria-label", "Escolha um grupo do card Maragogi");
-    select.innerHTML = `<option value="">Selecione...</option>`;
-
-    otherGroups.forEach((group, index) => {
-      const option = document.createElement("option");
-      option.value = String(index);
-      option.textContent = group.group;
-      select.appendChild(option);
-    });
-
-    const selectedControls = document.createElement("div");
-    selectedControls.className = "maragogi-adjust-selected-controls";
-
-    const renderSelectedGroup = () => {
-      selectedControls.innerHTML = "";
-      if (select.value === "") {
-        const hint = document.createElement("p");
-        hint.className = "maragogi-adjust-picker-hint";
-        hint.textContent = "Use esta lista somente quando precisar mexer em selo, titulo, icones, textos, separadores ou botoes.";
-        selectedControls.appendChild(hint);
-        return;
-      }
-
-      const group = otherGroups[Number(select.value)];
-      if (!group) return;
-      selectedControls.appendChild(createControlsBlock(group, "maragogi-adjust-selected-group"));
-    };
-
-    select.addEventListener("change", renderSelectedGroup);
-    renderSelectedGroup();
-
-    content.append(selectLabel, select, selectedControls);
-    chooserSection.append(title, content);
-    groupsContainer.appendChild(chooserSection);
-  }
+  MARAGOGI_CARD_ADJUST_CONTROLS.forEach((group, index) => {
+    groupsContainer.appendChild(createAccordionGroup(group, index === 0));
+  });
 
   const syncInputsFromValues = (sourceValues) => {
     panel.querySelectorAll(".hero-adjust-control").forEach((controlElement) => {
