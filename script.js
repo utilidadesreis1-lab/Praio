@@ -442,191 +442,189 @@ const MARAGOGI_CARD_DEFAULTS = {
   "--maragogi-overlay-bottom-opacity": "0.95"
 };
 
-const MARAGOGI_CARD_ADJUST_CONTROLS = [
+const MARAGOGI_CARD_VARIABLES = Object.keys(MARAGOGI_CARD_DEFAULTS);
+
+const MARAGOGI_CARD_ADJUST_GROUPS = [
   {
     group: "Imagem de fundo",
+    openByDefault: true,
     controls: [
       { label: "Posicao X", variable: "--maragogi-bg-position-x", min: -20, max: 120, step: 1, unit: "%" },
-      { label: "Posicao Y", variable: "--maragogi-bg-position-y", min: -20, max: 120, step: 1, unit: "%" },
+      { label: "Posicao Y", variable: "--maragogi-bg-position-y", min: -20, max: 140, step: 1, unit: "%" },
       { label: "Zoom", variable: "--maragogi-bg-zoom", min: 80, max: 140, step: 1, unit: "%" }
-    ]
-  },
-  {
-    group: "Card completo",
-    controls: [
-      { label: "Largura", variable: "--maragogi-card-stage-width", min: 70, max: 115, step: 0.5, unit: "%" },
-      { label: "Altura", variable: "--maragogi-card-stage-height", min: 70, max: 115, step: 0.5, unit: "%" },
-      { label: "Posicao vertical", variable: "--maragogi-card-stage-offset-y", min: -120, max: 120, step: 1, unit: "px" }
     ]
   },
   {
     group: "Selo",
     controls: [
-      { label: "X", variable: "--maragogi-badge-x", min: -10, max: 90, step: 0.1, unit: "%" },
-      { label: "Y", variable: "--maragogi-badge-y", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Posicao X", variable: "--maragogi-badge-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Posicao Y", variable: "--maragogi-badge-y", min: -10, max: 90, step: 0.1, unit: "%" },
       { label: "Largura", variable: "--maragogi-badge-width", min: 10, max: 90, step: 0.1, unit: "%" },
       { label: "Altura", variable: "--maragogi-badge-height", min: 3, max: 30, step: 0.1, unit: "%" },
       { label: "Escala", variable: "--maragogi-badge-scale", min: 0.4, max: 2, step: 0.01, unit: "" }
     ]
   },
   {
-    group: "Titulo Maragogi",
+    group: "Titulo",
     controls: [
-      { label: "X", variable: "--maragogi-title-x", min: -10, max: 90, step: 0.1, unit: "%" },
-      { label: "Y", variable: "--maragogi-title-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Posicao X", variable: "--maragogi-title-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Posicao Y", variable: "--maragogi-title-y", min: -10, max: 100, step: 0.1, unit: "%" },
       { label: "Largura", variable: "--maragogi-title-width", min: 10, max: 90, step: 0.1, unit: "%" },
       { label: "Altura", variable: "--maragogi-title-height", min: 4, max: 35, step: 0.1, unit: "%" },
       { label: "Escala", variable: "--maragogi-title-scale", min: 0.4, max: 2, step: 0.01, unit: "" }
     ]
   },
   {
-    group: "Traco azul",
+    group: "Traco",
     controls: [
-      { label: "X", variable: "--maragogi-accent-x", min: -10, max: 90, step: 0.1, unit: "%" },
-      { label: "Y", variable: "--maragogi-accent-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Posicao X", variable: "--maragogi-accent-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Posicao Y", variable: "--maragogi-accent-y", min: -10, max: 100, step: 0.1, unit: "%" },
       { label: "Largura", variable: "--maragogi-accent-width", min: 4, max: 60, step: 0.1, unit: "%" },
       { label: "Altura", variable: "--maragogi-accent-height", min: 1, max: 12, step: 0.1, unit: "%" },
       { label: "Escala", variable: "--maragogi-accent-scale", min: 0.4, max: 2, step: 0.01, unit: "" }
     ]
   },
   {
-    group: "Escala geral dos icones",
-    controls: [
-      { label: "Escala geral", variable: "--maragogi-icons-scale", min: 0.5, max: 2.4, step: 0.01, unit: "" }
+    group: "Icones",
+    sections: [
+      {
+        title: "Escala geral",
+        controls: [
+          { label: "Escala geral dos icones", variable: "--maragogi-icons-scale", min: 0.5, max: 2.4, step: 0.01, unit: "" }
+        ]
+      },
+      {
+        title: "Piscinas",
+        controls: [
+          { label: "Piscinas X", variable: "--maragogi-wave-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Piscinas Y", variable: "--maragogi-wave-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Piscinas largura", variable: "--maragogi-wave-icon-width", min: 4, max: 18, step: 0.1, unit: "%" },
+          { label: "Piscinas altura", variable: "--maragogi-wave-icon-height", min: 4, max: 18, step: 0.1, unit: "%" }
+        ]
+      },
+      {
+        title: "Barco",
+        controls: [
+          { label: "Barco X", variable: "--maragogi-boat-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Barco Y", variable: "--maragogi-boat-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Barco largura", variable: "--maragogi-boat-icon-width", min: 4, max: 18, step: 0.1, unit: "%" },
+          { label: "Barco altura", variable: "--maragogi-boat-icon-height", min: 4, max: 18, step: 0.1, unit: "%" }
+        ]
+      },
+      {
+        title: "Coqueiro",
+        controls: [
+          { label: "Coqueiro X", variable: "--maragogi-palm-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Coqueiro Y", variable: "--maragogi-palm-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Coqueiro largura", variable: "--maragogi-palm-icon-width", min: 4, max: 18, step: 0.1, unit: "%" },
+          { label: "Coqueiro altura", variable: "--maragogi-palm-icon-height", min: 4, max: 18, step: 0.1, unit: "%" }
+        ]
+      }
     ]
   },
   {
-    group: "Icone onda",
-    controls: [
-      { label: "X", variable: "--maragogi-wave-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Y", variable: "--maragogi-wave-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Largura", variable: "--maragogi-wave-icon-width", min: 4, max: 18, step: 0.1, unit: "%" },
-      { label: "Altura", variable: "--maragogi-wave-icon-height", min: 4, max: 18, step: 0.1, unit: "%" }
+    group: "Textos",
+    sections: [
+      {
+        title: "Piscinas naturais",
+        controls: [
+          { label: "Texto piscinas X", variable: "--maragogi-wave-text-x", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Texto piscinas Y", variable: "--maragogi-wave-text-y", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Texto piscinas largura", variable: "--maragogi-wave-text-width", min: 4, max: 35, step: 0.1, unit: "%" },
+          { label: "Texto piscinas fonte", variable: "--maragogi-wave-text-font-size", min: 8, max: 28, step: 1, unit: "px" }
+        ]
+      },
+      {
+        title: "Passeio de lancha",
+        controls: [
+          { label: "Texto lancha X", variable: "--maragogi-boat-text-x", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Texto lancha Y", variable: "--maragogi-boat-text-y", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Texto lancha largura", variable: "--maragogi-boat-text-width", min: 4, max: 35, step: 0.1, unit: "%" },
+          { label: "Texto lancha fonte", variable: "--maragogi-boat-text-font-size", min: 8, max: 28, step: 1, unit: "px" }
+        ]
+      },
+      {
+        title: "Caribe Brasileiro",
+        controls: [
+          { label: "Texto Caribe X", variable: "--maragogi-palm-text-x", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Texto Caribe Y", variable: "--maragogi-palm-text-y", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Texto Caribe largura", variable: "--maragogi-palm-text-width", min: 4, max: 35, step: 0.1, unit: "%" },
+          { label: "Texto Caribe fonte", variable: "--maragogi-palm-text-font-size", min: 8, max: 28, step: 1, unit: "px" }
+        ]
+      }
     ]
   },
   {
-    group: "Texto Piscinas naturais",
-    controls: [
-      { label: "X", variable: "--maragogi-wave-text-x", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Y", variable: "--maragogi-wave-text-y", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Largura", variable: "--maragogi-wave-text-width", min: 4, max: 35, step: 0.1, unit: "%" },
-      { label: "Fonte", variable: "--maragogi-wave-text-font-size", min: 8, max: 28, step: 1, unit: "px" }
+    group: "Separadores",
+    sections: [
+      {
+        title: "Separador 1",
+        controls: [
+          { label: "Separador 1 X", variable: "--maragogi-separator-1-x", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Separador 1 Y", variable: "--maragogi-separator-1-y", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Separador 1 largura", variable: "--maragogi-separator-1-width", min: 1, max: 6, step: 0.1, unit: "px" },
+          { label: "Separador 1 altura", variable: "--maragogi-separator-1-height", min: 2, max: 20, step: 0.1, unit: "%" },
+          { label: "Separador 1 opacidade", variable: "--maragogi-separator-1-opacity", min: 0, max: 1, step: 0.01, unit: "" }
+        ]
+      },
+      {
+        title: "Separador 2",
+        controls: [
+          { label: "Separador 2 X", variable: "--maragogi-separator-2-x", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Separador 2 Y", variable: "--maragogi-separator-2-y", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Separador 2 largura", variable: "--maragogi-separator-2-width", min: 1, max: 6, step: 0.1, unit: "px" },
+          { label: "Separador 2 altura", variable: "--maragogi-separator-2-height", min: 2, max: 20, step: 0.1, unit: "%" },
+          { label: "Separador 2 opacidade", variable: "--maragogi-separator-2-opacity", min: 0, max: 1, step: 0.01, unit: "" }
+        ]
+      }
     ]
   },
   {
-    group: "Icone barco",
-    controls: [
-      { label: "X", variable: "--maragogi-boat-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Y", variable: "--maragogi-boat-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Largura", variable: "--maragogi-boat-icon-width", min: 4, max: 18, step: 0.1, unit: "%" },
-      { label: "Altura", variable: "--maragogi-boat-icon-height", min: 4, max: 18, step: 0.1, unit: "%" }
+    group: "Botoes",
+    sections: [
+      {
+        title: "Saiba mais",
+        controls: [
+          { label: "Saiba mais X", variable: "--maragogi-info-button-x", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Saiba mais Y", variable: "--maragogi-info-button-y", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Saiba mais largura", variable: "--maragogi-info-button-width", min: 10, max: 80, step: 0.1, unit: "%" },
+          { label: "Saiba mais altura", variable: "--maragogi-info-button-height", min: 4, max: 25, step: 0.1, unit: "%" }
+        ]
+      },
+      {
+        title: "Ver fotos",
+        controls: [
+          { label: "Ver fotos X", variable: "--maragogi-photos-button-x", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Ver fotos Y", variable: "--maragogi-photos-button-y", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Ver fotos largura", variable: "--maragogi-photos-button-width", min: 10, max: 90, step: 0.1, unit: "%" },
+          { label: "Ver fotos altura", variable: "--maragogi-photos-button-height", min: 4, max: 30, step: 0.1, unit: "%" }
+        ]
+      }
     ]
   },
   {
-    group: "Texto Passeio de lancha",
-    controls: [
-      { label: "X", variable: "--maragogi-boat-text-x", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Y", variable: "--maragogi-boat-text-y", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Largura", variable: "--maragogi-boat-text-width", min: 4, max: 35, step: 0.1, unit: "%" },
-      { label: "Fonte", variable: "--maragogi-boat-text-font-size", min: 8, max: 28, step: 1, unit: "px" }
-    ]
-  },
-  {
-    group: "Icone coqueiro",
-    controls: [
-      { label: "X", variable: "--maragogi-palm-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Y", variable: "--maragogi-palm-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Largura", variable: "--maragogi-palm-icon-width", min: 4, max: 18, step: 0.1, unit: "%" },
-      { label: "Altura", variable: "--maragogi-palm-icon-height", min: 4, max: 18, step: 0.1, unit: "%" }
-    ]
-  },
-  {
-    group: "Texto Caribe Brasileiro",
-    controls: [
-      { label: "X", variable: "--maragogi-palm-text-x", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Y", variable: "--maragogi-palm-text-y", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Largura", variable: "--maragogi-palm-text-width", min: 4, max: 35, step: 0.1, unit: "%" },
-      { label: "Fonte", variable: "--maragogi-palm-text-font-size", min: 8, max: 28, step: 1, unit: "px" }
-    ]
-  },
-  {
-    group: "Separador 1",
-    controls: [
-      { label: "X", variable: "--maragogi-separator-1-x", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Y", variable: "--maragogi-separator-1-y", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Largura", variable: "--maragogi-separator-1-width", min: 1, max: 6, step: 0.1, unit: "px" },
-      { label: "Altura", variable: "--maragogi-separator-1-height", min: 2, max: 20, step: 0.1, unit: "%" },
-      { label: "Opacidade", variable: "--maragogi-separator-1-opacity", min: 0, max: 1, step: 0.01, unit: "" }
-    ]
-  },
-  {
-    group: "Separador 2",
-    controls: [
-      { label: "X", variable: "--maragogi-separator-2-x", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Y", variable: "--maragogi-separator-2-y", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Largura", variable: "--maragogi-separator-2-width", min: 1, max: 6, step: 0.1, unit: "px" },
-      { label: "Altura", variable: "--maragogi-separator-2-height", min: 2, max: 20, step: 0.1, unit: "%" },
-      { label: "Opacidade", variable: "--maragogi-separator-2-opacity", min: 0, max: 1, step: 0.01, unit: "" }
-    ]
-  },
-  {
-    group: "Botao Saiba mais",
-    controls: [
-      { label: "X", variable: "--maragogi-info-button-x", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Y", variable: "--maragogi-info-button-y", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Largura", variable: "--maragogi-info-button-width", min: 10, max: 80, step: 0.1, unit: "%" },
-      { label: "Altura", variable: "--maragogi-info-button-height", min: 4, max: 25, step: 0.1, unit: "%" }
-    ]
-  },
-  {
-    group: "Clique Saiba mais",
-    controls: [
-      { label: "X", variable: "--maragogi-info-hotspot-x", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Y", variable: "--maragogi-info-hotspot-y", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Largura", variable: "--maragogi-info-hotspot-width", min: 10, max: 80, step: 0.1, unit: "%" },
-      { label: "Altura", variable: "--maragogi-info-hotspot-height", min: 4, max: 25, step: 0.1, unit: "%" }
-    ]
-  },
-  {
-    group: "Botao Ver fotos",
-    controls: [
-      { label: "X", variable: "--maragogi-photos-button-x", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Y", variable: "--maragogi-photos-button-y", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Largura", variable: "--maragogi-photos-button-width", min: 10, max: 90, step: 0.1, unit: "%" },
-      { label: "Altura", variable: "--maragogi-photos-button-height", min: 4, max: 30, step: 0.1, unit: "%" }
-    ]
-  },
-  {
-    group: "Clique Ver fotos",
-    controls: [
-      { label: "X", variable: "--maragogi-photos-hotspot-x", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Y", variable: "--maragogi-photos-hotspot-y", min: -10, max: 100, step: 0.1, unit: "%" },
-      { label: "Largura", variable: "--maragogi-photos-hotspot-width", min: 10, max: 90, step: 0.1, unit: "%" },
-      { label: "Altura", variable: "--maragogi-photos-hotspot-height", min: 4, max: 30, step: 0.1, unit: "%" }
-    ]
-  },
-  {
-    group: "Degrade",
-    controls: [
-      { label: "Meio", variable: "--maragogi-overlay-mid-stop", min: 10, max: 90, step: 1, unit: "%" },
-      { label: "Base", variable: "--maragogi-overlay-bottom-start", min: 20, max: 98, step: 1, unit: "%" },
-      { label: "Opacidade topo", variable: "--maragogi-overlay-top-opacity", min: 0, max: 0.6, step: 0.01, unit: "" },
-      { label: "Opacidade meio", variable: "--maragogi-overlay-mid-opacity", min: 0, max: 0.8, step: 0.01, unit: "" },
-      { label: "Opacidade base", variable: "--maragogi-overlay-bottom-opacity", min: 0.1, max: 1, step: 0.01, unit: "" }
+    group: "Hotspots",
+    sections: [
+      {
+        title: "Hotspot Saiba mais",
+        controls: [
+          { label: "Hotspot Saiba mais X", variable: "--maragogi-info-hotspot-x", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Hotspot Saiba mais Y", variable: "--maragogi-info-hotspot-y", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Hotspot Saiba mais largura", variable: "--maragogi-info-hotspot-width", min: 10, max: 80, step: 0.1, unit: "%" },
+          { label: "Hotspot Saiba mais altura", variable: "--maragogi-info-hotspot-height", min: 4, max: 25, step: 0.1, unit: "%" }
+        ]
+      },
+      {
+        title: "Hotspot Ver fotos",
+        controls: [
+          { label: "Hotspot Ver fotos X", variable: "--maragogi-photos-hotspot-x", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Hotspot Ver fotos Y", variable: "--maragogi-photos-hotspot-y", min: -10, max: 100, step: 0.1, unit: "%" },
+          { label: "Hotspot Ver fotos largura", variable: "--maragogi-photos-hotspot-width", min: 10, max: 90, step: 0.1, unit: "%" },
+          { label: "Hotspot Ver fotos altura", variable: "--maragogi-photos-hotspot-height", min: 4, max: 30, step: 0.1, unit: "%" }
+        ]
+      }
     ]
   }
-];
-
-const MARAGOGI_CARD_BG_VARIABLES = [
-  "--maragogi-bg-position-x",
-  "--maragogi-bg-position-y",
-  "--maragogi-bg-zoom"
-];
-
-const MARAGOGI_CARD_BG_CONTROLS = [
-  { label: "Posicao X", variable: "--maragogi-bg-position-x", min: -20, max: 120, step: 1, unit: "%" },
-  { label: "Posicao Y", variable: "--maragogi-bg-position-y", min: -20, max: 120, step: 1, unit: "%" },
-  { label: "Zoom", variable: "--maragogi-bg-zoom", min: 80, max: 140, step: 1, unit: "%" }
 ];
 
 const navToggle = document.querySelector(".nav-toggle");
@@ -1716,7 +1714,7 @@ function readStoredMaragogiCardAdjustments() {
     const parsed = JSON.parse(raw);
     const nextValues = {};
 
-    MARAGOGI_CARD_BG_VARIABLES.forEach((variable) => {
+    MARAGOGI_CARD_VARIABLES.forEach((variable) => {
       if (parsed?.[variable]) {
         nextValues[variable] = parsed[variable];
       }
@@ -1754,7 +1752,7 @@ function applyMaragogiCardAdjustmentVariables(values) {
 }
 
 function buildMaragogiCardAdjustCss(values) {
-  const lines = MARAGOGI_CARD_BG_VARIABLES.map(
+  const lines = MARAGOGI_CARD_VARIABLES.map(
     (variable) => `  ${variable}: ${values[variable]};`
   );
 
@@ -2394,9 +2392,7 @@ function createMaragogiCardAdjustToolV2() {
 function createMaragogiCardAdjustToolFresh() {
   const body = document.body;
   const values = {
-    "--maragogi-bg-position-x": MARAGOGI_CARD_DEFAULTS["--maragogi-bg-position-x"],
-    "--maragogi-bg-position-y": MARAGOGI_CARD_DEFAULTS["--maragogi-bg-position-y"],
-    "--maragogi-bg-zoom": MARAGOGI_CARD_DEFAULTS["--maragogi-bg-zoom"],
+    ...MARAGOGI_CARD_DEFAULTS,
     ...readStoredMaragogiCardAdjustments()
   };
 
@@ -2435,33 +2431,84 @@ function createMaragogiCardAdjustToolFresh() {
   const copyButton = panel.querySelector("[data-card-adjust-copy]");
   const dragHandle = panel.querySelector("[data-hero-adjust-drag-handle]");
 
-  const group = document.createElement("section");
-  group.className = "hero-adjust-group maragogi-adjust-panel__group";
-
-  const title = document.createElement("h3");
-  title.className = "hero-adjust-group__title maragogi-adjust-panel__group-title";
-  title.textContent = "Imagem de fundo";
-
-  const content = document.createElement("div");
-  content.className = "hero-adjust-group__content maragogi-adjust-panel__group-content";
-
   const onChange = (variable, value) => {
     values[variable] = value;
     document.documentElement.style.setProperty(variable, value);
     persistMaragogiCardAdjustments(values);
   };
 
-  MARAGOGI_CARD_BG_CONTROLS.forEach((control) => {
-    content.appendChild(createHeroAdjustControl(control, values, onChange));
-  });
+  const controlsMeta = MARAGOGI_CARD_ADJUST_GROUPS.flatMap((group) =>
+    (group.sections || [{ controls: group.controls || [] }]).flatMap((section) => section.controls || [])
+  );
 
-  group.append(title, content);
-  groupsContainer.appendChild(group);
+  const accordionGroups = [];
+
+  const setGroupState = (entry, isOpen) => {
+    entry.section.classList.toggle("is-open", isOpen);
+    entry.title.setAttribute("aria-expanded", String(isOpen));
+    entry.content.hidden = !isOpen;
+  };
+
+  const createSectionHeading = (label) => {
+    const heading = document.createElement("div");
+    heading.className = "maragogi-adjust-panel__subheading";
+    heading.textContent = label;
+    return heading;
+  };
+
+  const createAccordionGroup = (group, isOpen) => {
+    const section = document.createElement("section");
+    section.className = "hero-adjust-group maragogi-adjust-panel__group";
+
+    const title = document.createElement("button");
+    title.type = "button";
+    title.className = "hero-adjust-group__title maragogi-adjust-panel__group-title";
+    title.textContent = group.group;
+    title.setAttribute("aria-expanded", "false");
+
+    const content = document.createElement("div");
+    content.className = "hero-adjust-group__content maragogi-adjust-panel__group-content";
+
+    const sections = group.sections || [{ controls: group.controls || [] }];
+    sections.forEach((sectionConfig, index) => {
+      if (sectionConfig.title) {
+        content.appendChild(createSectionHeading(sectionConfig.title));
+      } else if (index > 0) {
+        content.appendChild(createSectionHeading(`Grupo ${index + 1}`));
+      }
+
+      (sectionConfig.controls || []).forEach((control) => {
+        content.appendChild(createHeroAdjustControl(control, values, onChange));
+      });
+    });
+
+    title.addEventListener("click", () => {
+      const shouldOpen = content.hidden;
+
+      accordionGroups.forEach((entry) => {
+        setGroupState(entry, false);
+      });
+
+      if (shouldOpen) {
+        setGroupState({ section, title, content }, true);
+      }
+    });
+
+    section.append(title, content);
+    const entry = { section, title, content };
+    accordionGroups.push(entry);
+    setGroupState(entry, isOpen);
+    return section;
+  };
+
+  MARAGOGI_CARD_ADJUST_GROUPS.forEach((group, index) => {
+    groupsContainer.appendChild(createAccordionGroup(group, Boolean(group.openByDefault || index === 0)));
+  });
 
   const syncInputsFromValues = (sourceValues) => {
     panel.querySelectorAll(".hero-adjust-control").forEach((controlElement) => {
       const variable = controlElement.getAttribute("data-variable");
-      const meta = MARAGOGI_CARD_BG_CONTROLS.find((item) => item.variable === variable);
+      const meta = controlsMeta.find((item) => item.variable === variable);
       const input = controlElement.querySelector(".hero-adjust-control-input");
       const valueElement = controlElement.querySelector(".hero-adjust-control-value");
 
@@ -2472,7 +2519,7 @@ function createMaragogiCardAdjustToolFresh() {
   };
 
   const resetToDefaults = () => {
-    MARAGOGI_CARD_BG_VARIABLES.forEach((variable) => {
+    MARAGOGI_CARD_VARIABLES.forEach((variable) => {
       const value = MARAGOGI_CARD_DEFAULTS[variable];
       values[variable] = value;
       document.documentElement.style.setProperty(variable, value);

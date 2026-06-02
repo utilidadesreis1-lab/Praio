@@ -3858,17 +3858,43 @@ img {
   font-weight: 800;
   line-height: 1.15;
   text-align: left;
+  cursor: pointer;
   background: rgba(255, 255, 255, 0.045);
 }
 
 .maragogi-adjust-panel__group-title::after {
-  content: none !important;
+  content: "+" !important;
+  position: absolute;
+  top: 50%;
+  right: 0.95rem;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1rem;
+  font-weight: 800;
+  transform: translateY(-50%);
+}
+
+.maragogi-adjust-panel__group.is-open .maragogi-adjust-panel__group-title::after {
+  content: "−" !important;
 }
 
 .maragogi-adjust-panel--clean .hero-adjust-group__content {
   display: grid;
   gap: 0.55rem;
   padding: 0.72rem 0.9rem 0.9rem;
+}
+
+.maragogi-adjust-panel--clean .hero-adjust-group__content[hidden] {
+  display: none !important;
+}
+
+.maragogi-adjust-panel__subheading {
+  margin: 0.1rem 0 0.2rem;
+  padding-top: 0.2rem;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .maragogi-adjust-panel--clean .hero-adjust-panel__output,
