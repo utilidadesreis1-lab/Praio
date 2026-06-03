@@ -43,12 +43,12 @@
   --maragogi-accent-height: 6.6%;
   --maragogi-accent-scale: 1.37;
   --maragogi-icons-scale: 1.08;
-  --maragogi-wave-icon-x: 2%;
+  --maragogi-wave-icon-x: -0.2%;
   --maragogi-wave-icon-y: 73.5%;
   --maragogi-wave-icon-width: 15.8%;
   --maragogi-wave-icon-height: 18%;
-  --maragogi-wave-text-x: 15.7%;
-  --maragogi-wave-text-y: 80%;
+  --maragogi-wave-text-x: 13.8%;
+  --maragogi-wave-text-y: 79.3%;
   --maragogi-wave-text-width: 17%;
   --maragogi-wave-text-font-size: 12px;
   --maragogi-boat-icon-x: 30.4%;
@@ -56,7 +56,7 @@
   --maragogi-boat-icon-width: 14.6%;
   --maragogi-boat-icon-height: 18%;
   --maragogi-boat-text-x: 43.9%;
-  --maragogi-boat-text-y: 80%;
+  --maragogi-boat-text-y: 79.3%;
   --maragogi-boat-text-width: 17%;
   --maragogi-boat-text-font-size: 12px;
   --maragogi-palm-icon-x: 64.6%;
@@ -64,7 +64,7 @@
   --maragogi-palm-icon-width: 10.6%;
   --maragogi-palm-icon-height: 18%;
   --maragogi-palm-text-x: 75.8%;
-  --maragogi-palm-text-y: 80%;
+  --maragogi-palm-text-y: 79.3%;
   --maragogi-palm-text-width: 17%;
   --maragogi-palm-text-font-size: 12px;
   --maragogi-separator-1-x: 30.8%;
