@@ -1735,34 +1735,220 @@ img {
   outline-offset: 4px;
 }
 
-.home-tour-card__image--milagres {
-  background-image:
-    linear-gradient(145deg, rgba(31, 159, 154, 0.35), rgba(240, 190, 126, 0.18)),
-    linear-gradient(155deg, #148a97 0%, #4dd5ca 46%, #d9f4f0 72%, #f0be7e 100%);
+.premium-tour-card {
+  background: #0d4f5d;
+  isolation: isolate;
 }
 
-.home-tour-card__image--combo {
-  background-image:
-    linear-gradient(150deg, rgba(14, 123, 166, 0.34), rgba(236, 138, 101, 0.18)),
-    linear-gradient(145deg, #0e7ba6 0%, #1cb3c7 44%, #f6d4a1 76%, #ec8a65 100%);
+.premium-tour-card::before {
+  z-index: 1;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3, 21, 27, 0.08) 0%,
+      rgba(3, 21, 27, 0.05) 24%,
+      rgba(3, 21, 27, 0.2) 48%,
+      rgba(4, 20, 30, 0.72) 73%,
+      rgba(4, 20, 30, 0.95) 100%
+    );
 }
 
-.home-tour-card__image--nikolas {
-  background-image:
-    linear-gradient(155deg, rgba(36, 139, 179, 0.34), rgba(242, 154, 107, 0.2)),
-    linear-gradient(145deg, #248bb3 0%, #41c8db 38%, #f6dcb1 74%, #f29a6b 100%);
+.premium-tour-card__bg,
+.premium-tour-card__overlay {
+  position: absolute;
+  inset: 0;
 }
 
-.home-tour-card__image--porto {
-  background-image:
-    linear-gradient(155deg, rgba(26, 136, 165, 0.35), rgba(239, 143, 99, 0.18)),
-    linear-gradient(145deg, #1a88a5 0%, #28c2cc 42%, #f0e4b6 76%, #ef8f63 100%);
+.premium-tour-card__bg {
+  z-index: 0;
+  background-image: var(--premium-card-bg-image);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  transform: scale(1.01);
 }
 
-.home-tour-card__image--carneiros {
-  background-image:
-    linear-gradient(155deg, rgba(26, 169, 179, 0.34), rgba(237, 139, 108, 0.18)),
-    linear-gradient(150deg, #1aa9b3 0%, #64d8d5 42%, #f5dfb1 74%, #ed8b6c 100%);
+.premium-tour-card--milagres {
+  --premium-card-bg-image:
+    linear-gradient(160deg, rgba(10, 164, 178, 0.12), rgba(255, 187, 121, 0.06)),
+    url("./assets/passeios/milagres/milagres-01.jpeg");
+}
+
+.premium-tour-card--gunga {
+  --premium-card-bg-image:
+    linear-gradient(160deg, rgba(10, 164, 178, 0.12), rgba(255, 187, 121, 0.06)),
+    url("./assets/passeios/gunga/gunga-01.jpeg");
+}
+
+.premium-tour-card--nikolas {
+  --premium-card-bg-image:
+    radial-gradient(circle at 18% 22%, rgba(104, 223, 231, 0.7), transparent 28%),
+    linear-gradient(145deg, #0c6777 0%, #19a2ac 38%, #85d4d2 62%, #f4d9a3 100%);
+}
+
+.premium-tour-card--porto {
+  --premium-card-bg-image:
+    radial-gradient(circle at 82% 14%, rgba(255, 245, 186, 0.46), transparent 22%),
+    linear-gradient(145deg, #11718d 0%, #16a4bb 40%, #98dbd7 68%, #f6d0a0 100%);
+}
+
+.premium-tour-card--carneiros {
+  --premium-card-bg-image:
+    radial-gradient(circle at 22% 18%, rgba(180, 255, 241, 0.42), transparent 22%),
+    linear-gradient(145deg, #0d7f92 0%, #14afb7 40%, #9ee1d5 70%, #f7d5a8 100%);
+}
+
+.premium-tour-card__overlay {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 1.15rem 1.05rem 1.05rem;
+}
+
+.premium-tour-card__badge {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0.46rem 0.86rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  color: #fff;
+  font-size: 0.77rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.premium-tour-card__body {
+  margin-top: auto;
+  display: grid;
+  gap: 0.82rem;
+}
+
+.premium-tour-card__title {
+  margin: 0;
+  color: #fff;
+  font-family: "Pacifico", cursive;
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  line-height: 0.96;
+  letter-spacing: 0.01em;
+  text-shadow: 0 8px 18px rgba(3, 17, 26, 0.3);
+}
+
+.premium-tour-card__title--compact {
+  font-size: clamp(1.9rem, 3.3vw, 2.55rem);
+  line-height: 1.02;
+}
+
+.premium-tour-card__accent {
+  width: clamp(94px, 27%, 118px);
+  height: 16px;
+  display: block;
+}
+
+.premium-tour-card__accent img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.premium-tour-card__benefits {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  align-items: start;
+}
+
+.premium-tour-card__benefit {
+  position: relative;
+  min-height: 56px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.34rem;
+  align-items: center;
+}
+
+.premium-tour-card__benefit--with-separator::before {
+  content: "";
+  position: absolute;
+  left: -0.25rem;
+  top: 12%;
+  width: 2px;
+  height: 72%;
+  border-radius: 999px;
+  background: rgba(93, 237, 255, 0.72);
+  box-shadow: 0 0 12px rgba(93, 237, 255, 0.22);
+}
+
+.premium-tour-card__benefit-icon {
+  width: 31px;
+  height: 31px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 31px;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.18));
+}
+
+.premium-tour-card__benefit-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.premium-tour-card__benefit-text {
+  display: block;
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1.05;
+  text-shadow: 0 2px 7px rgba(0, 0, 0, 0.28);
+}
+
+.premium-tour-card__actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.72rem;
+  align-items: center;
+}
+
+.premium-tour-card__action {
+  display: block;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  filter: drop-shadow(0 10px 18px rgba(6, 20, 29, 0.24));
+}
+
+.premium-tour-card__action img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.premium-tour-card__action--button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.premium-tour-card__action--disabled {
+  opacity: 0.42;
+  cursor: default;
+  pointer-events: none;
+  filter: grayscale(0.12) saturate(0.72);
+}
+
+.premium-tour-card__action:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 4px;
+  border-radius: 999px;
 }
 
 .home-tour-card__overlay {
@@ -3752,6 +3938,50 @@ img {
   .maragogi-home-card {
     height: 450px;
     min-height: 450px;
+  }
+
+  .premium-tour-card__overlay {
+    padding: 1rem 0.95rem 0.95rem;
+  }
+
+  .premium-tour-card__title {
+    font-size: clamp(2rem, 8vw, 2.65rem);
+  }
+
+  .premium-tour-card__title--compact {
+    font-size: clamp(1.55rem, 6.2vw, 2rem);
+  }
+
+  .premium-tour-card__benefits {
+    gap: 0.4rem;
+  }
+
+  .premium-tour-card__benefit {
+    min-height: 64px;
+    grid-template-columns: 1fr;
+    gap: 0.24rem;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .premium-tour-card__benefit--with-separator::before {
+    left: -0.2rem;
+    top: 18%;
+    height: 58%;
+  }
+
+  .premium-tour-card__benefit-icon {
+    width: 28px;
+    height: 28px;
+    flex-basis: 28px;
+  }
+
+  .premium-tour-card__benefit-text {
+    font-size: 0.65rem;
+  }
+
+  .premium-tour-card__actions {
+    gap: 0.55rem;
   }
 
   .home-tour-card__overlay {
