@@ -9,6 +9,8 @@ const HERO_ADJUST_QUERY = "ajusteHero";
 const HERO_ADJUST_STORAGE_KEY = "praiou-hero-mobile-adjustments";
 const MARAGOGI_CARD_ADJUST_QUERY = "ajusteCardMaragogi";
 const MARAGOGI_CARD_ADJUST_STORAGE_KEY = "praiou-maragogi-card-adjustments";
+const MILAGRES_CARD_ADJUST_QUERY = "ajusteCardMilagres";
+const MILAGRES_CARD_ADJUST_STORAGE_KEY = "praio-ajuste-card-milagres";
 
 const HERO_MOBILE_DEFAULTS = {
   "--hero-mobile-block-offset-y": "-20px",
@@ -613,6 +615,213 @@ const MARAGOGI_CARD_ADJUST_CONTROLS = [
       { label: "Opacidade topo", variable: "--maragogi-overlay-top-opacity", min: 0, max: 0.6, step: 0.01, unit: "" },
       { label: "Opacidade meio", variable: "--maragogi-overlay-mid-opacity", min: 0, max: 0.8, step: 0.01, unit: "" },
       { label: "Opacidade base", variable: "--maragogi-overlay-bottom-opacity", min: 0.1, max: 1, step: 0.01, unit: "" }
+    ]
+  }
+];
+
+const MILAGRES_CARD_DEFAULTS = {
+  "--milagres-card-stage-width": "100%",
+  "--milagres-card-stage-height": "100%",
+  "--milagres-card-stage-offset-y": "0px",
+  "--milagres-bg-position-x": "52%",
+  "--milagres-bg-position-y": "54%",
+  "--milagres-bg-zoom": "118%",
+  "--milagres-badge-x": "-2.8%",
+  "--milagres-badge-y": "3.2%",
+  "--milagres-badge-width": "61%",
+  "--milagres-badge-height": "12.2%",
+  "--milagres-badge-scale": "0.88",
+  "--milagres-title-x": "2.8%",
+  "--milagres-title-y": "53.8%",
+  "--milagres-title-width": "66.5%",
+  "--milagres-title-height": "20.5%",
+  "--milagres-title-scale": "1.02",
+  "--milagres-accent-x": "5.8%",
+  "--milagres-accent-y": "66.7%",
+  "--milagres-accent-width": "21.5%",
+  "--milagres-accent-height": "1.7%",
+  "--milagres-accent-scale": "1",
+  "--milagres-icons-scale": "1",
+  "--milagres-wave-icon-x": "5.2%",
+  "--milagres-wave-icon-y": "73.5%",
+  "--milagres-wave-icon-width": "10.8%",
+  "--milagres-wave-icon-height": "15.2%",
+  "--milagres-wave-text-x": "17.2%",
+  "--milagres-wave-text-y": "78.7%",
+  "--milagres-wave-text-width": "15.8%",
+  "--milagres-wave-text-font-size": "10.4px",
+  "--milagres-boat-icon-x": "35.3%",
+  "--milagres-boat-icon-y": "73.5%",
+  "--milagres-boat-icon-width": "10.4%",
+  "--milagres-boat-icon-height": "15.2%",
+  "--milagres-boat-text-x": "47.3%",
+  "--milagres-boat-text-y": "78.7%",
+  "--milagres-boat-text-width": "11.8%",
+  "--milagres-boat-text-font-size": "10.4px",
+  "--milagres-palm-icon-x": "67.8%",
+  "--milagres-palm-icon-y": "73.3%",
+  "--milagres-palm-icon-width": "8.2%",
+  "--milagres-palm-icon-height": "15%",
+  "--milagres-palm-text-x": "78.2%",
+  "--milagres-palm-text-y": "78.8%",
+  "--milagres-palm-text-width": "13.8%",
+  "--milagres-palm-text-font-size": "10.4px",
+  "--milagres-separator-1-x": "32.4%",
+  "--milagres-separator-1-y": "78.2%",
+  "--milagres-separator-1-width": "2px",
+  "--milagres-separator-1-height": "5.8%",
+  "--milagres-separator-1-opacity": "0.78",
+  "--milagres-separator-2-x": "64.8%",
+  "--milagres-separator-2-y": "78.2%",
+  "--milagres-separator-2-width": "2px",
+  "--milagres-separator-2-height": "5.8%",
+  "--milagres-separator-2-opacity": "0.78",
+  "--milagres-info-button-x": "4%",
+  "--milagres-info-button-y": "86.2%",
+  "--milagres-info-button-width": "39%",
+  "--milagres-info-button-height": "9.6%",
+  "--milagres-photos-button-x": "46%",
+  "--milagres-photos-button-y": "86.2%",
+  "--milagres-photos-button-width": "49%",
+  "--milagres-photos-button-height": "9.6%",
+  "--milagres-info-hotspot-x": "4%",
+  "--milagres-info-hotspot-y": "86.2%",
+  "--milagres-info-hotspot-width": "39%",
+  "--milagres-info-hotspot-height": "9.6%",
+  "--milagres-photos-hotspot-x": "46%",
+  "--milagres-photos-hotspot-y": "86.2%",
+  "--milagres-photos-hotspot-width": "49%",
+  "--milagres-photos-hotspot-height": "9.6%",
+  "--milagres-overlay-mid-stop": "48%",
+  "--milagres-overlay-bottom-start": "73%",
+  "--milagres-overlay-top-opacity": "0.08",
+  "--milagres-overlay-mid-opacity": "0.18",
+  "--milagres-overlay-bottom-opacity": "0.95"
+};
+
+const MILAGRES_CARD_ADJUST_CONTROLS = [
+  {
+    group: "Imagem de fundo",
+    controls: [
+      { label: "Posicao X", variable: "--milagres-bg-position-x", min: -20, max: 120, step: 1, unit: "%" },
+      { label: "Posicao Y", variable: "--milagres-bg-position-y", min: -20, max: 120, step: 1, unit: "%" },
+      { label: "Zoom", variable: "--milagres-bg-zoom", min: 80, max: 180, step: 1, unit: "%" }
+    ]
+  },
+  {
+    group: "Selo",
+    controls: [
+      { label: "X", variable: "--milagres-badge-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--milagres-badge-y", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--milagres-badge-width", min: 10, max: 90, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--milagres-badge-height", min: 3, max: 30, step: 0.1, unit: "%" },
+      { label: "Escala", variable: "--milagres-badge-scale", min: 0.4, max: 2, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Titulo",
+    controls: [
+      { label: "X", variable: "--milagres-title-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--milagres-title-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--milagres-title-width", min: 10, max: 90, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--milagres-title-height", min: 4, max: 35, step: 0.1, unit: "%" },
+      { label: "Escala", variable: "--milagres-title-scale", min: 0.4, max: 2, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Traco",
+    controls: [
+      { label: "X", variable: "--milagres-accent-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--milagres-accent-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--milagres-accent-width", min: 4, max: 60, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--milagres-accent-height", min: 0.5, max: 12, step: 0.1, unit: "%" },
+      { label: "Escala", variable: "--milagres-accent-scale", min: 0.4, max: 2, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Icones",
+    controls: [
+      { label: "Escala geral", variable: "--milagres-icons-scale", min: 0.5, max: 2.4, step: 0.01, unit: "" },
+      { label: "Praias X", variable: "--milagres-wave-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Praias Y", variable: "--milagres-wave-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Praias largura", variable: "--milagres-wave-icon-width", min: 4, max: 22, step: 0.1, unit: "%" },
+      { label: "Praias altura", variable: "--milagres-wave-icon-height", min: 4, max: 22, step: 0.1, unit: "%" },
+      { label: "Jangada X", variable: "--milagres-boat-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Jangada Y", variable: "--milagres-boat-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Jangada largura", variable: "--milagres-boat-icon-width", min: 4, max: 22, step: 0.1, unit: "%" },
+      { label: "Jangada altura", variable: "--milagres-boat-icon-height", min: 4, max: 22, step: 0.1, unit: "%" },
+      { label: "Aguas X", variable: "--milagres-palm-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Aguas Y", variable: "--milagres-palm-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Aguas largura", variable: "--milagres-palm-icon-width", min: 4, max: 22, step: 0.1, unit: "%" },
+      { label: "Aguas altura", variable: "--milagres-palm-icon-height", min: 4, max: 22, step: 0.1, unit: "%" }
+    ]
+  },
+  {
+    group: "Textos",
+    controls: [
+      { label: "Praias texto X", variable: "--milagres-wave-text-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Praias texto Y", variable: "--milagres-wave-text-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Praias texto largura", variable: "--milagres-wave-text-width", min: 4, max: 35, step: 0.1, unit: "%" },
+      { label: "Praias texto fonte", variable: "--milagres-wave-text-font-size", min: 8, max: 28, step: 0.1, unit: "px" },
+      { label: "Jangada texto X", variable: "--milagres-boat-text-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Jangada texto Y", variable: "--milagres-boat-text-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Jangada texto largura", variable: "--milagres-boat-text-width", min: 4, max: 35, step: 0.1, unit: "%" },
+      { label: "Jangada texto fonte", variable: "--milagres-boat-text-font-size", min: 8, max: 28, step: 0.1, unit: "px" },
+      { label: "Aguas texto X", variable: "--milagres-palm-text-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Aguas texto Y", variable: "--milagres-palm-text-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Aguas texto largura", variable: "--milagres-palm-text-width", min: 4, max: 35, step: 0.1, unit: "%" },
+      { label: "Aguas texto fonte", variable: "--milagres-palm-text-font-size", min: 8, max: 28, step: 0.1, unit: "px" }
+    ]
+  },
+  {
+    group: "Separadores",
+    controls: [
+      { label: "Separador 1 X", variable: "--milagres-separator-1-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Separador 1 Y", variable: "--milagres-separator-1-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Separador 1 largura", variable: "--milagres-separator-1-width", min: 1, max: 6, step: 0.1, unit: "px" },
+      { label: "Separador 1 altura", variable: "--milagres-separator-1-height", min: 2, max: 20, step: 0.1, unit: "%" },
+      { label: "Separador 1 opacidade", variable: "--milagres-separator-1-opacity", min: 0, max: 1, step: 0.01, unit: "" },
+      { label: "Separador 2 X", variable: "--milagres-separator-2-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Separador 2 Y", variable: "--milagres-separator-2-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Separador 2 largura", variable: "--milagres-separator-2-width", min: 1, max: 6, step: 0.1, unit: "px" },
+      { label: "Separador 2 altura", variable: "--milagres-separator-2-height", min: 2, max: 20, step: 0.1, unit: "%" },
+      { label: "Separador 2 opacidade", variable: "--milagres-separator-2-opacity", min: 0, max: 1, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Botoes",
+    controls: [
+      { label: "Saiba mais X", variable: "--milagres-info-button-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Saiba mais Y", variable: "--milagres-info-button-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Saiba mais largura", variable: "--milagres-info-button-width", min: 10, max: 80, step: 0.1, unit: "%" },
+      { label: "Saiba mais altura", variable: "--milagres-info-button-height", min: 4, max: 25, step: 0.1, unit: "%" },
+      { label: "Ver fotos X", variable: "--milagres-photos-button-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Ver fotos Y", variable: "--milagres-photos-button-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Ver fotos largura", variable: "--milagres-photos-button-width", min: 10, max: 90, step: 0.1, unit: "%" },
+      { label: "Ver fotos altura", variable: "--milagres-photos-button-height", min: 4, max: 30, step: 0.1, unit: "%" }
+    ]
+  },
+  {
+    group: "Hotspots",
+    controls: [
+      { label: "Hotspot Saiba mais X", variable: "--milagres-info-hotspot-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Hotspot Saiba mais Y", variable: "--milagres-info-hotspot-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Hotspot Saiba mais largura", variable: "--milagres-info-hotspot-width", min: 10, max: 80, step: 0.1, unit: "%" },
+      { label: "Hotspot Saiba mais altura", variable: "--milagres-info-hotspot-height", min: 4, max: 25, step: 0.1, unit: "%" },
+      { label: "Hotspot Ver fotos X", variable: "--milagres-photos-hotspot-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Hotspot Ver fotos Y", variable: "--milagres-photos-hotspot-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Hotspot Ver fotos largura", variable: "--milagres-photos-hotspot-width", min: 10, max: 90, step: 0.1, unit: "%" },
+      { label: "Hotspot Ver fotos altura", variable: "--milagres-photos-hotspot-height", min: 4, max: 30, step: 0.1, unit: "%" }
+    ]
+  },
+  {
+    group: "Overlay",
+    controls: [
+      { label: "Overlay meio", variable: "--milagres-overlay-mid-stop", min: 10, max: 90, step: 1, unit: "%" },
+      { label: "Overlay base", variable: "--milagres-overlay-bottom-start", min: 20, max: 98, step: 1, unit: "%" },
+      { label: "Opacidade topo", variable: "--milagres-overlay-top-opacity", min: 0, max: 0.6, step: 0.01, unit: "" },
+      { label: "Opacidade meio", variable: "--milagres-overlay-mid-opacity", min: 0, max: 0.8, step: 0.01, unit: "" },
+      { label: "Opacidade base", variable: "--milagres-overlay-bottom-opacity", min: 0.1, max: 1, step: 0.01, unit: "" }
     ]
   }
 ];
@@ -1697,6 +1906,10 @@ function getMaragogiCardAdjustMode() {
   return new URLSearchParams(window.location.search).get(MARAGOGI_CARD_ADJUST_QUERY) === "1";
 }
 
+function getMilagresCardAdjustMode() {
+  return new URLSearchParams(window.location.search).get(MILAGRES_CARD_ADJUST_QUERY) === "1";
+}
+
 function readStoredMaragogiCardAdjustments() {
   try {
     const raw = window.localStorage.getItem(MARAGOGI_CARD_ADJUST_STORAGE_KEY);
@@ -1725,7 +1938,41 @@ function clearStoredMaragogiCardAdjustments() {
   }
 }
 
+function readStoredMilagresCardAdjustments() {
+  try {
+    const raw = window.localStorage.getItem(MILAGRES_CARD_ADJUST_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch (error) {
+    return {};
+  }
+}
+
+function persistMilagresCardAdjustments(values) {
+  try {
+    window.localStorage.setItem(
+      MILAGRES_CARD_ADJUST_STORAGE_KEY,
+      JSON.stringify(values)
+    );
+  } catch (error) {
+    // Ignore storage issues.
+  }
+}
+
+function clearStoredMilagresCardAdjustments() {
+  try {
+    window.localStorage.removeItem(MILAGRES_CARD_ADJUST_STORAGE_KEY);
+  } catch (error) {
+    // Ignore storage issues.
+  }
+}
+
 function applyMaragogiCardAdjustmentVariables(values) {
+  Object.entries(values).forEach(([variable, value]) => {
+    document.documentElement.style.setProperty(variable, value);
+  });
+}
+
+function applyMilagresCardAdjustmentVariables(values) {
   Object.entries(values).forEach(([variable, value]) => {
     document.documentElement.style.setProperty(variable, value);
   });
@@ -1733,6 +1980,14 @@ function applyMaragogiCardAdjustmentVariables(values) {
 
 function buildMaragogiCardAdjustCss(values) {
   const lines = Object.keys(MARAGOGI_CARD_DEFAULTS).map(
+    (variable) => `  ${variable}: ${values[variable]};`
+  );
+
+  return `:root {\n${lines.join("\n")}\n}`;
+}
+
+function buildMilagresCardAdjustCss(values) {
+  const lines = Object.keys(MILAGRES_CARD_DEFAULTS).map(
     (variable) => `  ${variable}: ${values[variable]};`
   );
 
@@ -1867,6 +2122,158 @@ function createMaragogiCardAdjustTool() {
 
   copyButton?.addEventListener("click", async () => {
     const css = buildMaragogiCardAdjustCss(values);
+    const originalText = copyButton.textContent;
+
+    try {
+      await copyTextToClipboard(css);
+      copyButton.textContent = "CSS copiado";
+    } catch (error) {
+      copyButton.textContent = "Falha ao copiar";
+    }
+
+    window.setTimeout(() => {
+      copyButton.textContent = originalText;
+    }, 1800);
+  });
+
+  const togglePanel = (isOpen) => {
+    panel.hidden = !isOpen;
+    launcher.hidden = isOpen;
+  };
+
+  closeButton?.addEventListener("click", () => togglePanel(false));
+  launcher.addEventListener("click", () => togglePanel(true));
+
+  body.append(panel, launcher);
+  togglePanel(true);
+
+  if (dragHandle) {
+    enableHeroAdjustPanelDrag(panel, dragHandle);
+  }
+}
+
+function createMilagresCardAdjustTool() {
+  const body = document.body;
+  const currentValues = {
+    ...MILAGRES_CARD_DEFAULTS,
+    ...readStoredMilagresCardAdjustments()
+  };
+
+  applyMilagresCardAdjustmentVariables(currentValues);
+  body.classList.add("maragogi-card-adjust-mode");
+
+  const launcher = document.createElement("button");
+  launcher.type = "button";
+  launcher.className = "hero-adjust-launcher";
+  launcher.textContent = "Ajustar Milagres";
+  launcher.hidden = true;
+
+  const panel = document.createElement("aside");
+  panel.className = "hero-adjust-panel maragogi-adjust-panel maragogi-adjust-panel--clean";
+  panel.innerHTML = `
+    <div class="hero-adjust-panel__header" data-hero-adjust-drag-handle>
+      <div class="hero-adjust-panel__heading">
+        <p class="hero-adjust-panel__eyebrow">Ferramenta temporaria</p>
+        <h2>Ajuste Card Milagres</h2>
+        <span class="hero-adjust-panel__hint">Ative com ?ajusteCardMilagres=1</span>
+      </div>
+      <button type="button" class="hero-adjust-panel__close" data-milagres-adjust-close>Ocultar painel</button>
+    </div>
+    <div class="maragogi-clean-tool">
+      <label class="maragogi-clean-tool__label" for="milagres-adjust-group-select">Escolha o ajuste</label>
+      <select class="maragogi-clean-tool__select" id="milagres-adjust-group-select" data-milagres-adjust-group-select></select>
+      <div class="maragogi-clean-tool__controls" data-milagres-adjust-active-group></div>
+    </div>
+    <div class="hero-adjust-panel__actions maragogi-clean-tool__actions">
+      <button type="button" class="hero-adjust-panel__button" data-milagres-adjust-reset>Resetar ajustes</button>
+      <button type="button" class="hero-adjust-panel__button hero-adjust-panel__button--primary" data-milagres-adjust-copy>Copiar CSS final</button>
+      <button type="button" class="hero-adjust-panel__button hero-adjust-panel__button--quiet" data-milagres-adjust-clear>Limpar ajustes salvos</button>
+    </div>
+  `;
+
+  const select = panel.querySelector("[data-milagres-adjust-group-select]");
+  const activeGroup = panel.querySelector("[data-milagres-adjust-active-group]");
+  const closeButton = panel.querySelector("[data-milagres-adjust-close]");
+  const resetButton = panel.querySelector("[data-milagres-adjust-reset]");
+  const clearButton = panel.querySelector("[data-milagres-adjust-clear]");
+  const copyButton = panel.querySelector("[data-milagres-adjust-copy]");
+  const dragHandle = panel.querySelector("[data-hero-adjust-drag-handle]");
+  const values = { ...currentValues };
+
+  const controlsMeta = MILAGRES_CARD_ADJUST_CONTROLS.flatMap(
+    (group) => group.controls
+  );
+
+  const onChange = (variable, value) => {
+    values[variable] = value;
+    document.documentElement.style.setProperty(variable, value);
+    persistMilagresCardAdjustments(values);
+  };
+
+  const renderGroup = (groupIndex = 0) => {
+    if (!activeGroup) return;
+    const group = MILAGRES_CARD_ADJUST_CONTROLS[groupIndex] || MILAGRES_CARD_ADJUST_CONTROLS[0];
+    activeGroup.innerHTML = "";
+
+    const title = document.createElement("h3");
+    title.className = "maragogi-clean-tool__group-title";
+    title.textContent = group.group;
+    activeGroup.appendChild(title);
+
+    group.controls.forEach((control) => {
+      activeGroup.appendChild(createHeroAdjustControl(control, values, onChange));
+    });
+  };
+
+  MILAGRES_CARD_ADJUST_CONTROLS.forEach((group, index) => {
+    const option = document.createElement("option");
+    option.value = String(index);
+    option.textContent = group.group;
+    select?.appendChild(option);
+  });
+
+  select?.addEventListener("change", () => {
+    renderGroup(Number(select.value));
+  });
+
+  renderGroup(0);
+
+  const syncInputsFromValues = (sourceValues) => {
+    panel.querySelectorAll(".hero-adjust-control").forEach((controlElement) => {
+      const variable = controlElement.getAttribute("data-variable");
+      const meta = controlsMeta.find((item) => item.variable === variable);
+      const input = controlElement.querySelector(".hero-adjust-control-input");
+      const valueElement = controlElement.querySelector(".hero-adjust-control-value");
+
+      if (!meta || !input || !valueElement) return;
+      input.value = parseHeroAdjustValue(sourceValues[meta.variable], meta.unit);
+      valueElement.textContent = sourceValues[meta.variable];
+    });
+  };
+
+  const resetToDefaults = () => {
+    Object.entries(MILAGRES_CARD_DEFAULTS).forEach(([variable, value]) => {
+      values[variable] = value;
+      document.documentElement.style.setProperty(variable, value);
+    });
+    syncInputsFromValues(MILAGRES_CARD_DEFAULTS);
+    persistMilagresCardAdjustments(values);
+  };
+
+  resetButton?.addEventListener("click", resetToDefaults);
+
+  clearButton?.addEventListener("click", () => {
+    clearStoredMilagresCardAdjustments();
+    resetToDefaults();
+    const originalText = clearButton.textContent;
+    clearButton.textContent = "Salvos limpos";
+    window.setTimeout(() => {
+      clearButton.textContent = originalText;
+    }, 1600);
+  });
+
+  copyButton?.addEventListener("click", async () => {
+    const css = buildMilagresCardAdjustCss(values);
     const originalText = copyButton.textContent;
 
     try {
@@ -2174,7 +2581,9 @@ function initializeTourLightboxes() {
   });
 }
 
-if (getMaragogiCardAdjustMode()) {
+if (getMilagresCardAdjustMode()) {
+  createMilagresCardAdjustTool();
+} else if (getMaragogiCardAdjustMode()) {
   createMaragogiCardAdjustTool();
 } else if (getHeroAdjustMode()) {
   createHeroAdjustTool();
