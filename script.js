@@ -11,6 +11,8 @@ const MARAGOGI_CARD_ADJUST_QUERY = "ajusteCardMaragogi";
 const MARAGOGI_CARD_ADJUST_STORAGE_KEY = "praiou-maragogi-card-adjustments";
 const MILAGRES_CARD_ADJUST_QUERY = "ajusteCardMilagres";
 const MILAGRES_CARD_ADJUST_STORAGE_KEY = "praio-ajuste-card-milagres";
+const GUNGA_CARD_ADJUST_QUERY = "ajusteCardGunga";
+const GUNGA_CARD_ADJUST_STORAGE_KEY = "praio-ajuste-card-gunga";
 
 const HERO_MOBILE_DEFAULTS = {
   "--hero-mobile-block-offset-y": "-20px",
@@ -737,6 +739,93 @@ const MILAGRES_CARD_DEFAULTS = {
   "--milagres-overlay-bottom-opacity": "0.87"
 };
 
+const GUNGA_CARD_DEFAULTS = {
+  "--gunga-card-stage-width": "100%",
+  "--gunga-card-stage-height": "100%",
+  "--gunga-card-stage-offset-y": "0px",
+  "--gunga-bg-position-x": "52%",
+  "--gunga-bg-position-y": "50%",
+  "--gunga-bg-zoom": "118%",
+  "--gunga-badge-x": "-3.8%",
+  "--gunga-badge-y": "1.6%",
+  "--gunga-badge-width": "57%",
+  "--gunga-badge-height": "13.5%",
+  "--gunga-badge-scale": "0.88",
+  "--gunga-title-x": "10.8%",
+  "--gunga-title-y": "56.4%",
+  "--gunga-title-width": "73%",
+  "--gunga-title-height": "18.4%",
+  "--gunga-title-scale": "1",
+  "--gunga-title-shadow-x": "7.5%",
+  "--gunga-title-shadow-y": "58.3%",
+  "--gunga-title-shadow-width": "79%",
+  "--gunga-title-shadow-height": "13.4%",
+  "--gunga-title-shadow-opacity": "0.58",
+  "--gunga-title-shadow-blur": "24px",
+  "--gunga-title-shadow-radius": "28px",
+  "--gunga-accent-x": "11%",
+  "--gunga-accent-y": "70.3%",
+  "--gunga-accent-width": "25%",
+  "--gunga-accent-height": "5.4%",
+  "--gunga-accent-scale": "1.25",
+  "--gunga-icons-scale": "1.06",
+  "--gunga-wave-icon-x": "6.8%",
+  "--gunga-wave-icon-y": "75.4%",
+  "--gunga-wave-icon-width": "10.5%",
+  "--gunga-wave-icon-height": "14.5%",
+  "--gunga-wave-text-x": "17%",
+  "--gunga-wave-text-y": "80.1%",
+  "--gunga-wave-text-width": "13.5%",
+  "--gunga-wave-text-font-size": "10px",
+  "--gunga-boat-icon-x": "37.8%",
+  "--gunga-boat-icon-y": "75.4%",
+  "--gunga-boat-icon-width": "9.6%",
+  "--gunga-boat-icon-height": "14.5%",
+  "--gunga-boat-text-x": "48%",
+  "--gunga-boat-text-y": "80.1%",
+  "--gunga-boat-text-width": "14%",
+  "--gunga-boat-text-font-size": "9.8px",
+  "--gunga-palm-icon-x": "68.2%",
+  "--gunga-palm-icon-y": "75.4%",
+  "--gunga-palm-icon-width": "9.8%",
+  "--gunga-palm-icon-height": "14.5%",
+  "--gunga-palm-text-x": "79.1%",
+  "--gunga-palm-text-y": "80.1%",
+  "--gunga-palm-text-width": "13.8%",
+  "--gunga-palm-text-font-size": "9.8px",
+  "--gunga-separator-1-x": "35.4%",
+  "--gunga-separator-1-y": "79.2%",
+  "--gunga-separator-1-width": "2px",
+  "--gunga-separator-1-height": "5.8%",
+  "--gunga-separator-1-opacity": "0.75",
+  "--gunga-separator-2-x": "65.5%",
+  "--gunga-separator-2-y": "79.2%",
+  "--gunga-separator-2-width": "2px",
+  "--gunga-separator-2-height": "5.8%",
+  "--gunga-separator-2-opacity": "0.75",
+  "--gunga-info-button-x": "-1.2%",
+  "--gunga-info-button-y": "82.2%",
+  "--gunga-info-button-width": "53%",
+  "--gunga-info-button-height": "19%",
+  "--gunga-photos-button-x": "44%",
+  "--gunga-photos-button-y": "85%",
+  "--gunga-photos-button-width": "56%",
+  "--gunga-photos-button-height": "15.4%",
+  "--gunga-info-hotspot-x": "4%",
+  "--gunga-info-hotspot-y": "86.5%",
+  "--gunga-info-hotspot-width": "40%",
+  "--gunga-info-hotspot-height": "9.4%",
+  "--gunga-photos-hotspot-x": "47%",
+  "--gunga-photos-hotspot-y": "86.5%",
+  "--gunga-photos-hotspot-width": "48.5%",
+  "--gunga-photos-hotspot-height": "9.4%",
+  "--gunga-overlay-mid-stop": "63%",
+  "--gunga-overlay-bottom-start": "84%",
+  "--gunga-overlay-top-opacity": "0.18",
+  "--gunga-overlay-mid-opacity": "0.04",
+  "--gunga-overlay-bottom-opacity": "0.92"
+};
+
 const MILAGRES_CARD_ADJUST_CONTROLS = [
   {
     group: "Imagem de fundo",
@@ -894,6 +983,145 @@ const MILAGRES_CARD_ADJUST_CONTROLS = [
       { label: "Opacidade topo", variable: "--milagres-overlay-top-opacity", min: 0, max: 0.6, step: 0.01, unit: "" },
       { label: "Opacidade meio", variable: "--milagres-overlay-mid-opacity", min: 0, max: 0.8, step: 0.01, unit: "" },
       { label: "Opacidade base", variable: "--milagres-overlay-bottom-opacity", min: 0.1, max: 1, step: 0.01, unit: "" }
+    ]
+  }
+];
+
+const GUNGA_CARD_ADJUST_CONTROLS = [
+  {
+    group: "Imagem de fundo",
+    controls: [
+      { label: "Posicao X", variable: "--gunga-bg-position-x", min: -20, max: 120, step: 1, unit: "%" },
+      { label: "Posicao Y", variable: "--gunga-bg-position-y", min: -20, max: 120, step: 1, unit: "%" },
+      { label: "Zoom", variable: "--gunga-bg-zoom", min: 80, max: 180, step: 1, unit: "%" }
+    ]
+  },
+  {
+    group: "Selo",
+    controls: [
+      { label: "X", variable: "--gunga-badge-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--gunga-badge-y", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--gunga-badge-width", min: 10, max: 90, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--gunga-badge-height", min: 3, max: 30, step: 0.1, unit: "%" },
+      { label: "Escala", variable: "--gunga-badge-scale", min: 0.4, max: 2, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Titulo",
+    controls: [
+      { label: "X", variable: "--gunga-title-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--gunga-title-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--gunga-title-width", min: 10, max: 90, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--gunga-title-height", min: 4, max: 35, step: 0.1, unit: "%" },
+      { label: "Escala", variable: "--gunga-title-scale", min: 0.4, max: 2, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Sombra Gunga",
+    controls: [
+      { label: "X", variable: "--gunga-title-shadow-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--gunga-title-shadow-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--gunga-title-shadow-width", min: 8, max: 90, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--gunga-title-shadow-height", min: 2, max: 25, step: 0.1, unit: "%" },
+      { label: "Opacidade", variable: "--gunga-title-shadow-opacity", min: 0, max: 1, step: 0.01, unit: "" },
+      { label: "Blur", variable: "--gunga-title-shadow-blur", min: 0, max: 60, step: 1, unit: "px" },
+      { label: "Arredondamento", variable: "--gunga-title-shadow-radius", min: 0, max: 80, step: 1, unit: "px" }
+    ]
+  },
+  {
+    group: "Traco",
+    controls: [
+      { label: "X", variable: "--gunga-accent-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--gunga-accent-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--gunga-accent-width", min: 4, max: 60, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--gunga-accent-height", min: 0.5, max: 12, step: 0.1, unit: "%" },
+      { label: "Escala", variable: "--gunga-accent-scale", min: 0.4, max: 2, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Icones",
+    controls: [
+      { label: "Escala geral", variable: "--gunga-icons-scale", min: 0.5, max: 2.4, step: 0.01, unit: "" },
+      { label: "Icone 1 X", variable: "--gunga-wave-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Icone 1 Y", variable: "--gunga-wave-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Icone 1 largura", variable: "--gunga-wave-icon-width", min: 4, max: 22, step: 0.1, unit: "%" },
+      { label: "Icone 1 altura", variable: "--gunga-wave-icon-height", min: 4, max: 22, step: 0.1, unit: "%" },
+      { label: "Icone 2 X", variable: "--gunga-boat-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Icone 2 Y", variable: "--gunga-boat-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Icone 2 largura", variable: "--gunga-boat-icon-width", min: 4, max: 22, step: 0.1, unit: "%" },
+      { label: "Icone 2 altura", variable: "--gunga-boat-icon-height", min: 4, max: 22, step: 0.1, unit: "%" },
+      { label: "Icone 3 X", variable: "--gunga-palm-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Icone 3 Y", variable: "--gunga-palm-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Icone 3 largura", variable: "--gunga-palm-icon-width", min: 4, max: 22, step: 0.1, unit: "%" },
+      { label: "Icone 3 altura", variable: "--gunga-palm-icon-height", min: 4, max: 22, step: 0.1, unit: "%" }
+    ]
+  },
+  {
+    group: "Textos",
+    controls: [
+      { label: "Texto 1 X", variable: "--gunga-wave-text-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Texto 1 Y", variable: "--gunga-wave-text-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Texto 1 largura", variable: "--gunga-wave-text-width", min: 4, max: 35, step: 0.1, unit: "%" },
+      { label: "Texto 1 fonte", variable: "--gunga-wave-text-font-size", min: 8, max: 28, step: 0.1, unit: "px" },
+      { label: "Texto 2 X", variable: "--gunga-boat-text-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Texto 2 Y", variable: "--gunga-boat-text-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Texto 2 largura", variable: "--gunga-boat-text-width", min: 4, max: 35, step: 0.1, unit: "%" },
+      { label: "Texto 2 fonte", variable: "--gunga-boat-text-font-size", min: 8, max: 28, step: 0.1, unit: "px" },
+      { label: "Texto 3 X", variable: "--gunga-palm-text-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Texto 3 Y", variable: "--gunga-palm-text-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Texto 3 largura", variable: "--gunga-palm-text-width", min: 4, max: 35, step: 0.1, unit: "%" },
+      { label: "Texto 3 fonte", variable: "--gunga-palm-text-font-size", min: 8, max: 28, step: 0.1, unit: "px" }
+    ]
+  },
+  {
+    group: "Separadores",
+    controls: [
+      { label: "Separador 1 X", variable: "--gunga-separator-1-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Separador 1 Y", variable: "--gunga-separator-1-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Separador 1 largura", variable: "--gunga-separator-1-width", min: 1, max: 6, step: 0.1, unit: "px" },
+      { label: "Separador 1 altura", variable: "--gunga-separator-1-height", min: 2, max: 20, step: 0.1, unit: "%" },
+      { label: "Separador 1 opacidade", variable: "--gunga-separator-1-opacity", min: 0, max: 1, step: 0.01, unit: "" },
+      { label: "Separador 2 X", variable: "--gunga-separator-2-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Separador 2 Y", variable: "--gunga-separator-2-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Separador 2 largura", variable: "--gunga-separator-2-width", min: 1, max: 6, step: 0.1, unit: "px" },
+      { label: "Separador 2 altura", variable: "--gunga-separator-2-height", min: 2, max: 20, step: 0.1, unit: "%" },
+      { label: "Separador 2 opacidade", variable: "--gunga-separator-2-opacity", min: 0, max: 1, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Botoes",
+    controls: [
+      { label: "Saiba mais X", variable: "--gunga-info-button-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Saiba mais Y", variable: "--gunga-info-button-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Saiba mais largura", variable: "--gunga-info-button-width", min: 10, max: 80, step: 0.1, unit: "%" },
+      { label: "Saiba mais altura", variable: "--gunga-info-button-height", min: 4, max: 25, step: 0.1, unit: "%" },
+      { label: "Ver fotos X", variable: "--gunga-photos-button-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Ver fotos Y", variable: "--gunga-photos-button-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Ver fotos largura", variable: "--gunga-photos-button-width", min: 10, max: 90, step: 0.1, unit: "%" },
+      { label: "Ver fotos altura", variable: "--gunga-photos-button-height", min: 4, max: 30, step: 0.1, unit: "%" }
+    ]
+  },
+  {
+    group: "Hotspots",
+    controls: [
+      { label: "Hotspot Saiba mais X", variable: "--gunga-info-hotspot-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Hotspot Saiba mais Y", variable: "--gunga-info-hotspot-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Hotspot Saiba mais largura", variable: "--gunga-info-hotspot-width", min: 10, max: 80, step: 0.1, unit: "%" },
+      { label: "Hotspot Saiba mais altura", variable: "--gunga-info-hotspot-height", min: 4, max: 25, step: 0.1, unit: "%" },
+      { label: "Hotspot Ver fotos X", variable: "--gunga-photos-hotspot-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Hotspot Ver fotos Y", variable: "--gunga-photos-hotspot-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Hotspot Ver fotos largura", variable: "--gunga-photos-hotspot-width", min: 10, max: 90, step: 0.1, unit: "%" },
+      { label: "Hotspot Ver fotos altura", variable: "--gunga-photos-hotspot-height", min: 4, max: 30, step: 0.1, unit: "%" }
+    ]
+  },
+  {
+    group: "Overlay",
+    controls: [
+      { label: "Overlay meio", variable: "--gunga-overlay-mid-stop", min: 10, max: 90, step: 1, unit: "%" },
+      { label: "Overlay base", variable: "--gunga-overlay-bottom-start", min: 20, max: 98, step: 1, unit: "%" },
+      { label: "Opacidade topo", variable: "--gunga-overlay-top-opacity", min: 0, max: 0.6, step: 0.01, unit: "" },
+      { label: "Opacidade meio", variable: "--gunga-overlay-mid-opacity", min: 0, max: 0.8, step: 0.01, unit: "" },
+      { label: "Opacidade base", variable: "--gunga-overlay-bottom-opacity", min: 0.1, max: 1, step: 0.01, unit: "" }
     ]
   }
 ];
@@ -1982,6 +2210,10 @@ function getMilagresCardAdjustMode() {
   return new URLSearchParams(window.location.search).get(MILAGRES_CARD_ADJUST_QUERY) === "1";
 }
 
+function getGungaCardAdjustMode() {
+  return new URLSearchParams(window.location.search).get(GUNGA_CARD_ADJUST_QUERY) === "1";
+}
+
 function readStoredMaragogiCardAdjustments() {
   try {
     const raw = window.localStorage.getItem(MARAGOGI_CARD_ADJUST_STORAGE_KEY);
@@ -2038,6 +2270,34 @@ function clearStoredMilagresCardAdjustments() {
   }
 }
 
+function readStoredGungaCardAdjustments() {
+  try {
+    const raw = window.localStorage.getItem(GUNGA_CARD_ADJUST_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch (error) {
+    return {};
+  }
+}
+
+function persistGungaCardAdjustments(values) {
+  try {
+    window.localStorage.setItem(
+      GUNGA_CARD_ADJUST_STORAGE_KEY,
+      JSON.stringify(values)
+    );
+  } catch (error) {
+    // Ignore storage issues.
+  }
+}
+
+function clearStoredGungaCardAdjustments() {
+  try {
+    window.localStorage.removeItem(GUNGA_CARD_ADJUST_STORAGE_KEY);
+  } catch (error) {
+    // Ignore storage issues.
+  }
+}
+
 function applyMaragogiCardAdjustmentVariables(values) {
   Object.entries(values).forEach(([variable, value]) => {
     document.documentElement.style.setProperty(variable, value);
@@ -2045,6 +2305,12 @@ function applyMaragogiCardAdjustmentVariables(values) {
 }
 
 function applyMilagresCardAdjustmentVariables(values) {
+  Object.entries(values).forEach(([variable, value]) => {
+    document.documentElement.style.setProperty(variable, value);
+  });
+}
+
+function applyGungaCardAdjustmentVariables(values) {
   Object.entries(values).forEach(([variable, value]) => {
     document.documentElement.style.setProperty(variable, value);
   });
@@ -2060,6 +2326,14 @@ function buildMaragogiCardAdjustCss(values) {
 
 function buildMilagresCardAdjustCss(values) {
   const lines = Object.keys(MILAGRES_CARD_DEFAULTS).map(
+    (variable) => `  ${variable}: ${values[variable]};`
+  );
+
+  return `:root {\n${lines.join("\n")}\n}`;
+}
+
+function buildGungaCardAdjustCss(values) {
+  const lines = Object.keys(GUNGA_CARD_DEFAULTS).map(
     (variable) => `  ${variable}: ${values[variable]};`
   );
 
@@ -2376,6 +2650,158 @@ function createMilagresCardAdjustTool() {
   }
 }
 
+function createGungaCardAdjustTool() {
+  const body = document.body;
+  const currentValues = {
+    ...GUNGA_CARD_DEFAULTS,
+    ...readStoredGungaCardAdjustments()
+  };
+
+  applyGungaCardAdjustmentVariables(currentValues);
+  body.classList.add("maragogi-card-adjust-mode");
+
+  const launcher = document.createElement("button");
+  launcher.type = "button";
+  launcher.className = "hero-adjust-launcher";
+  launcher.textContent = "Ajustar Gunga";
+  launcher.hidden = true;
+
+  const panel = document.createElement("aside");
+  panel.className = "hero-adjust-panel maragogi-adjust-panel maragogi-adjust-panel--clean";
+  panel.innerHTML = `
+    <div class="hero-adjust-panel__header" data-hero-adjust-drag-handle>
+      <div class="hero-adjust-panel__heading">
+        <p class="hero-adjust-panel__eyebrow">Ferramenta temporaria</p>
+        <h2>Ajuste Card Gunga</h2>
+        <span class="hero-adjust-panel__hint">Ative com ?ajusteCardGunga=1</span>
+      </div>
+      <button type="button" class="hero-adjust-panel__close" data-gunga-adjust-close>Ocultar painel</button>
+    </div>
+    <div class="maragogi-clean-tool">
+      <label class="maragogi-clean-tool__label" for="gunga-adjust-group-select">Escolha o ajuste</label>
+      <select class="maragogi-clean-tool__select" id="gunga-adjust-group-select" data-gunga-adjust-group-select></select>
+      <div class="maragogi-clean-tool__controls" data-gunga-adjust-active-group></div>
+    </div>
+    <div class="hero-adjust-panel__actions maragogi-clean-tool__actions">
+      <button type="button" class="hero-adjust-panel__button" data-gunga-adjust-reset>Resetar ajustes</button>
+      <button type="button" class="hero-adjust-panel__button hero-adjust-panel__button--primary" data-gunga-adjust-copy>Copiar CSS final</button>
+      <button type="button" class="hero-adjust-panel__button hero-adjust-panel__button--quiet" data-gunga-adjust-clear>Limpar ajustes salvos</button>
+    </div>
+  `;
+
+  const select = panel.querySelector("[data-gunga-adjust-group-select]");
+  const activeGroup = panel.querySelector("[data-gunga-adjust-active-group]");
+  const closeButton = panel.querySelector("[data-gunga-adjust-close]");
+  const resetButton = panel.querySelector("[data-gunga-adjust-reset]");
+  const clearButton = panel.querySelector("[data-gunga-adjust-clear]");
+  const copyButton = panel.querySelector("[data-gunga-adjust-copy]");
+  const dragHandle = panel.querySelector("[data-hero-adjust-drag-handle]");
+  const values = { ...currentValues };
+
+  const controlsMeta = GUNGA_CARD_ADJUST_CONTROLS.flatMap(
+    (group) => group.controls
+  );
+
+  const onChange = (variable, value) => {
+    values[variable] = value;
+    document.documentElement.style.setProperty(variable, value);
+    persistGungaCardAdjustments(values);
+  };
+
+  const renderGroup = (groupIndex = 0) => {
+    if (!activeGroup) return;
+    const group = GUNGA_CARD_ADJUST_CONTROLS[groupIndex] || GUNGA_CARD_ADJUST_CONTROLS[0];
+    activeGroup.innerHTML = "";
+
+    const title = document.createElement("h3");
+    title.className = "maragogi-clean-tool__group-title";
+    title.textContent = group.group;
+    activeGroup.appendChild(title);
+
+    group.controls.forEach((control) => {
+      activeGroup.appendChild(createHeroAdjustControl(control, values, onChange));
+    });
+  };
+
+  GUNGA_CARD_ADJUST_CONTROLS.forEach((group, index) => {
+    const option = document.createElement("option");
+    option.value = String(index);
+    option.textContent = group.group;
+    select?.appendChild(option);
+  });
+
+  select?.addEventListener("change", () => {
+    renderGroup(Number(select.value));
+  });
+
+  renderGroup(0);
+
+  const syncInputsFromValues = (sourceValues) => {
+    panel.querySelectorAll(".hero-adjust-control").forEach((controlElement) => {
+      const variable = controlElement.getAttribute("data-variable");
+      const meta = controlsMeta.find((item) => item.variable === variable);
+      const input = controlElement.querySelector(".hero-adjust-control-input");
+      const valueElement = controlElement.querySelector(".hero-adjust-control-value");
+
+      if (!meta || !input || !valueElement) return;
+      input.value = parseHeroAdjustValue(sourceValues[meta.variable], meta.unit);
+      valueElement.textContent = sourceValues[meta.variable];
+    });
+  };
+
+  const resetToDefaults = () => {
+    Object.entries(GUNGA_CARD_DEFAULTS).forEach(([variable, value]) => {
+      values[variable] = value;
+      document.documentElement.style.setProperty(variable, value);
+    });
+    syncInputsFromValues(GUNGA_CARD_DEFAULTS);
+    persistGungaCardAdjustments(values);
+  };
+
+  resetButton?.addEventListener("click", resetToDefaults);
+
+  clearButton?.addEventListener("click", () => {
+    clearStoredGungaCardAdjustments();
+    resetToDefaults();
+    const originalText = clearButton.textContent;
+    clearButton.textContent = "Salvos limpos";
+    window.setTimeout(() => {
+      clearButton.textContent = originalText;
+    }, 1600);
+  });
+
+  copyButton?.addEventListener("click", async () => {
+    const css = buildGungaCardAdjustCss(values);
+    const originalText = copyButton.textContent;
+
+    try {
+      await copyTextToClipboard(css);
+      copyButton.textContent = "CSS copiado";
+    } catch (error) {
+      copyButton.textContent = "Falha ao copiar";
+    }
+
+    window.setTimeout(() => {
+      copyButton.textContent = originalText;
+    }, 1800);
+  });
+
+  const togglePanel = (isOpen) => {
+    panel.hidden = !isOpen;
+    launcher.hidden = isOpen;
+  };
+
+  closeButton?.addEventListener("click", () => togglePanel(false));
+  launcher.addEventListener("click", () => togglePanel(true));
+
+  body.append(panel, launcher);
+  togglePanel(true);
+
+  if (dragHandle) {
+    enableHeroAdjustPanelDrag(panel, dragHandle);
+  }
+}
+
 
 if (navToggle) {
   navToggle.addEventListener("click", () => {
@@ -2653,7 +3079,9 @@ function initializeTourLightboxes() {
   });
 }
 
-if (getMilagresCardAdjustMode()) {
+if (getGungaCardAdjustMode()) {
+  createGungaCardAdjustTool();
+} else if (getMilagresCardAdjustMode()) {
   createMilagresCardAdjustTool();
 } else if (getMaragogiCardAdjustMode()) {
   createMaragogiCardAdjustTool();

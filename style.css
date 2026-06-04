@@ -201,6 +201,90 @@
   --milagres-overlay-top-opacity: 0.42;
   --milagres-overlay-mid-opacity: 0;
   --milagres-overlay-bottom-opacity: 0.87;
+  --gunga-card-stage-width: 100%;
+  --gunga-card-stage-height: 100%;
+  --gunga-card-stage-offset-y: 0px;
+  --gunga-bg-position-x: 52%;
+  --gunga-bg-position-y: 50%;
+  --gunga-bg-zoom: 118%;
+  --gunga-badge-x: -3.8%;
+  --gunga-badge-y: 1.6%;
+  --gunga-badge-width: 57%;
+  --gunga-badge-height: 13.5%;
+  --gunga-badge-scale: 0.88;
+  --gunga-title-x: 10.8%;
+  --gunga-title-y: 56.4%;
+  --gunga-title-width: 73%;
+  --gunga-title-height: 18.4%;
+  --gunga-title-scale: 1;
+  --gunga-title-shadow-x: 7.5%;
+  --gunga-title-shadow-y: 58.3%;
+  --gunga-title-shadow-width: 79%;
+  --gunga-title-shadow-height: 13.4%;
+  --gunga-title-shadow-opacity: 0.58;
+  --gunga-title-shadow-blur: 24px;
+  --gunga-title-shadow-radius: 28px;
+  --gunga-accent-x: 11%;
+  --gunga-accent-y: 70.3%;
+  --gunga-accent-width: 25%;
+  --gunga-accent-height: 5.4%;
+  --gunga-accent-scale: 1.25;
+  --gunga-icons-scale: 1.06;
+  --gunga-wave-icon-x: 6.8%;
+  --gunga-wave-icon-y: 75.4%;
+  --gunga-wave-icon-width: 10.5%;
+  --gunga-wave-icon-height: 14.5%;
+  --gunga-wave-text-x: 17%;
+  --gunga-wave-text-y: 80.1%;
+  --gunga-wave-text-width: 13.5%;
+  --gunga-wave-text-font-size: 10px;
+  --gunga-boat-icon-x: 37.8%;
+  --gunga-boat-icon-y: 75.4%;
+  --gunga-boat-icon-width: 9.6%;
+  --gunga-boat-icon-height: 14.5%;
+  --gunga-boat-text-x: 48%;
+  --gunga-boat-text-y: 80.1%;
+  --gunga-boat-text-width: 14%;
+  --gunga-boat-text-font-size: 9.8px;
+  --gunga-palm-icon-x: 68.2%;
+  --gunga-palm-icon-y: 75.4%;
+  --gunga-palm-icon-width: 9.8%;
+  --gunga-palm-icon-height: 14.5%;
+  --gunga-palm-text-x: 79.1%;
+  --gunga-palm-text-y: 80.1%;
+  --gunga-palm-text-width: 13.8%;
+  --gunga-palm-text-font-size: 9.8px;
+  --gunga-separator-1-x: 35.4%;
+  --gunga-separator-1-y: 79.2%;
+  --gunga-separator-1-width: 2px;
+  --gunga-separator-1-height: 5.8%;
+  --gunga-separator-1-opacity: 0.75;
+  --gunga-separator-2-x: 65.5%;
+  --gunga-separator-2-y: 79.2%;
+  --gunga-separator-2-width: 2px;
+  --gunga-separator-2-height: 5.8%;
+  --gunga-separator-2-opacity: 0.75;
+  --gunga-info-button-x: -1.2%;
+  --gunga-info-button-y: 82.2%;
+  --gunga-info-button-width: 53%;
+  --gunga-info-button-height: 19%;
+  --gunga-photos-button-x: 44%;
+  --gunga-photos-button-y: 85%;
+  --gunga-photos-button-width: 56%;
+  --gunga-photos-button-height: 15.4%;
+  --gunga-info-hotspot-x: 4%;
+  --gunga-info-hotspot-y: 86.5%;
+  --gunga-info-hotspot-width: 40%;
+  --gunga-info-hotspot-height: 9.4%;
+  --gunga-photos-hotspot-x: 47%;
+  --gunga-photos-hotspot-y: 86.5%;
+  --gunga-photos-hotspot-width: 48.5%;
+  --gunga-photos-hotspot-height: 9.4%;
+  --gunga-overlay-mid-stop: 63%;
+  --gunga-overlay-bottom-start: 84%;
+  --gunga-overlay-top-opacity: 0.18;
+  --gunga-overlay-mid-opacity: 0.04;
+  --gunga-overlay-bottom-opacity: 0.92;
 }
 
 * {
@@ -2151,6 +2235,270 @@ img {
 }
 
 .milagres-home-card__button-hotspot:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 4px;
+}
+
+.gunga-home-card {
+  height: 500px;
+  min-height: 500px;
+  background: transparent;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+}
+
+.gunga-home-card__stage {
+  position: relative;
+  width: var(--gunga-card-stage-width);
+  height: var(--gunga-card-stage-height);
+  min-height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 22px 42px rgba(7, 42, 63, 0.22);
+  transform: translateY(var(--gunga-card-stage-offset-y));
+  background: #083844;
+}
+
+.gunga-home-card__stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3, 21, 27, var(--gunga-overlay-top-opacity)) 0%,
+      rgba(3, 21, 27, 0.03) 25%,
+      rgba(3, 21, 27, var(--gunga-overlay-mid-opacity)) var(--gunga-overlay-mid-stop),
+      rgba(4, 20, 30, 0.72) var(--gunga-overlay-bottom-start),
+      rgba(4, 20, 30, var(--gunga-overlay-bottom-opacity)) 100%
+    );
+  pointer-events: none;
+}
+
+.gunga-home-card__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-image: url("./assets/passeios/gunga/gunga-02.jpeg");
+  background-repeat: no-repeat;
+  background-size: var(--gunga-bg-zoom) auto;
+  background-position: var(--gunga-bg-position-x) var(--gunga-bg-position-y);
+  pointer-events: none;
+}
+
+.gunga-home-card__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.gunga-home-card__badge,
+.gunga-home-card__title,
+.gunga-home-card__title-shadow,
+.gunga-home-card__accent,
+.gunga-home-card__highlight-icon,
+.gunga-home-card__highlight-text,
+.gunga-home-card__highlight-separator,
+.gunga-home-card__button-visual,
+.gunga-home-card__button-hotspot {
+  position: absolute;
+}
+
+.gunga-home-card__title-shadow {
+  z-index: 0;
+  background: rgba(6, 19, 29, 1);
+  pointer-events: none;
+  transform: translateZ(0);
+  left: var(--gunga-title-shadow-x);
+  top: var(--gunga-title-shadow-y);
+  width: var(--gunga-title-shadow-width);
+  height: var(--gunga-title-shadow-height);
+  opacity: var(--gunga-title-shadow-opacity);
+  filter: blur(var(--gunga-title-shadow-blur));
+  border-radius: var(--gunga-title-shadow-radius);
+}
+
+.gunga-home-card__badge {
+  z-index: 1;
+  left: var(--gunga-badge-x);
+  top: var(--gunga-badge-y);
+  width: var(--gunga-badge-width);
+  height: var(--gunga-badge-height);
+  transform: scale(var(--gunga-badge-scale));
+  transform-origin: top left;
+}
+
+.gunga-home-card__badge-image,
+.gunga-home-card__accent-image,
+.gunga-home-card__button-image,
+.gunga-home-card__title-image,
+.gunga-home-card__highlight-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.gunga-home-card__title {
+  margin: 0;
+  z-index: 1;
+  left: var(--gunga-title-x);
+  top: var(--gunga-title-y);
+  width: var(--gunga-title-width);
+  height: var(--gunga-title-height);
+  transform: scale(var(--gunga-title-scale));
+  transform-origin: bottom left;
+}
+
+.gunga-home-card__title-image {
+  filter: drop-shadow(0 6px 14px rgba(6, 19, 29, 0.3));
+}
+
+.gunga-home-card__accent {
+  z-index: 1;
+  left: var(--gunga-accent-x);
+  top: var(--gunga-accent-y);
+  width: var(--gunga-accent-width);
+  height: var(--gunga-accent-height);
+  transform: scale(var(--gunga-accent-scale));
+  transform-origin: left center;
+}
+
+.gunga-home-card__highlight-icon {
+  z-index: 1;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.18));
+  transform: scale(var(--gunga-icons-scale));
+  transform-origin: center;
+}
+
+.gunga-home-card__highlight-icon--wave {
+  left: var(--gunga-wave-icon-x);
+  top: var(--gunga-wave-icon-y);
+  width: var(--gunga-wave-icon-width);
+  height: var(--gunga-wave-icon-height);
+}
+
+.gunga-home-card__highlight-icon--boat {
+  left: var(--gunga-boat-icon-x);
+  top: var(--gunga-boat-icon-y);
+  width: var(--gunga-boat-icon-width);
+  height: var(--gunga-boat-icon-height);
+}
+
+.gunga-home-card__highlight-icon--palm {
+  left: var(--gunga-palm-icon-x);
+  top: var(--gunga-palm-icon-y);
+  width: var(--gunga-palm-icon-width);
+  height: var(--gunga-palm-icon-height);
+}
+
+.gunga-home-card__highlight-text {
+  z-index: 1;
+  display: block;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 700;
+  line-height: 1.06;
+  text-shadow: 0 2px 7px rgba(0, 0, 0, 0.28);
+  letter-spacing: 0.01em;
+}
+
+.gunga-home-card__highlight-text--wave {
+  left: var(--gunga-wave-text-x);
+  top: var(--gunga-wave-text-y);
+  width: var(--gunga-wave-text-width);
+  font-size: var(--gunga-wave-text-font-size);
+  padding-left: 0.16rem;
+}
+
+.gunga-home-card__highlight-text--boat {
+  left: var(--gunga-boat-text-x);
+  top: var(--gunga-boat-text-y);
+  width: var(--gunga-boat-text-width);
+  font-size: var(--gunga-boat-text-font-size);
+  padding-left: 0.14rem;
+}
+
+.gunga-home-card__highlight-text--palm {
+  left: var(--gunga-palm-text-x);
+  top: var(--gunga-palm-text-y);
+  width: var(--gunga-palm-text-width);
+  font-size: var(--gunga-palm-text-font-size);
+  padding-left: 0.14rem;
+}
+
+.gunga-home-card__highlight-separator {
+  z-index: 1;
+  width: 1px;
+  background: rgba(93, 237, 255, 0.52);
+}
+
+.gunga-home-card__highlight-separator--one {
+  left: var(--gunga-separator-1-x);
+  top: var(--gunga-separator-1-y);
+  width: var(--gunga-separator-1-width);
+  height: var(--gunga-separator-1-height);
+  opacity: var(--gunga-separator-1-opacity);
+}
+
+.gunga-home-card__highlight-separator--two {
+  left: var(--gunga-separator-2-x);
+  top: var(--gunga-separator-2-y);
+  width: var(--gunga-separator-2-width);
+  height: var(--gunga-separator-2-height);
+  opacity: var(--gunga-separator-2-opacity);
+}
+
+.gunga-home-card__button-visual {
+  z-index: 1;
+  box-shadow: 0 10px 18px rgba(6, 20, 29, 0.24);
+  pointer-events: none;
+}
+
+.gunga-home-card__button-visual--info {
+  left: var(--gunga-info-button-x);
+  top: var(--gunga-info-button-y);
+  width: var(--gunga-info-button-width);
+  height: var(--gunga-info-button-height);
+}
+
+.gunga-home-card__button-visual--photos {
+  left: var(--gunga-photos-button-x);
+  top: var(--gunga-photos-button-y);
+  width: var(--gunga-photos-button-width);
+  height: var(--gunga-photos-button-height);
+}
+
+.gunga-home-card__button-hotspot {
+  z-index: 3;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.gunga-home-card__button-hotspot--info {
+  left: var(--gunga-info-hotspot-x);
+  top: var(--gunga-info-hotspot-y);
+  width: var(--gunga-info-hotspot-width);
+  height: var(--gunga-info-hotspot-height);
+}
+
+.gunga-home-card__button-hotspot--photos {
+  left: var(--gunga-photos-hotspot-x);
+  top: var(--gunga-photos-hotspot-y);
+  width: var(--gunga-photos-hotspot-width);
+  height: var(--gunga-photos-hotspot-height);
+}
+
+.gunga-home-card__button-hotspot:focus-visible {
   outline: 2px solid rgba(255, 255, 255, 0.9);
   outline-offset: 4px;
 }
@@ -4361,6 +4709,11 @@ img {
   }
 
   .milagres-home-card {
+    height: 450px;
+    min-height: 450px;
+  }
+
+  .gunga-home-card {
     height: 450px;
     min-height: 450px;
   }
