@@ -98,6 +98,75 @@
   --maragogi-overlay-top-opacity: 0.08;
   --maragogi-overlay-mid-opacity: 0.18;
   --maragogi-overlay-bottom-opacity: 0.95;
+  --milagres-card-stage-width: 100%;
+  --milagres-card-stage-height: 100%;
+  --milagres-card-stage-offset-y: 0px;
+  --milagres-bg-position-x: 52%;
+  --milagres-bg-position-y: 54%;
+  --milagres-bg-zoom: 118%;
+  --milagres-badge-x: -2.8%;
+  --milagres-badge-y: 3.2%;
+  --milagres-badge-width: 61%;
+  --milagres-badge-height: 12.2%;
+  --milagres-badge-scale: 0.88;
+  --milagres-title-x: 3.5%;
+  --milagres-title-y: 55.2%;
+  --milagres-title-width: 68%;
+  --milagres-title-height: 20%;
+  --milagres-title-scale: 1;
+  --milagres-accent-x: 6.8%;
+  --milagres-accent-y: 69%;
+  --milagres-accent-width: 17.5%;
+  --milagres-accent-height: 1.5%;
+  --milagres-accent-scale: 1;
+  --milagres-icons-scale: 1;
+  --milagres-wave-icon-x: 4.8%;
+  --milagres-wave-icon-y: 74.8%;
+  --milagres-wave-icon-width: 11.2%;
+  --milagres-wave-icon-height: 15.4%;
+  --milagres-wave-text-x: 16.2%;
+  --milagres-wave-text-y: 80.1%;
+  --milagres-wave-text-width: 16.8%;
+  --milagres-wave-text-font-size: 9.5px;
+  --milagres-boat-icon-x: 35%;
+  --milagres-boat-icon-y: 74.8%;
+  --milagres-boat-icon-width: 10.8%;
+  --milagres-boat-icon-height: 15.4%;
+  --milagres-boat-text-x: 46.4%;
+  --milagres-boat-text-y: 80.1%;
+  --milagres-boat-text-width: 12.8%;
+  --milagres-boat-text-font-size: 9.5px;
+  --milagres-palm-icon-x: 67.6%;
+  --milagres-palm-icon-y: 74.6%;
+  --milagres-palm-icon-width: 8.8%;
+  --milagres-palm-icon-height: 15.1%;
+  --milagres-palm-text-x: 77.2%;
+  --milagres-palm-text-y: 80.1%;
+  --milagres-palm-text-width: 15.3%;
+  --milagres-palm-text-font-size: 9.5px;
+  --milagres-separator-1-x: 31.8%;
+  --milagres-separator-1-y: 79.4%;
+  --milagres-separator-1-width: 2px;
+  --milagres-separator-1-height: 6.4%;
+  --milagres-separator-1-opacity: 0.72;
+  --milagres-separator-2-x: 63.8%;
+  --milagres-separator-2-y: 79.4%;
+  --milagres-separator-2-width: 2px;
+  --milagres-separator-2-height: 6.4%;
+  --milagres-separator-2-opacity: 0.72;
+  --milagres-info-button-x: 4%;
+  --milagres-info-button-y: 87%;
+  --milagres-info-button-width: 39%;
+  --milagres-info-button-height: 9.6%;
+  --milagres-photos-button-x: 46%;
+  --milagres-photos-button-y: 87%;
+  --milagres-photos-button-width: 49%;
+  --milagres-photos-button-height: 9.6%;
+  --milagres-overlay-mid-stop: 48%;
+  --milagres-overlay-bottom-start: 73%;
+  --milagres-overlay-top-opacity: 0.08;
+  --milagres-overlay-mid-opacity: 0.18;
+  --milagres-overlay-bottom-opacity: 0.95;
 }
 
 * {
@@ -1731,6 +1800,259 @@ img {
 }
 
 .maragogi-home-card__button-hotspot:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 4px;
+}
+
+.milagres-home-card {
+  height: 500px;
+  min-height: 500px;
+  background: transparent;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+}
+
+.milagres-home-card__stage {
+  position: relative;
+  width: var(--milagres-card-stage-width);
+  height: var(--milagres-card-stage-height);
+  min-height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+  z-index: 1;
+  box-shadow: 0 22px 42px rgba(7, 42, 63, 0.22);
+  transform: translateY(var(--milagres-card-stage-offset-y));
+  background: #083844;
+}
+
+.milagres-home-card__stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3, 21, 27, var(--milagres-overlay-top-opacity)) 0%,
+      rgba(3, 21, 27, 0.03) 25%,
+      rgba(3, 21, 27, var(--milagres-overlay-mid-opacity)) var(--milagres-overlay-mid-stop),
+      rgba(4, 20, 30, 0.72) var(--milagres-overlay-bottom-start),
+      rgba(4, 20, 30, var(--milagres-overlay-bottom-opacity)) 100%
+    );
+  pointer-events: none;
+}
+
+.milagres-home-card__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-image: url("./assets/passeios/milagres/milagres-01.jpeg");
+  background-repeat: no-repeat;
+  background-size: var(--milagres-bg-zoom) auto;
+  background-position: var(--milagres-bg-position-x) var(--milagres-bg-position-y);
+  pointer-events: none;
+}
+
+.milagres-home-card__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.milagres-home-card__badge,
+.milagres-home-card__title,
+.milagres-home-card__accent,
+.milagres-home-card__highlight-icon,
+.milagres-home-card__highlight-text,
+.milagres-home-card__highlight-separator,
+.milagres-home-card__button {
+  position: absolute;
+}
+
+.milagres-home-card__badge {
+  left: var(--milagres-badge-x);
+  top: var(--milagres-badge-y);
+  width: var(--milagres-badge-width);
+  height: var(--milagres-badge-height);
+  transform: scale(var(--milagres-badge-scale));
+  transform-origin: top left;
+}
+
+.milagres-home-card__badge-image,
+.milagres-home-card__title-image,
+.milagres-home-card__highlight-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.milagres-home-card__title {
+  margin: 0;
+  left: var(--milagres-title-x);
+  top: var(--milagres-title-y);
+  width: var(--milagres-title-width);
+  height: var(--milagres-title-height);
+  transform: scale(var(--milagres-title-scale));
+  transform-origin: bottom left;
+}
+
+.milagres-home-card__title-image {
+  filter: drop-shadow(0 6px 14px rgba(6, 19, 29, 0.32));
+}
+
+.milagres-home-card__accent {
+  left: var(--milagres-accent-x);
+  top: var(--milagres-accent-y);
+  width: var(--milagres-accent-width);
+  height: var(--milagres-accent-height);
+  transform: scale(var(--milagres-accent-scale));
+  transform-origin: left center;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #22d3ef 0%, #18b7d1 55%, rgba(24, 183, 209, 0.04) 100%);
+  box-shadow: 0 0 14px rgba(34, 211, 238, 0.24);
+}
+
+.milagres-home-card__highlight-icon {
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.18));
+  transform: scale(var(--milagres-icons-scale));
+  transform-origin: center;
+}
+
+.milagres-home-card__highlight-icon--wave {
+  left: var(--milagres-wave-icon-x);
+  top: var(--milagres-wave-icon-y);
+  width: var(--milagres-wave-icon-width);
+  height: var(--milagres-wave-icon-height);
+}
+
+.milagres-home-card__highlight-icon--boat {
+  left: var(--milagres-boat-icon-x);
+  top: var(--milagres-boat-icon-y);
+  width: var(--milagres-boat-icon-width);
+  height: var(--milagres-boat-icon-height);
+}
+
+.milagres-home-card__highlight-icon--palm {
+  left: var(--milagres-palm-icon-x);
+  top: var(--milagres-palm-icon-y);
+  width: var(--milagres-palm-icon-width);
+  height: var(--milagres-palm-icon-height);
+}
+
+.milagres-home-card__highlight-text {
+  display: block;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 700;
+  line-height: 1.06;
+  text-shadow: 0 2px 7px rgba(0, 0, 0, 0.28);
+}
+
+.milagres-home-card__highlight-text--wave {
+  left: var(--milagres-wave-text-x);
+  top: var(--milagres-wave-text-y);
+  width: var(--milagres-wave-text-width);
+  font-size: var(--milagres-wave-text-font-size);
+}
+
+.milagres-home-card__highlight-text--boat {
+  left: var(--milagres-boat-text-x);
+  top: var(--milagres-boat-text-y);
+  width: var(--milagres-boat-text-width);
+  font-size: var(--milagres-boat-text-font-size);
+}
+
+.milagres-home-card__highlight-text--palm {
+  left: var(--milagres-palm-text-x);
+  top: var(--milagres-palm-text-y);
+  width: var(--milagres-palm-text-width);
+  font-size: var(--milagres-palm-text-font-size);
+}
+
+.milagres-home-card__highlight-separator {
+  width: 1px;
+  background: rgba(93, 237, 255, 0.52);
+}
+
+.milagres-home-card__highlight-separator--one {
+  left: var(--milagres-separator-1-x);
+  top: var(--milagres-separator-1-y);
+  width: var(--milagres-separator-1-width);
+  height: var(--milagres-separator-1-height);
+  opacity: var(--milagres-separator-1-opacity);
+}
+
+.milagres-home-card__highlight-separator--two {
+  left: var(--milagres-separator-2-x);
+  top: var(--milagres-separator-2-y);
+  width: var(--milagres-separator-2-width);
+  height: var(--milagres-separator-2-height);
+  opacity: var(--milagres-separator-2-opacity);
+}
+
+.milagres-home-card__button {
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0 0.8rem;
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 0;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 10px 18px rgba(6, 20, 29, 0.24);
+}
+
+.milagres-home-card__button--info {
+  left: var(--milagres-info-button-x);
+  top: var(--milagres-info-button-y);
+  width: var(--milagres-info-button-width);
+  height: var(--milagres-info-button-height);
+  background: rgba(10, 26, 38, 0.56);
+  border: 2px solid rgba(16, 199, 255, 0.82);
+  color: #fff;
+}
+
+.milagres-home-card__button--photos {
+  left: var(--milagres-photos-button-x);
+  top: var(--milagres-photos-button-y);
+  width: var(--milagres-photos-button-width);
+  height: var(--milagres-photos-button-height);
+  background: linear-gradient(180deg, #ff9b45 0%, #ff7d1f 100%);
+  color: #fff;
+}
+
+.milagres-home-card__button-glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 1.2rem;
+  height: 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 800;
+}
+
+.milagres-home-card__button-glyph--photos svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.milagres-home-card__button-label {
+  white-space: nowrap;
+  font-size: 0.86rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.milagres-home-card__button:focus-visible {
   outline: 2px solid rgba(255, 255, 255, 0.9);
   outline-offset: 4px;
 }
@@ -3938,6 +4260,30 @@ img {
   .maragogi-home-card {
     height: 450px;
     min-height: 450px;
+  }
+
+  .milagres-home-card {
+    height: 450px;
+    min-height: 450px;
+  }
+
+  .milagres-home-card__button {
+    gap: 0.38rem;
+    padding: 0 0.58rem;
+  }
+
+  .milagres-home-card__button-glyph {
+    width: 1rem;
+    height: 1rem;
+    font-size: 0.82rem;
+  }
+
+  .milagres-home-card__button-label {
+    font-size: 0.74rem;
+  }
+
+  .milagres-home-card__highlight-text {
+    line-height: 1.02;
   }
 
   .premium-tour-card__overlay {
