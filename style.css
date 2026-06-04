@@ -109,11 +109,30 @@
   --milagres-badge-width: 60.5%;
   --milagres-badge-height: 13.5%;
   --milagres-badge-scale: 0.87;
+  --milagres-sao-x: 3.2%;
+  --milagres-sao-y: 48.4%;
+  --milagres-sao-width: 38%;
+  --milagres-sao-height: 8.2%;
+  --milagres-sao-scale: 1;
+  --milagres-sao-shadow-x: 1.4%;
+  --milagres-sao-shadow-y: 48.7%;
+  --milagres-sao-shadow-width: 39.5%;
+  --milagres-sao-shadow-height: 6.8%;
+  --milagres-sao-shadow-opacity: 0.28;
+  --milagres-sao-shadow-blur: 16px;
+  --milagres-sao-shadow-radius: 24px;
   --milagres-title-x: -2.4%;
   --milagres-title-y: 54.7%;
   --milagres-title-width: 66.5%;
   --milagres-title-height: 20.2%;
   --milagres-title-scale: 1.11;
+  --milagres-title-shadow-x: -1.8%;
+  --milagres-title-shadow-y: 58.5%;
+  --milagres-title-shadow-width: 53%;
+  --milagres-title-shadow-height: 10.4%;
+  --milagres-title-shadow-opacity: 0.32;
+  --milagres-title-shadow-blur: 18px;
+  --milagres-title-shadow-radius: 26px;
   --milagres-accent-x: -4.1%;
   --milagres-accent-y: 68.9%;
   --milagres-accent-width: 20.8%;
@@ -1872,8 +1891,11 @@ img {
 }
 
 .milagres-home-card__badge,
+.milagres-home-card__sao,
 .milagres-home-card__title,
 .milagres-home-card__accent,
+.milagres-home-card__sao-shadow,
+.milagres-home-card__title-shadow,
 .milagres-home-card__highlight-icon,
 .milagres-home-card__highlight-text,
 .milagres-home-card__highlight-separator,
@@ -1882,7 +1904,16 @@ img {
   position: absolute;
 }
 
+.milagres-home-card__sao-shadow,
+.milagres-home-card__title-shadow {
+  z-index: 0;
+  background: rgba(6, 19, 29, 1);
+  pointer-events: none;
+  transform: translateZ(0);
+}
+
 .milagres-home-card__badge {
+  z-index: 1;
   left: var(--milagres-badge-x);
   top: var(--milagres-badge-y);
   width: var(--milagres-badge-width);
@@ -1891,7 +1922,38 @@ img {
   transform-origin: top left;
 }
 
+.milagres-home-card__sao {
+  z-index: 1;
+  left: var(--milagres-sao-x);
+  top: var(--milagres-sao-y);
+  width: var(--milagres-sao-width);
+  height: var(--milagres-sao-height);
+  transform: scale(var(--milagres-sao-scale));
+  transform-origin: left bottom;
+}
+
+.milagres-home-card__sao-shadow {
+  left: var(--milagres-sao-shadow-x);
+  top: var(--milagres-sao-shadow-y);
+  width: var(--milagres-sao-shadow-width);
+  height: var(--milagres-sao-shadow-height);
+  opacity: var(--milagres-sao-shadow-opacity);
+  filter: blur(var(--milagres-sao-shadow-blur));
+  border-radius: var(--milagres-sao-shadow-radius);
+}
+
+.milagres-home-card__title-shadow {
+  left: var(--milagres-title-shadow-x);
+  top: var(--milagres-title-shadow-y);
+  width: var(--milagres-title-shadow-width);
+  height: var(--milagres-title-shadow-height);
+  opacity: var(--milagres-title-shadow-opacity);
+  filter: blur(var(--milagres-title-shadow-blur));
+  border-radius: var(--milagres-title-shadow-radius);
+}
+
 .milagres-home-card__badge-image,
+.milagres-home-card__sao-image,
 .milagres-home-card__accent-image,
 .milagres-home-card__button-image,
 .milagres-home-card__title-image,
@@ -1904,6 +1966,7 @@ img {
 
 .milagres-home-card__title {
   margin: 0;
+  z-index: 1;
   left: var(--milagres-title-x);
   top: var(--milagres-title-y);
   width: var(--milagres-title-width);
@@ -1917,6 +1980,7 @@ img {
 }
 
 .milagres-home-card__accent {
+  z-index: 1;
   left: var(--milagres-accent-x);
   top: var(--milagres-accent-y);
   width: var(--milagres-accent-width);
@@ -1926,6 +1990,7 @@ img {
 }
 
 .milagres-home-card__highlight-icon {
+  z-index: 1;
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.18));
   transform: scale(var(--milagres-icons-scale));
   transform-origin: center;
@@ -1953,6 +2018,7 @@ img {
 }
 
 .milagres-home-card__highlight-text {
+  z-index: 1;
   display: block;
   color: rgba(255, 255, 255, 0.95);
   font-weight: 700;
@@ -1986,6 +2052,7 @@ img {
 }
 
 .milagres-home-card__highlight-separator {
+  z-index: 1;
   width: 1px;
   background: rgba(93, 237, 255, 0.52);
 }
@@ -2007,6 +2074,7 @@ img {
 }
 
 .milagres-home-card__button-visual {
+  z-index: 1;
   box-shadow: 0 10px 18px rgba(6, 20, 29, 0.24);
   pointer-events: none;
 }

@@ -631,11 +631,30 @@ const MILAGRES_CARD_DEFAULTS = {
   "--milagres-badge-width": "60.5%",
   "--milagres-badge-height": "13.5%",
   "--milagres-badge-scale": "0.87",
+  "--milagres-sao-x": "3.2%",
+  "--milagres-sao-y": "48.4%",
+  "--milagres-sao-width": "38%",
+  "--milagres-sao-height": "8.2%",
+  "--milagres-sao-scale": "1",
+  "--milagres-sao-shadow-x": "1.4%",
+  "--milagres-sao-shadow-y": "48.7%",
+  "--milagres-sao-shadow-width": "39.5%",
+  "--milagres-sao-shadow-height": "6.8%",
+  "--milagres-sao-shadow-opacity": "0.28",
+  "--milagres-sao-shadow-blur": "16px",
+  "--milagres-sao-shadow-radius": "24px",
   "--milagres-title-x": "-2.4%",
   "--milagres-title-y": "54.7%",
   "--milagres-title-width": "66.5%",
   "--milagres-title-height": "20.2%",
   "--milagres-title-scale": "1.11",
+  "--milagres-title-shadow-x": "-1.8%",
+  "--milagres-title-shadow-y": "58.5%",
+  "--milagres-title-shadow-width": "53%",
+  "--milagres-title-shadow-height": "10.4%",
+  "--milagres-title-shadow-opacity": "0.32",
+  "--milagres-title-shadow-blur": "18px",
+  "--milagres-title-shadow-radius": "26px",
   "--milagres-accent-x": "-4.1%",
   "--milagres-accent-y": "68.9%",
   "--milagres-accent-width": "20.8%",
@@ -719,6 +738,28 @@ const MILAGRES_CARD_ADJUST_CONTROLS = [
     ]
   },
   {
+    group: "Sao Miguel dos",
+    controls: [
+      { label: "X", variable: "--milagres-sao-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--milagres-sao-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--milagres-sao-width", min: 8, max: 80, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--milagres-sao-height", min: 2, max: 20, step: 0.1, unit: "%" },
+      { label: "Escala", variable: "--milagres-sao-scale", min: 0.4, max: 2, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Sombra Sao Miguel dos",
+    controls: [
+      { label: "X", variable: "--milagres-sao-shadow-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--milagres-sao-shadow-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--milagres-sao-shadow-width", min: 8, max: 90, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--milagres-sao-shadow-height", min: 2, max: 25, step: 0.1, unit: "%" },
+      { label: "Opacidade", variable: "--milagres-sao-shadow-opacity", min: 0, max: 1, step: 0.01, unit: "" },
+      { label: "Blur", variable: "--milagres-sao-shadow-blur", min: 0, max: 60, step: 1, unit: "px" },
+      { label: "Arredondamento", variable: "--milagres-sao-shadow-radius", min: 0, max: 80, step: 1, unit: "px" }
+    ]
+  },
+  {
     group: "Titulo",
     controls: [
       { label: "X", variable: "--milagres-title-x", min: -10, max: 90, step: 0.1, unit: "%" },
@@ -726,6 +767,18 @@ const MILAGRES_CARD_ADJUST_CONTROLS = [
       { label: "Largura", variable: "--milagres-title-width", min: 10, max: 90, step: 0.1, unit: "%" },
       { label: "Altura", variable: "--milagres-title-height", min: 4, max: 35, step: 0.1, unit: "%" },
       { label: "Escala", variable: "--milagres-title-scale", min: 0.4, max: 2, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Sombra Milagres",
+    controls: [
+      { label: "X", variable: "--milagres-title-shadow-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--milagres-title-shadow-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--milagres-title-shadow-width", min: 8, max: 90, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--milagres-title-shadow-height", min: 2, max: 25, step: 0.1, unit: "%" },
+      { label: "Opacidade", variable: "--milagres-title-shadow-opacity", min: 0, max: 1, step: 0.01, unit: "" },
+      { label: "Blur", variable: "--milagres-title-shadow-blur", min: 0, max: 60, step: 1, unit: "px" },
+      { label: "Arredondamento", variable: "--milagres-title-shadow-radius", min: 0, max: 80, step: 1, unit: "px" }
     ]
   },
   {
