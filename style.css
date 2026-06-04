@@ -1923,9 +1923,6 @@ img {
   height: var(--milagres-accent-height);
   transform: scale(var(--milagres-accent-scale));
   transform-origin: left center;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #22d3ef 0%, #18b7d1 55%, rgba(24, 183, 209, 0.04) 100%);
-  box-shadow: 0 0 14px rgba(34, 211, 238, 0.24);
 }
 
 .milagres-home-card__highlight-icon {
