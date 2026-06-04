@@ -37,6 +37,13 @@
   --maragogi-title-width: 62.5%;
   --maragogi-title-height: 23.9%;
   --maragogi-title-scale: 1.19;
+  --maragogi-title-shadow-x: -2.2%;
+  --maragogi-title-shadow-y: 58.2%;
+  --maragogi-title-shadow-width: 54%;
+  --maragogi-title-shadow-height: 11.6%;
+  --maragogi-title-shadow-opacity: 0.34;
+  --maragogi-title-shadow-blur: 18px;
+  --maragogi-title-shadow-radius: 28px;
   --maragogi-accent-x: 2.8%;
   --maragogi-accent-y: 67.7%;
   --maragogi-accent-width: 25%;
@@ -1653,6 +1660,7 @@ img {
 }
 
 .maragogi-home-card__badge,
+.maragogi-home-card__title-shadow,
 .maragogi-home-card__title,
 .maragogi-home-card__accent,
 .maragogi-home-card__highlight-icon,
@@ -1663,7 +1671,22 @@ img {
   position: absolute;
 }
 
+.maragogi-home-card__title-shadow {
+  z-index: 0;
+  left: var(--maragogi-title-shadow-x);
+  top: var(--maragogi-title-shadow-y);
+  width: var(--maragogi-title-shadow-width);
+  height: var(--maragogi-title-shadow-height);
+  opacity: var(--maragogi-title-shadow-opacity);
+  background: rgba(6, 19, 29, 1);
+  filter: blur(var(--maragogi-title-shadow-blur));
+  border-radius: var(--maragogi-title-shadow-radius);
+  pointer-events: none;
+  transform: translateZ(0);
+}
+
 .maragogi-home-card__badge {
+  z-index: 1;
   left: var(--maragogi-badge-x);
   top: var(--maragogi-badge-y);
   width: var(--maragogi-badge-width);
@@ -1685,6 +1708,7 @@ img {
 
 .maragogi-home-card__title {
   margin: 0;
+  z-index: 1;
   left: var(--maragogi-title-x);
   top: var(--maragogi-title-y);
   width: var(--maragogi-title-width);
@@ -1698,6 +1722,7 @@ img {
 }
 
 .maragogi-home-card__accent {
+  z-index: 1;
   left: var(--maragogi-accent-x);
   top: var(--maragogi-accent-y);
   width: var(--maragogi-accent-width);
@@ -1707,6 +1732,7 @@ img {
 }
 
 .maragogi-home-card__highlight-icon {
+  z-index: 1;
   filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.18));
   transform: scale(var(--maragogi-icons-scale));
   transform-origin: center;
@@ -1734,6 +1760,7 @@ img {
 }
 
 .maragogi-home-card__highlight-text {
+  z-index: 1;
   display: block;
   color: rgba(255, 255, 255, 0.95);
   font-weight: 700;
@@ -1763,6 +1790,7 @@ img {
 }
 
 .maragogi-home-card__highlight-separator {
+  z-index: 1;
   width: 1px;
   background: rgba(93, 237, 255, 0.35);
 }
@@ -1784,6 +1812,7 @@ img {
 }
 
 .maragogi-home-card__button-visual {
+  z-index: 1;
   filter: drop-shadow(0 10px 18px rgba(6, 20, 29, 0.24));
   pointer-events: none;
 }

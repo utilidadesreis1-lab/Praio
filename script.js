@@ -381,6 +381,13 @@ const MARAGOGI_CARD_DEFAULTS = {
   "--maragogi-title-width": "62.5%",
   "--maragogi-title-height": "23.9%",
   "--maragogi-title-scale": "1.19",
+  "--maragogi-title-shadow-x": "-2.2%",
+  "--maragogi-title-shadow-y": "58.2%",
+  "--maragogi-title-shadow-width": "54%",
+  "--maragogi-title-shadow-height": "11.6%",
+  "--maragogi-title-shadow-opacity": "0.34",
+  "--maragogi-title-shadow-blur": "18px",
+  "--maragogi-title-shadow-radius": "28px",
   "--maragogi-accent-x": "2.8%",
   "--maragogi-accent-y": "67.7%",
   "--maragogi-accent-width": "25%",
@@ -479,6 +486,18 @@ const MARAGOGI_CARD_ADJUST_CONTROLS = [
       { label: "Largura", variable: "--maragogi-title-width", min: 10, max: 90, step: 0.1, unit: "%" },
       { label: "Altura", variable: "--maragogi-title-height", min: 4, max: 35, step: 0.1, unit: "%" },
       { label: "Escala", variable: "--maragogi-title-scale", min: 0.4, max: 2, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Sombra Maragogi",
+    controls: [
+      { label: "X", variable: "--maragogi-title-shadow-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--maragogi-title-shadow-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--maragogi-title-shadow-width", min: 8, max: 90, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--maragogi-title-shadow-height", min: 2, max: 25, step: 0.1, unit: "%" },
+      { label: "Opacidade", variable: "--maragogi-title-shadow-opacity", min: 0, max: 1, step: 0.01, unit: "" },
+      { label: "Blur", variable: "--maragogi-title-shadow-blur", min: 0, max: 60, step: 1, unit: "px" },
+      { label: "Arredondamento", variable: "--maragogi-title-shadow-radius", min: 0, max: 80, step: 1, unit: "px" }
     ]
   },
   {
