@@ -2920,21 +2920,117 @@ function createFullscreenGalleryOverlay(label) {
   return overlay;
 }
 
+function optimizeDeferredImages() {
+  document.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+    if (!img.hasAttribute("decoding")) {
+      img.decoding = "async";
+    }
+
+    if (!img.hasAttribute("fetchpriority")) {
+      img.setAttribute("fetchpriority", "low");
+    }
+  });
+}
+
+function splitGalleryImageAttribute(value) {
+  return (value || "")
+    .split("|")
+    .map((entry) => entry.trim())
+    .filter(Boolean);
+}
+
+function parseHomeGalleryEntries(trigger) {
+  const sources = splitGalleryImageAttribute(trigger.getAttribute("data-gallery-images"));
+  const fallbacks = splitGalleryImageAttribute(trigger.getAttribute("data-gallery-fallback-images"));
+
+  return sources.map((src, index) => ({
+    src,
+    fallbackSrc: fallbacks[index] || src
+  }));
+}
+
 function wireFullscreenGallery(overlay, getState, setState) {
   const image = overlay.querySelector(".tour-lightbox__image");
   const closeButton = overlay.querySelector(".tour-lightbox__close");
   const prevButton = overlay.querySelector(".tour-lightbox__nav-arrow--prev");
   const nextButton = overlay.querySelector(".tour-lightbox__nav-arrow--next");
   const dotsContainer = overlay.querySelector(".tour-lightbox__dots");
+  const preloadedSources = new Set();
+
+  if (image) {
+    image.decoding = "async";
+  }
+
+  const getEntrySource = (state, entry, index) => {
+    const src = state.getSrc(entry, index);
+    const fallbackSrc =
+      typeof state.getFallbackSrc === "function" ? state.getFallbackSrc(entry, index) : null;
+
+    return { src, fallbackSrc };
+  };
+
+  const assignImageSource = (target, src, fallbackSrc, alt) => {
+    if (!target || !src) return;
+
+    let fallbackApplied = false;
+    target.decoding = "async";
+    target.alt = alt;
+    target.onerror = null;
+
+    if (fallbackSrc && fallbackSrc !== src) {
+      target.onerror = () => {
+        if (fallbackApplied) return;
+        fallbackApplied = true;
+        target.onerror = null;
+        target.src = fallbackSrc;
+      };
+    }
+
+    target.src = src;
+  };
+
+  const preloadAdjacentImages = () => {
+    const state = getState();
+    const total = state.images.length;
+    if (total < 2) return;
+
+    const adjacentIndexes = [
+      (state.activeIndex + 1) % total,
+      (state.activeIndex - 1 + total) % total
+    ];
+
+    adjacentIndexes.forEach((index) => {
+      const entry = state.images[index];
+      const { src, fallbackSrc } = getEntrySource(state, entry, index);
+      const preloadKey = `${src}|${fallbackSrc || ""}`;
+      if (!src || preloadedSources.has(preloadKey)) return;
+
+      const preloadImage = new Image();
+      let fallbackApplied = false;
+      preloadImage.decoding = "async";
+      preloadImage.loading = "eager";
+
+      preloadImage.onerror = () => {
+        if (!fallbackSrc || fallbackSrc === src || fallbackApplied) return;
+        fallbackApplied = true;
+        preloadImage.onerror = null;
+        preloadImage.src = fallbackSrc;
+      };
+
+      preloadImage.src = src;
+      preloadedSources.add(preloadKey);
+    });
+  };
 
   const render = () => {
     const state = getState();
     const current = state.images[state.activeIndex];
     if (!current) return;
 
-    image.src = state.getSrc(current);
-    image.alt = state.getAlt(current, state.activeIndex);
+    const { src, fallbackSrc } = getEntrySource(state, current, state.activeIndex);
+    assignImageSource(image, src, fallbackSrc, state.getAlt(current, state.activeIndex));
     updateFullscreenGalleryDots(overlay, state.activeIndex);
+    preloadAdjacentImages();
   };
 
   const goTo = (direction) => {
@@ -2950,6 +3046,8 @@ function wireFullscreenGallery(overlay, getState, setState) {
   const close = () => {
     overlay.hidden = true;
     document.body.style.overflow = "";
+    image.removeAttribute("src");
+    image.alt = "";
   };
 
   const open = () => {
@@ -3005,7 +3103,8 @@ function initializeHomeTourGallery() {
     images: [],
     title: "Passeio",
     activeIndex: 0,
-    getSrc: (current) => current,
+    getSrc: (current) => current.src || current,
+    getFallbackSrc: (current) => current.fallbackSrc || null,
     getAlt: (_current, index) => `${state.title} - foto ${index + 1}`
   };
 
@@ -3018,10 +3117,7 @@ function initializeHomeTourGallery() {
   );
 
   triggers.forEach((trigger) => {
-    const imageList = (trigger.getAttribute("data-gallery-images") || "")
-      .split("|")
-      .map((value) => value.trim())
-      .filter(Boolean);
+    const imageList = parseHomeGalleryEntries(trigger);
 
     if (!imageList.length) {
       trigger.disabled = true;
@@ -3091,6 +3187,7 @@ if (getGungaCardAdjustMode()) {
 
 initializeToursCarousel();
 initializeHomeToursCarousel();
+optimizeDeferredImages();
 initializeHomeTourGallery();
 initializeTourGalleries();
 initializeTourLightboxes();

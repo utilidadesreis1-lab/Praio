@@ -1737,6 +1737,17 @@ img {
   pointer-events: none;
 }
 
+.maragogi-home-card__bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("./assets/passeios/optimized/maragogi/maragogi-card.jpg");
+  background-repeat: no-repeat;
+  background-size: var(--maragogi-bg-zoom) auto;
+  background-position: var(--maragogi-bg-position-x) var(--maragogi-bg-position-y);
+  pointer-events: none;
+}
+
 .maragogi-home-card__overlay {
   position: absolute;
   inset: 0;
@@ -1991,6 +2002,17 @@ img {
   height: 100%;
   display: block;
   background-image: url("./assets/passeios/milagres/milagres-01.jpeg");
+  background-repeat: no-repeat;
+  background-size: var(--milagres-bg-zoom) auto;
+  background-position: var(--milagres-bg-position-x) var(--milagres-bg-position-y);
+  pointer-events: none;
+}
+
+.milagres-home-card__bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("./assets/passeios/optimized/milagres/milagres-card.jpg");
   background-repeat: no-repeat;
   background-size: var(--milagres-bg-zoom) auto;
   background-position: var(--milagres-bg-position-x) var(--milagres-bg-position-y);
@@ -2286,6 +2308,17 @@ img {
   height: 100%;
   display: block;
   background-image: url("./assets/passeios/gunga/gunga-02.jpeg");
+  background-repeat: no-repeat;
+  background-size: var(--gunga-bg-zoom) auto;
+  background-position: var(--gunga-bg-position-x) var(--gunga-bg-position-y);
+  pointer-events: none;
+}
+
+.gunga-home-card__bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("./assets/passeios/optimized/gunga/gunga-card.jpg");
   background-repeat: no-repeat;
   background-size: var(--gunga-bg-zoom) auto;
   background-position: var(--gunga-bg-position-x) var(--gunga-bg-position-y);
