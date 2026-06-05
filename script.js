@@ -13,6 +13,8 @@ const MILAGRES_CARD_ADJUST_QUERY = "ajusteCardMilagres";
 const MILAGRES_CARD_ADJUST_STORAGE_KEY = "praio-ajuste-card-milagres";
 const GUNGA_CARD_ADJUST_QUERY = "ajusteCardGunga";
 const GUNGA_CARD_ADJUST_STORAGE_KEY = "praio-ajuste-card-gunga";
+const IPIOCA_CARD_ADJUST_QUERY = "ajusteCardIpioca";
+const IPIOCA_CARD_ADJUST_STORAGE_KEY = "praio-ajuste-card-ipioca";
 
 const HERO_MOBILE_DEFAULTS = {
   "--hero-mobile-block-offset-y": "-20px",
@@ -826,6 +828,93 @@ const GUNGA_CARD_DEFAULTS = {
   "--gunga-overlay-bottom-opacity": "0.79"
 };
 
+const IPIOCA_CARD_DEFAULTS = {
+  "--ipioca-card-stage-width": "100%",
+  "--ipioca-card-stage-height": "100%",
+  "--ipioca-card-stage-offset-y": "0px",
+  "--ipioca-bg-position-x": "50%",
+  "--ipioca-bg-position-y": "46%",
+  "--ipioca-bg-zoom": "115%",
+  "--ipioca-badge-x": "-2%",
+  "--ipioca-badge-y": "2.4%",
+  "--ipioca-badge-width": "53%",
+  "--ipioca-badge-height": "12.8%",
+  "--ipioca-badge-scale": "0.72",
+  "--ipioca-title-x": "9.8%",
+  "--ipioca-title-y": "57%",
+  "--ipioca-title-width": "44%",
+  "--ipioca-title-height": "18%",
+  "--ipioca-title-scale": "1",
+  "--ipioca-title-shadow-x": "8.9%",
+  "--ipioca-title-shadow-y": "58.3%",
+  "--ipioca-title-shadow-width": "47%",
+  "--ipioca-title-shadow-height": "14.6%",
+  "--ipioca-title-shadow-opacity": "0.72",
+  "--ipioca-title-shadow-blur": "12px",
+  "--ipioca-title-shadow-radius": "28px",
+  "--ipioca-accent-x": "12.8%",
+  "--ipioca-accent-y": "69.4%",
+  "--ipioca-accent-width": "21%",
+  "--ipioca-accent-height": "5.1%",
+  "--ipioca-accent-scale": "1.2",
+  "--ipioca-icons-scale": "1.03",
+  "--ipioca-wave-icon-x": "5%",
+  "--ipioca-wave-icon-y": "75.4%",
+  "--ipioca-wave-icon-width": "9.6%",
+  "--ipioca-wave-icon-height": "14.4%",
+  "--ipioca-wave-text-x": "15.5%",
+  "--ipioca-wave-text-y": "80.8%",
+  "--ipioca-wave-text-width": "13.8%",
+  "--ipioca-wave-text-font-size": "8.4px",
+  "--ipioca-boat-icon-x": "35.6%",
+  "--ipioca-boat-icon-y": "75.4%",
+  "--ipioca-boat-icon-width": "9.5%",
+  "--ipioca-boat-icon-height": "14.4%",
+  "--ipioca-boat-text-x": "46.2%",
+  "--ipioca-boat-text-y": "80.8%",
+  "--ipioca-boat-text-width": "14.3%",
+  "--ipioca-boat-text-font-size": "8.4px",
+  "--ipioca-palm-icon-x": "65.5%",
+  "--ipioca-palm-icon-y": "75.4%",
+  "--ipioca-palm-icon-width": "8.8%",
+  "--ipioca-palm-icon-height": "14.4%",
+  "--ipioca-palm-text-x": "75.9%",
+  "--ipioca-palm-text-y": "80.8%",
+  "--ipioca-palm-text-width": "14.1%",
+  "--ipioca-palm-text-font-size": "8.4px",
+  "--ipioca-separator-1-x": "33.8%",
+  "--ipioca-separator-1-y": "79.8%",
+  "--ipioca-separator-1-width": "2px",
+  "--ipioca-separator-1-height": "5.2%",
+  "--ipioca-separator-1-opacity": "0.75",
+  "--ipioca-separator-2-x": "64.3%",
+  "--ipioca-separator-2-y": "79.8%",
+  "--ipioca-separator-2-width": "2px",
+  "--ipioca-separator-2-height": "5.2%",
+  "--ipioca-separator-2-opacity": "0.75",
+  "--ipioca-info-button-x": "0%",
+  "--ipioca-info-button-y": "83.2%",
+  "--ipioca-info-button-width": "47.6%",
+  "--ipioca-info-button-height": "18.9%",
+  "--ipioca-photos-button-x": "44.1%",
+  "--ipioca-photos-button-y": "85%",
+  "--ipioca-photos-button-width": "54.4%",
+  "--ipioca-photos-button-height": "15.2%",
+  "--ipioca-info-hotspot-x": "4%",
+  "--ipioca-info-hotspot-y": "86.4%",
+  "--ipioca-info-hotspot-width": "40%",
+  "--ipioca-info-hotspot-height": "9.3%",
+  "--ipioca-photos-hotspot-x": "47%",
+  "--ipioca-photos-hotspot-y": "86.4%",
+  "--ipioca-photos-hotspot-width": "48.5%",
+  "--ipioca-photos-hotspot-height": "9.3%",
+  "--ipioca-overlay-mid-stop": "69%",
+  "--ipioca-overlay-bottom-start": "82%",
+  "--ipioca-overlay-top-opacity": "0.28",
+  "--ipioca-overlay-mid-opacity": "0",
+  "--ipioca-overlay-bottom-opacity": "0.84"
+};
+
 const MILAGRES_CARD_ADJUST_CONTROLS = [
   {
     group: "Imagem de fundo",
@@ -1122,6 +1211,145 @@ const GUNGA_CARD_ADJUST_CONTROLS = [
       { label: "Opacidade topo", variable: "--gunga-overlay-top-opacity", min: 0, max: 0.6, step: 0.01, unit: "" },
       { label: "Opacidade meio", variable: "--gunga-overlay-mid-opacity", min: 0, max: 0.8, step: 0.01, unit: "" },
       { label: "Opacidade base", variable: "--gunga-overlay-bottom-opacity", min: 0.1, max: 1, step: 0.01, unit: "" }
+    ]
+  }
+];
+
+const IPIOCA_CARD_ADJUST_CONTROLS = [
+  {
+    group: "Imagem de fundo",
+    controls: [
+      { label: "Posicao X", variable: "--ipioca-bg-position-x", min: -20, max: 120, step: 1, unit: "%" },
+      { label: "Posicao Y", variable: "--ipioca-bg-position-y", min: -20, max: 120, step: 1, unit: "%" },
+      { label: "Zoom", variable: "--ipioca-bg-zoom", min: 80, max: 180, step: 1, unit: "%" }
+    ]
+  },
+  {
+    group: "Selo",
+    controls: [
+      { label: "X", variable: "--ipioca-badge-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--ipioca-badge-y", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--ipioca-badge-width", min: 10, max: 90, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--ipioca-badge-height", min: 3, max: 30, step: 0.1, unit: "%" },
+      { label: "Escala", variable: "--ipioca-badge-scale", min: 0.4, max: 2, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Titulo",
+    controls: [
+      { label: "X", variable: "--ipioca-title-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--ipioca-title-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--ipioca-title-width", min: 10, max: 90, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--ipioca-title-height", min: 4, max: 35, step: 0.1, unit: "%" },
+      { label: "Escala", variable: "--ipioca-title-scale", min: 0.4, max: 2, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Sombra Ipioca",
+    controls: [
+      { label: "X", variable: "--ipioca-title-shadow-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--ipioca-title-shadow-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--ipioca-title-shadow-width", min: 8, max: 90, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--ipioca-title-shadow-height", min: 2, max: 25, step: 0.1, unit: "%" },
+      { label: "Opacidade", variable: "--ipioca-title-shadow-opacity", min: 0, max: 1, step: 0.01, unit: "" },
+      { label: "Blur", variable: "--ipioca-title-shadow-blur", min: 0, max: 60, step: 1, unit: "px" },
+      { label: "Arredondamento", variable: "--ipioca-title-shadow-radius", min: 0, max: 80, step: 1, unit: "px" }
+    ]
+  },
+  {
+    group: "Traco",
+    controls: [
+      { label: "X", variable: "--ipioca-accent-x", min: -10, max: 90, step: 0.1, unit: "%" },
+      { label: "Y", variable: "--ipioca-accent-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Largura", variable: "--ipioca-accent-width", min: 4, max: 60, step: 0.1, unit: "%" },
+      { label: "Altura", variable: "--ipioca-accent-height", min: 0.5, max: 12, step: 0.1, unit: "%" },
+      { label: "Escala", variable: "--ipioca-accent-scale", min: 0.4, max: 2, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Icones",
+    controls: [
+      { label: "Escala geral", variable: "--ipioca-icons-scale", min: 0.5, max: 2.4, step: 0.01, unit: "" },
+      { label: "Icone Estrutura X", variable: "--ipioca-wave-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Icone Estrutura Y", variable: "--ipioca-wave-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Icone Estrutura largura", variable: "--ipioca-wave-icon-width", min: 4, max: 22, step: 0.1, unit: "%" },
+      { label: "Icone Estrutura altura", variable: "--ipioca-wave-icon-height", min: 4, max: 22, step: 0.1, unit: "%" },
+      { label: "Icone Conforto X", variable: "--ipioca-boat-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Icone Conforto Y", variable: "--ipioca-boat-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Icone Conforto largura", variable: "--ipioca-boat-icon-width", min: 4, max: 22, step: 0.1, unit: "%" },
+      { label: "Icone Conforto altura", variable: "--ipioca-boat-icon-height", min: 4, max: 22, step: 0.1, unit: "%" },
+      { label: "Icone Diversao X", variable: "--ipioca-palm-icon-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Icone Diversao Y", variable: "--ipioca-palm-icon-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Icone Diversao largura", variable: "--ipioca-palm-icon-width", min: 4, max: 22, step: 0.1, unit: "%" },
+      { label: "Icone Diversao altura", variable: "--ipioca-palm-icon-height", min: 4, max: 22, step: 0.1, unit: "%" }
+    ]
+  },
+  {
+    group: "Textos",
+    controls: [
+      { label: "Estrutura X", variable: "--ipioca-wave-text-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Estrutura Y", variable: "--ipioca-wave-text-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Estrutura largura", variable: "--ipioca-wave-text-width", min: 4, max: 35, step: 0.1, unit: "%" },
+      { label: "Estrutura fonte", variable: "--ipioca-wave-text-font-size", min: 8, max: 28, step: 0.1, unit: "px" },
+      { label: "Conforto X", variable: "--ipioca-boat-text-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Conforto Y", variable: "--ipioca-boat-text-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Conforto largura", variable: "--ipioca-boat-text-width", min: 4, max: 35, step: 0.1, unit: "%" },
+      { label: "Conforto fonte", variable: "--ipioca-boat-text-font-size", min: 8, max: 28, step: 0.1, unit: "px" },
+      { label: "Diversao X", variable: "--ipioca-palm-text-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Diversao Y", variable: "--ipioca-palm-text-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Diversao largura", variable: "--ipioca-palm-text-width", min: 4, max: 35, step: 0.1, unit: "%" },
+      { label: "Diversao fonte", variable: "--ipioca-palm-text-font-size", min: 8, max: 28, step: 0.1, unit: "px" }
+    ]
+  },
+  {
+    group: "Separadores",
+    controls: [
+      { label: "Separador 1 X", variable: "--ipioca-separator-1-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Separador 1 Y", variable: "--ipioca-separator-1-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Separador 1 largura", variable: "--ipioca-separator-1-width", min: 1, max: 6, step: 0.1, unit: "px" },
+      { label: "Separador 1 altura", variable: "--ipioca-separator-1-height", min: 2, max: 20, step: 0.1, unit: "%" },
+      { label: "Separador 1 opacidade", variable: "--ipioca-separator-1-opacity", min: 0, max: 1, step: 0.01, unit: "" },
+      { label: "Separador 2 X", variable: "--ipioca-separator-2-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Separador 2 Y", variable: "--ipioca-separator-2-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Separador 2 largura", variable: "--ipioca-separator-2-width", min: 1, max: 6, step: 0.1, unit: "px" },
+      { label: "Separador 2 altura", variable: "--ipioca-separator-2-height", min: 2, max: 20, step: 0.1, unit: "%" },
+      { label: "Separador 2 opacidade", variable: "--ipioca-separator-2-opacity", min: 0, max: 1, step: 0.01, unit: "" }
+    ]
+  },
+  {
+    group: "Botoes",
+    controls: [
+      { label: "Saiba mais X", variable: "--ipioca-info-button-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Saiba mais Y", variable: "--ipioca-info-button-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Saiba mais largura", variable: "--ipioca-info-button-width", min: 10, max: 80, step: 0.1, unit: "%" },
+      { label: "Saiba mais altura", variable: "--ipioca-info-button-height", min: 4, max: 25, step: 0.1, unit: "%" },
+      { label: "Ver fotos X", variable: "--ipioca-photos-button-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Ver fotos Y", variable: "--ipioca-photos-button-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Ver fotos largura", variable: "--ipioca-photos-button-width", min: 10, max: 90, step: 0.1, unit: "%" },
+      { label: "Ver fotos altura", variable: "--ipioca-photos-button-height", min: 4, max: 30, step: 0.1, unit: "%" }
+    ]
+  },
+  {
+    group: "Hotspots",
+    controls: [
+      { label: "Hotspot Saiba mais X", variable: "--ipioca-info-hotspot-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Hotspot Saiba mais Y", variable: "--ipioca-info-hotspot-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Hotspot Saiba mais largura", variable: "--ipioca-info-hotspot-width", min: 10, max: 80, step: 0.1, unit: "%" },
+      { label: "Hotspot Saiba mais altura", variable: "--ipioca-info-hotspot-height", min: 4, max: 25, step: 0.1, unit: "%" },
+      { label: "Hotspot Ver fotos X", variable: "--ipioca-photos-hotspot-x", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Hotspot Ver fotos Y", variable: "--ipioca-photos-hotspot-y", min: -10, max: 100, step: 0.1, unit: "%" },
+      { label: "Hotspot Ver fotos largura", variable: "--ipioca-photos-hotspot-width", min: 10, max: 90, step: 0.1, unit: "%" },
+      { label: "Hotspot Ver fotos altura", variable: "--ipioca-photos-hotspot-height", min: 4, max: 30, step: 0.1, unit: "%" }
+    ]
+  },
+  {
+    group: "Overlay",
+    controls: [
+      { label: "Overlay meio", variable: "--ipioca-overlay-mid-stop", min: 10, max: 90, step: 1, unit: "%" },
+      { label: "Overlay base", variable: "--ipioca-overlay-bottom-start", min: 20, max: 98, step: 1, unit: "%" },
+      { label: "Opacidade topo", variable: "--ipioca-overlay-top-opacity", min: 0, max: 0.6, step: 0.01, unit: "" },
+      { label: "Opacidade meio", variable: "--ipioca-overlay-mid-opacity", min: 0, max: 0.8, step: 0.01, unit: "" },
+      { label: "Opacidade base", variable: "--ipioca-overlay-bottom-opacity", min: 0.1, max: 1, step: 0.01, unit: "" }
     ]
   }
 ];
@@ -2214,6 +2442,10 @@ function getGungaCardAdjustMode() {
   return new URLSearchParams(window.location.search).get(GUNGA_CARD_ADJUST_QUERY) === "1";
 }
 
+function getIpiocaCardAdjustMode() {
+  return new URLSearchParams(window.location.search).get(IPIOCA_CARD_ADJUST_QUERY) === "1";
+}
+
 function readStoredMaragogiCardAdjustments() {
   try {
     const raw = window.localStorage.getItem(MARAGOGI_CARD_ADJUST_STORAGE_KEY);
@@ -2298,6 +2530,34 @@ function clearStoredGungaCardAdjustments() {
   }
 }
 
+function readStoredIpiocaCardAdjustments() {
+  try {
+    const raw = window.localStorage.getItem(IPIOCA_CARD_ADJUST_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch (error) {
+    return {};
+  }
+}
+
+function persistIpiocaCardAdjustments(values) {
+  try {
+    window.localStorage.setItem(
+      IPIOCA_CARD_ADJUST_STORAGE_KEY,
+      JSON.stringify(values)
+    );
+  } catch (error) {
+    // Ignore storage issues.
+  }
+}
+
+function clearStoredIpiocaCardAdjustments() {
+  try {
+    window.localStorage.removeItem(IPIOCA_CARD_ADJUST_STORAGE_KEY);
+  } catch (error) {
+    // Ignore storage issues.
+  }
+}
+
 function applyMaragogiCardAdjustmentVariables(values) {
   Object.entries(values).forEach(([variable, value]) => {
     document.documentElement.style.setProperty(variable, value);
@@ -2311,6 +2571,12 @@ function applyMilagresCardAdjustmentVariables(values) {
 }
 
 function applyGungaCardAdjustmentVariables(values) {
+  Object.entries(values).forEach(([variable, value]) => {
+    document.documentElement.style.setProperty(variable, value);
+  });
+}
+
+function applyIpiocaCardAdjustmentVariables(values) {
   Object.entries(values).forEach(([variable, value]) => {
     document.documentElement.style.setProperty(variable, value);
   });
@@ -2334,6 +2600,14 @@ function buildMilagresCardAdjustCss(values) {
 
 function buildGungaCardAdjustCss(values) {
   const lines = Object.keys(GUNGA_CARD_DEFAULTS).map(
+    (variable) => `  ${variable}: ${values[variable]};`
+  );
+
+  return `:root {\n${lines.join("\n")}\n}`;
+}
+
+function buildIpiocaCardAdjustCss(values) {
+  const lines = Object.keys(IPIOCA_CARD_DEFAULTS).map(
     (variable) => `  ${variable}: ${values[variable]};`
   );
 
@@ -2802,6 +3076,158 @@ function createGungaCardAdjustTool() {
   }
 }
 
+function createIpiocaCardAdjustTool() {
+  const body = document.body;
+  const currentValues = {
+    ...IPIOCA_CARD_DEFAULTS,
+    ...readStoredIpiocaCardAdjustments()
+  };
+
+  applyIpiocaCardAdjustmentVariables(currentValues);
+  body.classList.add("maragogi-card-adjust-mode");
+
+  const launcher = document.createElement("button");
+  launcher.type = "button";
+  launcher.className = "hero-adjust-launcher";
+  launcher.textContent = "Ajustar Ipioca";
+  launcher.hidden = true;
+
+  const panel = document.createElement("aside");
+  panel.className = "hero-adjust-panel maragogi-adjust-panel maragogi-adjust-panel--clean";
+  panel.innerHTML = `
+    <div class="hero-adjust-panel__header" data-hero-adjust-drag-handle>
+      <div class="hero-adjust-panel__heading">
+        <p class="hero-adjust-panel__eyebrow">Ferramenta temporaria</p>
+        <h2>Ajuste Card Ipioca</h2>
+        <span class="hero-adjust-panel__hint">Ative com ?ajusteCardIpioca=1</span>
+      </div>
+      <button type="button" class="hero-adjust-panel__close" data-ipioca-adjust-close>Ocultar painel</button>
+    </div>
+    <div class="maragogi-clean-tool">
+      <label class="maragogi-clean-tool__label" for="ipioca-adjust-group-select">Escolha o ajuste</label>
+      <select class="maragogi-clean-tool__select" id="ipioca-adjust-group-select" data-ipioca-adjust-group-select></select>
+      <div class="maragogi-clean-tool__controls" data-ipioca-adjust-active-group></div>
+    </div>
+    <div class="hero-adjust-panel__actions maragogi-clean-tool__actions">
+      <button type="button" class="hero-adjust-panel__button" data-ipioca-adjust-reset>Resetar ajustes</button>
+      <button type="button" class="hero-adjust-panel__button hero-adjust-panel__button--primary" data-ipioca-adjust-copy>Copiar CSS final</button>
+      <button type="button" class="hero-adjust-panel__button hero-adjust-panel__button--quiet" data-ipioca-adjust-clear>Limpar ajustes salvos</button>
+    </div>
+  `;
+
+  const select = panel.querySelector("[data-ipioca-adjust-group-select]");
+  const activeGroup = panel.querySelector("[data-ipioca-adjust-active-group]");
+  const closeButton = panel.querySelector("[data-ipioca-adjust-close]");
+  const resetButton = panel.querySelector("[data-ipioca-adjust-reset]");
+  const clearButton = panel.querySelector("[data-ipioca-adjust-clear]");
+  const copyButton = panel.querySelector("[data-ipioca-adjust-copy]");
+  const dragHandle = panel.querySelector("[data-hero-adjust-drag-handle]");
+  const values = { ...currentValues };
+
+  const controlsMeta = IPIOCA_CARD_ADJUST_CONTROLS.flatMap(
+    (group) => group.controls
+  );
+
+  const onChange = (variable, value) => {
+    values[variable] = value;
+    document.documentElement.style.setProperty(variable, value);
+    persistIpiocaCardAdjustments(values);
+  };
+
+  const renderGroup = (groupIndex = 0) => {
+    if (!activeGroup) return;
+    const group = IPIOCA_CARD_ADJUST_CONTROLS[groupIndex] || IPIOCA_CARD_ADJUST_CONTROLS[0];
+    activeGroup.innerHTML = "";
+
+    const title = document.createElement("h3");
+    title.className = "maragogi-clean-tool__group-title";
+    title.textContent = group.group;
+    activeGroup.appendChild(title);
+
+    group.controls.forEach((control) => {
+      activeGroup.appendChild(createHeroAdjustControl(control, values, onChange));
+    });
+  };
+
+  IPIOCA_CARD_ADJUST_CONTROLS.forEach((group, index) => {
+    const option = document.createElement("option");
+    option.value = String(index);
+    option.textContent = group.group;
+    select?.appendChild(option);
+  });
+
+  select?.addEventListener("change", () => {
+    renderGroup(Number(select.value));
+  });
+
+  renderGroup(0);
+
+  const syncInputsFromValues = (sourceValues) => {
+    panel.querySelectorAll(".hero-adjust-control").forEach((controlElement) => {
+      const variable = controlElement.getAttribute("data-variable");
+      const meta = controlsMeta.find((item) => item.variable === variable);
+      const input = controlElement.querySelector(".hero-adjust-control-input");
+      const valueElement = controlElement.querySelector(".hero-adjust-control-value");
+
+      if (!meta || !input || !valueElement) return;
+      input.value = parseHeroAdjustValue(sourceValues[meta.variable], meta.unit);
+      valueElement.textContent = sourceValues[meta.variable];
+    });
+  };
+
+  const resetToDefaults = () => {
+    Object.entries(IPIOCA_CARD_DEFAULTS).forEach(([variable, value]) => {
+      values[variable] = value;
+      document.documentElement.style.setProperty(variable, value);
+    });
+    syncInputsFromValues(IPIOCA_CARD_DEFAULTS);
+    persistIpiocaCardAdjustments(values);
+  };
+
+  resetButton?.addEventListener("click", resetToDefaults);
+
+  clearButton?.addEventListener("click", () => {
+    clearStoredIpiocaCardAdjustments();
+    resetToDefaults();
+    const originalText = clearButton.textContent;
+    clearButton.textContent = "Salvos limpos";
+    window.setTimeout(() => {
+      clearButton.textContent = originalText;
+    }, 1600);
+  });
+
+  copyButton?.addEventListener("click", async () => {
+    const css = buildIpiocaCardAdjustCss(values);
+    const originalText = copyButton.textContent;
+
+    try {
+      await copyTextToClipboard(css);
+      copyButton.textContent = "CSS copiado";
+    } catch (error) {
+      copyButton.textContent = "Falha ao copiar";
+    }
+
+    window.setTimeout(() => {
+      copyButton.textContent = originalText;
+    }, 1800);
+  });
+
+  const togglePanel = (isOpen) => {
+    panel.hidden = !isOpen;
+    launcher.hidden = isOpen;
+  };
+
+  closeButton?.addEventListener("click", () => togglePanel(false));
+  launcher.addEventListener("click", () => togglePanel(true));
+
+  body.append(panel, launcher);
+  togglePanel(true);
+
+  if (dragHandle) {
+    enableHeroAdjustPanelDrag(panel, dragHandle);
+  }
+}
+
 
 if (navToggle) {
   navToggle.addEventListener("click", () => {
@@ -3175,7 +3601,9 @@ function initializeTourLightboxes() {
   });
 }
 
-if (getGungaCardAdjustMode()) {
+if (getIpiocaCardAdjustMode()) {
+  createIpiocaCardAdjustTool();
+} else if (getGungaCardAdjustMode()) {
   createGungaCardAdjustTool();
 } else if (getMilagresCardAdjustMode()) {
   createMilagresCardAdjustTool();
