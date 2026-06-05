@@ -2581,10 +2581,10 @@ img {
     url("./assets/passeios/gunga/gunga-01.jpeg");
 }
 
-.premium-tour-card--nikolas {
+.premium-tour-card--ipioca {
   --premium-card-bg-image:
-    radial-gradient(circle at 18% 22%, rgba(104, 223, 231, 0.7), transparent 28%),
-    linear-gradient(145deg, #0c6777 0%, #19a2ac 38%, #85d4d2 62%, #f4d9a3 100%);
+    linear-gradient(160deg, rgba(10, 164, 178, 0.12), rgba(255, 187, 121, 0.06)),
+    url("./assets/passeios/ipioca/ipioca-01.jpeg");
 }
 
 .premium-tour-card--porto {
